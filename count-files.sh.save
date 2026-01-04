@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+e
+cho "📁 Counting project files..."
+
+find . -type f \
+  -not -path "./node_modules/*" \
+  -not -path "./.git/*" \
+  -not -path "./.next/*" \
+  -not -path "./dist/*" \
+  -not -path "./build/*" \
+  | wc -l
+
+^T
+					
+
+
+^X
+

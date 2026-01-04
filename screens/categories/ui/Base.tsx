@@ -1,0 +1,28 @@
+"use client";
+import Header from './Header';
+import Table from './Table';
+import Pagination from './Pagination';
+import { useCategoryForm } from '../hooks/useCategoryForm';
+import CategoryForm from './CategoryForm';
+import DeleteModal from './DeleteCategory';
+import { useSyncCategories } from '../hooks/useSyncCategories';
+
+export default function Base() {
+  const { onSubmit, isPending, errors, register } = useCategoryForm();
+  useSyncCategories();
+
+  return (
+    <div className='flex-1 flex flex-col'>
+      <Header />
+      <Table />
+      <CategoryForm
+        isPending={isPending}
+        errors={errors}
+        register={register}
+        onSubmit={onSubmit}
+      />
+      <DeleteModal />
+      <Pagination />
+    </div>
+  );
+}
