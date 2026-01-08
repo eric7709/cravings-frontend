@@ -4,6 +4,7 @@ import { X, Package } from "lucide-react";
 import type { ORDER_STATUS } from "@/models/orders/types";
 import { statusConfig } from "../util/helper";
 import { formatPrice } from "@/shared/utils/formatPrice";
+import { useEffect } from "react";
 
 export default function OrderHistory() {
   const { data, isLoading, isError } = useCustomerOrdersToday();
@@ -14,9 +15,8 @@ export default function OrderHistory() {
 
   return (
     <div
-      className={`fixed inset-0 z-[500] bg-gray-50 overflow-y-auto transition-all duration-300 ${
-        activeModal === "history" ? "opacity-100 visible" : "opacity-0 invisible"
-      }`}
+      className={`fixed inset-0 z-[500] bg-gray-50 overflow-y-auto transition-all duration-300 ${activeModal === "history" ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
     >
       {/* Header */}
       <div className="sticky top-0 bg-white shadow-sm">
@@ -73,7 +73,7 @@ export default function OrderHistory() {
                               Takeout
                             </span>
                           )}
-                        <p className="font-medium text-sm">{item.menuItemName}</p>
+                          <p className="font-medium text-sm">{item.menuItemName}</p>
                         </div>
                       </div>
                       <p className="font-semibold text-xs">

@@ -1,6 +1,6 @@
 "use client"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { COLORS, COLORS2 } from "../data/data";
+import { COLORS } from "../data/data";
 import { useDashboardStore } from "@/models/dashboard/store";
 
 
@@ -11,7 +11,7 @@ export default function TopMenuItems() {
   const data = menuitems.map((cat, i) => ({
     menuItemName: cat.name,
     amount: cat.totalSales,
-    color: COLORS2[i % COLORS2.length],
+    color: COLORS[4 - i],
     
   }));
 

@@ -40,9 +40,7 @@ export default function AuthBlocker({ children }: { children: React.ReactNode })
       }
     }
   }, [decision, router, user]);
-
   if (decision === "loading") return <Loader />;
   if (decision === "redirect") return null;
-
   return <>{children}</>;
 }

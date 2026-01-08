@@ -6,40 +6,41 @@ import SockJS from "sockjs-client";
 import { Order } from "@/models/orders/types";
 import { useOrderStore } from "@/models/orders/store";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 export function useOrderRealtime() {
   const { addOrder, updateOrder } = useOrderStore();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const client = new Client({
       webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
       reconnectDelay: 5000,
-      debug: (str) => console.log(str),
     });
 
     client.onConnect = () => {
       console.log("✅ STOMP connected (orders)");
 
-      // CREATED
       client.subscribe("/topic/orders/created", (msg: Message) => {
         const newOrder: Order = JSON.parse(msg.body);
         addOrder(newOrder);
+
+        // 🔄 REFRESH LIST + STATUS COUNTS
+        queryClient.invalidateQueries({ queryKey: ["orders"] });
       });
 
-      // UPDATED
       client.subscribe("/topic/orders/updated", (msg: Message) => {
         const updatedOrder: Order = JSON.parse(msg.body);
         updateOrder(updatedOrder);
+
+        // 🔄 REFRESH LIST + STATUS COUNTS
+        queryClient.invalidateQueries({ queryKey: ["orders"] });
       });
     };
 
-    client.onStompError = (frame) => {
-      console.error("❌ STOMP error (orders)", frame);
-    };
-
     client.activate();
-
     return () => {
       client.deactivate();
     };
-  }, [addOrder, updateOrder]);
+  }, [addOrder, updateOrder, queryClient]);
 }

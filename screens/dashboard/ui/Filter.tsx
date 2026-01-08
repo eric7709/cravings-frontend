@@ -24,23 +24,16 @@ const rangeOptions = [
 
 export default function Filter() {
     const { setStartDate, setEndDate } = useDashboardStore();
-
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [rangeOpen, setRangeOpen] = useState(false);
-
     const [selectedRange, setSelectedRange] = useState("Today");
-
     const calendarRef = useRef<HTMLDivElement>(null);
+    const [date, setDate] = useState<Date | undefined>(new Date());
     const rangeRef = useRef<HTMLDivElement>(null);
     const { openCreateModal } = useMenuItemStore()
-
     useClickOutside(calendarRef as any, () => setCalendarOpen(false), calendarOpen);
     useClickOutside(rangeRef as any, () => setRangeOpen(false), rangeOpen);
-
     const router = useRouter()
-
-    const date = new Date();
-
 
     return (
         <div className="flex flex-col lg:flex-row items-center mt-3 mb-2 pt-1 px-4 gap-4 relative">
@@ -48,22 +41,32 @@ export default function Filter() {
             <div className="flex w-full gap-2">
                 <div
                     ref={calendarRef}
-                    className="w-12 lg:h-14 h-12 lg:w-14 cursor-pointer duration-300 grid shadow-md place-content-center border bg-white border-gray-200 rounded-full relative"
-                    onClick={() => setCalendarOpen(!calendarOpen)}
+                    className="w-12 lg:h-14 h-12 lg:w-14 cursor-pointer grid place-content-center shadow-md border border-gray-200 bg-white rounded-full relative"
+                    onClick={() => setCalendarOpen(true)}
                 >
                     <CalendarIcon />
-                    <div className={`absolute z-50 left-0 lg:left-auto bg-white duration-300 border-2 border-gray-300 rounded-2xl shadow-lg ${calendarOpen ? "opacity-100 top-[110%] visible" : "opacity-0 invisible top-3"}`}>
-                        <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={(d) => {
-                                setStartDate(toLocalDateString(d) as string);
-                                setEndDate(toLocalDateString(d) as string);
-                                setCalendarOpen(false)
-                            }}
-                        />
-                    </div>
+
+                    {calendarOpen && (
+                        <div
+                            className="absolute z-50 left-0 lg:left-auto top-[110%] bg-white border-2 border-gray-300 rounded-2xl shadow-lg"
+                            onClick={(e) => e.stopPropagation()} // 🛑 IMPORTANT
+                        >
+                            <Calendar
+                                mode="single"
+                                required
+                                selected={date}
+                                onSelect={(d) => {
+                                    if (!d) return;
+                                    setDate(d); // ✅ THIS WAS MISSING
+                                    setStartDate(toLocalDateString(d) as string);
+                                    setEndDate(toLocalDateString(d) as string);
+                                    setCalendarOpen(false);
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
+
 
                 {/* Range Dropdown */}
 

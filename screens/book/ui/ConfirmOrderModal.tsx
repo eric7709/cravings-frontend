@@ -10,7 +10,7 @@ import { AlertTriangle, CheckCircle2 } from "lucide-react";
 
 export function ConfirmOrderModal() {
   const router = useRouter();
-  const { mutate } = useCreateOrder();
+  const { mutate, isPending } = useCreateOrder();
   const { menuItems } = useMenuItemStore();
 
   const {
@@ -169,10 +169,11 @@ export function ConfirmOrderModal() {
 
               <button
                 onClick={onConfirm}
+                disabled={isPending}
                 className="flex-1 py-3 rounded-full bg-green-600 text-white
                            font-semibold hover:bg-green-700 active:scale-95 transition-all"
               >
-                Confirm Order
+                {isPending ? "Confirming" : "Confirm Order"}
               </button>
             </div>
           </div>

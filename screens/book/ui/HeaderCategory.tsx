@@ -21,7 +21,7 @@ export default function HeaderCategory() {
                         className={`
               text-nowrap border-2 capitalize px-5 active:scale-90 duration-300 py-2 rounded-full font-medium
               ${category === cat.name
-                                ? 'bg-gradient-to-r border-red-300 from-orange-400  to-red-600 text-white shadow-lg'
+                                ? 'bg-gradient-to-r border-red-300 from-orange-400  to-orange-600 text-white shadow-lg'
                                 : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200'
                             }
             `}

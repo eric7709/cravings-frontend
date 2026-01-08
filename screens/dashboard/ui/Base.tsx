@@ -9,13 +9,11 @@ import { useDashboardStore } from "@/models/dashboard/store";
 import Loader2 from "@/shared/ui/Loader2";
 import Filter from "./Filter";
 import MenuItemForm from "@/screens/menuItems/ui/MenuItemForm";
-import RevenueChart from "./RevenueChart";
 
 export default function Base() {
   useDashboardStats()
   useDashboardOverview()
   const {hasHydrated} = useDashboardStore()
-  
 
 
   if(!hasHydrated) return <Loader2 />

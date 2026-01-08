@@ -11,10 +11,15 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
   search: "",
   activeModal: null,
   selectedMenuItem: null,
+  status: null,
   menuItems: [],
   setSelectedMenuItem: (selectedMenuItem) =>
     set({
       selectedMenuItem,
+    }),
+  setStatus: (status) =>
+    set({
+      status,
     }),
   closeModal: () => set({ activeModal: null }),
   openCreateModal: () => set({ activeModal: "create" }),

@@ -1,6 +1,6 @@
 "use client"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { COLORS, COLORS1 } from "../data/data";
+import { COLORS } from "../data/data";
 import { useDashboardStore } from "@/models/dashboard/store";
 
 
@@ -11,7 +11,7 @@ export default function TopCategories() {
   const data = categories.map((cat, i) => ({
     category: cat.category,
     amount: cat.totalSales,
-    color: COLORS1[i % COLORS1.length],
+    color: COLORS[i],
   }));
 
   if (data.length === 0) {

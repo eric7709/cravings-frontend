@@ -5,6 +5,7 @@ import CreateButton from "@/shared/ui/CreateButton";
 import Search from "@/shared/ui/Search";
 import { useMenuItemStore } from "@/models/menuItems/store";
 import { TiArrowSortedDown } from "react-icons/ti";
+import MenuItemStatus from "./Status";
 
 export default function Header() {
   const { openCreateModal, setSearch, search } = useMenuItemStore();
@@ -16,6 +17,7 @@ export default function Header() {
       <div className="hidden lg:flex bg-white items-center justify-between py-4 px-3 border border-gray-100 rounded-2xl shadow shadow-gray-200">
         <Search value={search} onChange={(e) => setSearch(e.target.value)} className="w-56" placeholder="Search Menu-items..." />
         <div className="flex gap-3 items-center">
+          <MenuItemStatus />
           <CreateButton onClick={openCreateModal} title="Create Menu-item" />
         </div>
       </div>

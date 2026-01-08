@@ -50,12 +50,12 @@ export default function OrderCardAction({ showDeleteBtn, getButtonText, cancelOr
                     }} className={`bg-red-500   ${statusConfig.border} p-4 border-t-2 border-l-2  cursor-pointer text-white rounded-tl-2xl`}>Cancel Order</button>
                 </div>
             </div>
-            <div className={`lg:hidden ${canceButtonVisibleForMobile ? "grid": "hidden"} duration-300`}>
-                <div className={`overflow-hidden grid-cols-1 grid text-sm cursor-pointer duration-300 font-semibold w-full bg-white gap-2 `}>
+            <div className={`lg:hidden ${canceButtonVisibleForMobile ? "grid": "hidden"}  duration-300`}>
+                <div className={`overflow-hidden grid-cols-1 grid text-sm cursor-pointer  duration-300 font-semibold w-full bg-white gap-2 `}>
                     <button onClick={() => {
                         cancelOrder()
                         setShowDeleteBtn(false)
-                    }} className={`bg-gray-200  ${statusConfig.border} p-4 border-t-2 border-l-2  cursor-pointer text-red-600`}>Cancel Order</button>
+                    }} className={`bg-gray-200  ${statusConfig.border} p-4 border-t-2  border-l-2  cursor-pointer text-red-600`}>Cancel Order</button>
                 </div>
             </div>
         </div>

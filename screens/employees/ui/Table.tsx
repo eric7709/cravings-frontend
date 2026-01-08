@@ -3,26 +3,7 @@
 import { Pencil, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEmployeeStore } from "@/models/employee/store";
-
-const idColors = [
-  "from-violet-500 to-purple-600",
-  "from-blue-500 to-cyan-600",
-  "from-emerald-500 to-teal-600",
-  "from-orange-500 to-red-600",
-  "from-pink-500 to-rose-600",
-  "from-indigo-500 to-blue-600",
-  "from-amber-500 to-orange-600",
-  "from-fuchsia-500 to-pink-600",
-];
-
-const roleColors: Record<string, string> = {
-  ROLE_WAITER: "bg-blue-500/10 text-blue-700 border-blue-500/20",
-  ROLE_CASHIER: "bg-emerald-500/10 text-emerald-700 border-emerald-500/20",
-  ROLE_MANAGER: "bg-purple-500/10 text-purple-700 border-purple-500/20",
-  ROLE_ADMIN: "bg-rose-500/10 text-rose-700 border-rose-500/20",
-  ROLE_COOK: "bg-amber-500/10 text-amber-700 border-amber-500/20",
-  ROLE_CHEF: "bg-orange-500/10 text-orange-700 border-orange-500/20",
-};
+import { idColors, roleColors } from "../data/colors";
 
 export default function EmployeeTable() {
   const { employees, setSelectedEmployee, openUpdateModal, openDeleteModal, search } =
@@ -31,17 +12,18 @@ export default function EmployeeTable() {
   if (!employees?.length) return null;
 
   const data = employees.filter(el => {
-    return (
+    const test =
       el.email.toLowerCase().includes(search.toLowerCase()) ||
       el.firstName.toLowerCase().includes(search.toLowerCase()) ||
       el.lastName.toLowerCase().includes(search.toLowerCase()) ||
       el.phoneNumber.toLowerCase().includes(search.toLowerCase())
-    );
+    const test2 = el.role !== "ROLE_ADMIN"
+    return test && test2;
   });
 
   return (
-    <div className="p-4">
-      <div className="flex-1 overflow-y-auto p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
+    <div className="p-4 flex-1 overflow-y-auto">
+      <div className=" p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
         <p className="font-semibold mb-4 lg:text-2xl text-lg">Employees</p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,7 +33,7 @@ export default function EmployeeTable() {
           <table className="w-full border-collapse min-w-[900px]">
             <thead>
               <tr className="border-b border-gray-200/60 bg-gradient-to-r from-gray-50/50 to-gray-100/30">
-                {["Name", "Phone", "Email", "Role", "Actions"].map((h) => (
+                {["Name", "Phone", "Email", "Role", "Gender", "Actions"].map((h) => (
                   <th
                     key={h}
                     className="p-3 lg:p-5 text-left lg:text-left text-xs lg:text-xs font-bold uppercase tracking-widest text-gray-500"
@@ -61,7 +43,6 @@ export default function EmployeeTable() {
                 ))}
               </tr>
             </thead>
-
             <tbody>
               {data.map((emp, idx) => {
                 const firstLetter = emp.firstName?.[0]?.toUpperCase();
@@ -114,9 +95,11 @@ export default function EmployeeTable() {
                       {emp.email || <span className="italic text-gray-400">Not provided</span>}
                     </td>
 
+
+
                     {/* Role Badge */}
                     <td className="p-2 lg:p-4">
-                      <div className="flex justify-center">
+                      <div className="flex ">
                         <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 250 }}>
                           <span
                             className={`inline-flex items-center px-3 lg:px-4 py-1 lg:py-2 text-xs lg:text-xs rounded-full font-bold tracking-wide border ${roleColors[emp.role] || "bg-gray-500/10 text-gray-600 border-gray-500/20"
@@ -128,8 +111,12 @@ export default function EmployeeTable() {
                       </div>
                     </td>
 
+                    <td className="p-2 lg:p-4 text-sm lg:text-base">
+                      {emp.gender == "MALE" ? "Male": "Female"}
+                    </td>
+
                     {/* Action Buttons */}
-                    <td className="p-2 lg:p-4 flex justify-center gap-1 lg:gap-2">
+                    <td className="p-2 lg:p-4 flex   gap-1 lg:gap-2">
                       <motion.button
                         whileHover={{ scale: 1.05, y: -1 }}
                         whileTap={{ scale: 0.95 }}

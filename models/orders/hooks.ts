@@ -84,7 +84,6 @@ export const useOrders = () => {
         setTodayOrderStats(data.statusCounts);
       }
       stopLoading()
-
       return data;
     },
     placeholderData: keepPreviousData, // prevents UI flicker when changing filters/pagination
@@ -109,11 +108,17 @@ export const useCreateOrder = () => {
       const { data } = await api.post<Order>("/orders", payload);
       return data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["customer-orders-today", "dashboardStats"] as any);
+    onSuccess: (order) => {
+      queryClient.invalidateQueries({
+        queryKey: ["customer-orders-today", order.customerId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["dashboardStats"],
+      });
     },
   });
 };
+
 
 export const useUpdateOrder = () => {
   const queryClient = useQueryClient();
@@ -143,7 +148,7 @@ export const useCustomerOrdersToday = () => {
   return useQuery({
     queryKey: ["customer-orders-today", customer?.id],
     queryFn: async () => {
-      const { data } = await api.get<CustomerOrderDTO[]>(`/orders/customer/${customer?.id}`);
+      const { data } = await api.get<CustomerOrderDTO[]>(`/orders/customer/1`);
       return data;
     },
     enabled: !!customer?.id,

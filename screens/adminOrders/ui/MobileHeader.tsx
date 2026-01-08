@@ -9,9 +9,8 @@ import AdminHeaderPagination from './AdminHeaderPagination'
 
 export default function MobileHeader() {
     const [opened, setOpened] = useState(false)
-
     return (
-        <div className='lg:hidden'>
+        <div className='lg:hidden p-4'>
             <div className="">
                 <button onClick={() => setOpened(!opened)} className='bg-blue-600  flex items-center gap-3 w-full py-3 text-white text-sm font-semibold duration-300 active:scale-95 cursor-pointer shadow-md hover:bg-blue-700 rounded-3xl justify-center '>
                     Search & FIlter <TiArrowSortedDown className={`duration-300 ${opened ? "-rotate-180" : ""}`} />

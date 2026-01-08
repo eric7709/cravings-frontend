@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Bell, Menu } from "lucide-react";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { useUserStore } from "@/models/auth/store";
-import ProfileDropdown from "@/models/cashier/ui/ProfileDropdown";
+import ProfileDropdown from "@/shared/ui/ProfileDropdown";
 import { useGeneralStore } from "@/shared/store/useGeneralStore";
 import { getPageTitle } from "@/shared/lib/getPageTitle";
 import MobileSidebar from "./MobileSidenav";
@@ -16,7 +16,7 @@ export default function AdminHeader() {
   const pathname = usePathname();
   const page = pathname.split("/").at(-1) ?? "";
   const { user } = useUserStore();
-  const {toggleSideBar} = useGeneralStore();
+  const { toggleSideBar } = useGeneralStore();
   const role = useGetRole();
 
   return (
@@ -50,10 +50,10 @@ export default function AdminHeader() {
             <ProfileDropdown>
               <div className="flex cursor-pointer items-center gap-2">
                 <div className="h-12 w-12 rounded-full border-2 relative overflow-hidden border-orange-400">
-                  <img 
-                    src="/admin.png" 
-                    className="h-full w-full object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" 
-                    alt="" 
+                  <img
+                    src="/admin.png"
+                    className="h-full w-full object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    alt=""
                   />
                 </div>
                 <div>

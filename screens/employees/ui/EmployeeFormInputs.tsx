@@ -46,7 +46,6 @@ export default function EmployeeFormInputs({ register, errors }: Props) {
               error={errors.firstName?.message}
             />
           </motion.div>
-
           {/* Last Name */}
           <motion.div variants={fieldVariants}>
             <FormInput
@@ -91,9 +90,22 @@ export default function EmployeeFormInputs({ register, errors }: Props) {
             />
           </motion.div>
 
-          {/* Role */}
+          {/* Gender */}
           <motion.div variants={fieldVariants}>
             <FormInput
+              label="Gender"
+              options={[
+                { label: "Male", value: "MALE" },
+                { label: "Female", value: "FEMALE" },
+              ]}
+              {...register("gender", { required: "Gender is required" })}
+              error={errors.gender?.message}
+            />
+          </motion.div>
+          {/* Role */}
+          <motion.div variants={fieldVariants} className='col-span-2'>
+            <FormInput
+              
               label="Role"
               options={[
                 { label: "Waiter", value: "ROLE_WAITER" },

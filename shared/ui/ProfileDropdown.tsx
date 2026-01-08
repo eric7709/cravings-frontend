@@ -35,6 +35,7 @@ export default function ProfileDropdown({ children }: Props) {
 
   return (
     <div className="relative" ref={ref}>
+      {/* <div className="h-screen w-full grijll223333333333d place-content-center fixed top-0 left-0 bg-red-500"></div> */}
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 focus:outline-none"
@@ -94,7 +95,7 @@ export default function ProfileDropdown({ children }: Props) {
                 setOpen(false);
                 logout();
               }}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 w-full"
+              className="flex items-center cursor-pointer gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 w-full"
             >
               <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center">
                 <LogOut className="w-4 h-4 text-red-600" />

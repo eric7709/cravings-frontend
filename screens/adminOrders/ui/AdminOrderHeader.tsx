@@ -12,15 +12,16 @@ export default function AdminOrderHeader() {
   const { todayOrderStats } = useOrderStore();
 
   return (
-    <div className="hidden lg:flex flex-col gap-6">
-      <AdminHeaderCounts todayOrderStats={todayOrderStats} />
-      <div className="flex flex-wrap justify-center gap-3">
+    <div className="hidden lg:flex flex-col">
+      <div className="flex p-4 pb-0 flex-wrap justify-center gap-3">
         <AdminHeaderSearch />
         <AdminHeaderStatus />
         <AdminHeaderDateRange />
         <AdminHeaderSort />
         <AdminHeaderPagination />
       </div>
+      <AdminHeaderCounts todayOrderStats={todayOrderStats} />
+
     </div>
   );
 }

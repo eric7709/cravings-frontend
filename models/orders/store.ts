@@ -54,7 +54,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
   addOrder: (order) =>
     set((state) => {
       if (state.orders.some((o) => o.id === order.id)) return state;
-      const updated = [...state.orders, order];
+      const updated = [order, ...state.orders];
       return { orders: updated, totalOrders: updated.length };
     }),
 

@@ -31,7 +31,7 @@ export default function CategoryTable() {
 
 
   return (
-    <div className="p-2 sm:p-4">
+    <div className="p-2 flex-1 overflow-y-auto sm:p-4">
       <div className="flex-1 bg-white shadow border border-gray-100 shadow-gray-200 p-2 sm:p-4 rounded-2xl overflow-x-auto">
         <p className="font-semibold text-lg sm:text-2xl mb-3 sm:mb-4">Categories</p>
         <div className="overflow-x-auto">

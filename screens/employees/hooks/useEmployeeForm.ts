@@ -2,15 +2,16 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useEmployeeStore } from "@/models/employee/store";
-import { ROLE } from "@/models/auth/types";
 import { useCreateEmployee, useUpdateEmployee } from "@/models/employee/hooks";
+import { GENDER, ROLE } from "@/models/auth/types";
 
 export type EmployeeFormValues = {
   email: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  role: string;
+  role: ROLE;
+  gender: GENDER
 };
 
 export const useEmployeeForm = () => {
@@ -35,7 +36,8 @@ export const useEmployeeForm = () => {
       firstName: "",
       lastName: "",
       phoneNumber: "",
-      role: "",
+      role: null,
+      gender: ""
     },
   });
 
@@ -47,6 +49,7 @@ export const useEmployeeForm = () => {
         firstName: selectedEmployee.firstName,
         lastName: selectedEmployee.lastName,
         phoneNumber: selectedEmployee.phoneNumber,
+        gender: selectedEmployee.gender,
         role: selectedEmployee.role,
       });
     }
@@ -57,7 +60,8 @@ export const useEmployeeForm = () => {
         firstName: "",
         lastName: "",
         phoneNumber: "",
-        role: "",
+        gender: "",
+        role: null,
       });
     }
   }, [activeModal, selectedEmployee, reset]);

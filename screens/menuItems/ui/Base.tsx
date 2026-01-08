@@ -1,8 +1,6 @@
 "use client";
 import Header from './Header';
-import TableHeader from './TableHeader';
 import Table from './Table';
-import Filter from './Filter';
 import Pagination from './Pagination';
 import MenuItemForm from './MenuItemForm';
 import DeleteMenuItem from './DeleteMenuItem';
@@ -15,7 +13,7 @@ export default function Base() {
   useSyncMenuItems()
   useMenuItemRealtime()
   return (
-    <div className='flex-1 flex-col flex'>
+    <div className='flex-1 overflow-y-auto flex-col flex'>
       <Header />
       <Table />
       <MenuItemForm />

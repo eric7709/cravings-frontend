@@ -6,7 +6,6 @@ import {
   AuthResponse,
   ChangePasswordPayload,
   LoginValues,
-  RegisterValues,
   User,
 } from "@/models/auth/types";
 
@@ -21,16 +20,7 @@ export const useLogin = () => {
   });
 };
 
-export const useRegister = () => {
-  return useMutation({
-    mutationFn: (data: RegisterValues) =>
-      api.post<AuthResponse>("/auth/signup", data),
-    onSuccess: (response) => {
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
-    },
-  });
-};
+
 
 export const useMe = () => {
   return useQuery<User>({

@@ -12,7 +12,7 @@ export default function Base() {
   useSyncCategories();
 
   return (
-    <div className='flex-1 flex flex-col'>
+    <div className='flex-1 overflow-y-auto flex flex-col'>
       <Header />
       <Table />
       <CategoryForm

@@ -12,7 +12,7 @@ export default function HeaderTopBar() {
     const cartEmpty = items.length == 0
     return (
         <div className="flex px-3 py-3 items-center gap-3 ">
-            <div className="h-11 bg-blue-50 shadow w-11 border-2 rounded-full">
+            <div className="h-11 bg-blue-50 shadow w-11 border-2 border-orange-600 rounded-full">
                 <img src="/guy.png" alt="" className="h-full w-full object-contain rounded-full" />
             </div>
             <div className="leading-none">

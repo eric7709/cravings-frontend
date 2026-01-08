@@ -29,7 +29,7 @@ export type MenuItemPayload = {
   imageUrl?: string;
 };
 
-export type MENUITEM_STATUS = "AVAILABLE" | "UNAVAILABLE";
+export type MENUITEM_STATUS = "AVAILABLE" | "UNAVAILABLE" | null;
 
 // Validation error type
 export type MenuItemErrors = {
@@ -44,6 +44,7 @@ export type MenuItemErrors = {
 // Modal Types
 type MenuItemModal = "create" | "update" | "delete" | null;
 
+
 // Zustand Store
 export type MenuItemStore = {
   // Pagination + filtering
@@ -52,6 +53,7 @@ export type MenuItemStore = {
   filter: string;
   currentPage: number;
   contentPerPage: number;
+  status: MENUITEM_STATUS;
   totalMenuItem: number;
   search: string;
 
@@ -67,7 +69,7 @@ export type MenuItemStore = {
   openCreateModal: () => void;
   openDeleteModal: () => void;
   openUpdateModal: () => void;
-
+  setStatus: (status: MENUITEM_STATUS) => void
   // CRUD state updates
   setMenuItems: (data: MenuItem[]) => void;
   addMenuItem: (item: MenuItem) => void;

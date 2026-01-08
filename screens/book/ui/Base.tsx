@@ -12,6 +12,7 @@ import { ConfirmOrderModal } from './ConfirmOrderModal'
 import { OrderSuccessModal } from './OrderSuccessModal'
 import Header from './Header'
 import OrderHistory from './OrderHistory'
+import { useCustomerOrderRealtime } from '@/shared/hooks/useCustomerRealTimeUpdate'
 
 type Props = {
     tableId: string
@@ -19,6 +20,7 @@ type Props = {
 export default function Base({ tableId }: Props) {
     useSyncMenuItems()
     useSyncCategories()
+    useCustomerOrderRealtime()
     useSyncTables()
     useMenuItemRealtime()
     return (

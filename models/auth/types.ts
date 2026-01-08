@@ -20,33 +20,23 @@ export type User = {
   lastName: string;
   email: string;
   phoneNumber: string;
-  createdAt: string
+  createdAt: string;
+  gender: string;
   role: ROLE; // or enum if you have one in frontend
-};
-
-export type RegisterValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  phoneNumber: string;
-  password: string;
-};
-
-export type RegisterErrors = {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  general?: string;
-  role?: string;
-  phoneNumber?: string;
-  password?: string;
 };
 
 export type ChangePasswordPayload = {
   currentPassword: string;
   newPassword: string;
-}
+};
+
+export type FormValues = {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+};
+
+export type GENDER = "FEMALE" | "MALE" | "";
 
 export type ROLE =
   | "ROLE_ADMIN"
@@ -55,16 +45,18 @@ export type ROLE =
   | "ROLE_BAKER"
   | "ROLE_WAITER"
   | "ROLE_CASHIER"
-  | "ROLE_MANAGER";
+  | "ROLE_MANAGER"
+  | null
+  ;
 
 export type UserState = {
   user: User | null;
-  activeModal: "change-password" | null 
+  activeModal: "change-password" | null;
   loading: boolean;
   isHydrated: boolean;
   setUser: (user: User | null) => void;
-  openChangePasswordModal: () => void
-  closeModal: () => void
+  openChangePasswordModal: () => void;
+  closeModal: () => void;
   updateUser: (updated: Partial<User>) => void;
   clearUser: () => void;
   setLoading: (value: boolean) => void;

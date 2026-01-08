@@ -29,7 +29,7 @@ export default function CustomerTable() {
 
 
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-y-auto flex-1">
       <div className="flex-1 bg-white shadow border border-gray-100 shadow-gray-200 p-4 rounded-2xl overflow-x-auto">
         <p className="font-semibold mb-4 lg:text-2xl text-lg">Customers</p>
         <motion.div

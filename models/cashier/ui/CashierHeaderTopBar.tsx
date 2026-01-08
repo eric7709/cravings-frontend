@@ -12,7 +12,7 @@ import { toLocalDateString } from '@/shared/utils/toLocalDateString';
 import { getTodayISODate } from '@/shared/utils/getTodayISODate';
 import CashierHeaderTopBarMobile from './CashierHeaderTopBarMobile';
 import { FaTimes } from 'react-icons/fa';
-import ProfileDropdown from '@/models/cashier/ui/ProfileDropdown';
+import ProfileDropdown from '@/shared/ui/ProfileDropdown';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { LiaTimesSolid } from "react-icons/lia";
 
@@ -39,7 +39,7 @@ export default function CashierHeaderTopBar() {
                 {/* Logo */}
                 <div className="flex items-center gap-3 shrink-0">
                     <div className="hidden xl:block h-12 w-12 rounded-full border-2" />
-                    <p className="font-bold uppercase text-lg">BiteBuzz</p>
+                    <p className="font-bold uppercase text-lg">Cravings</p>
                 </div>
                 <div className="absolute -translate-x-44 [@media(min-width:1600px)]:-translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2">
                     <Search

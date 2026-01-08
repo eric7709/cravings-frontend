@@ -1,4 +1,4 @@
-import { startOfDay, endOfDay, subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, subWeeks, subMonths, subYears, formatISO } from "date-fns";
+import { subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, subWeeks, subMonths, subYears, formatISO } from "date-fns";
 
 export function getRangeDates(option: string) {
   const today = new Date();

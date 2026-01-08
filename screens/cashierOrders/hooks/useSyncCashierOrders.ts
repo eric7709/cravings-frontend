@@ -7,7 +7,7 @@ export const useSyncCashierOrders = () => {
   const { data } = useOrders();
   useEffect(() => {
     if (!data?.orders || !data.statusCounts) return;
-    setOrders(data.orders.content);
+    setOrders(data.orders.content, data.orders.totalElements, data.orders.totalPages, data.orders.number, data.orders.size);
     setTodayOrderStats(data.statusCounts);
   }, [data, setOrders]);
 };

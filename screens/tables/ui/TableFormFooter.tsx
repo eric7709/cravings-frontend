@@ -17,7 +17,7 @@ export default function TableFormFooter({ onSubmit, isPending, activeModal }: Pr
 
     return (
         <div className="px-4 py-2.5 flex justify-end gap-2 border-t border-gray-200">
-            <CancelButton onClick={closeModal} />
+            <CancelButton  isLoading={isPending} onClick={closeModal} />
             <LoadingButton
                 text={submitText}
                 loadingText={loadingText}

@@ -5,7 +5,7 @@ import { Bell, User, Settings, LogOut, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import ProfileDropdown from '@/models/cashier/ui/ProfileDropdown';
+import ProfileDropdown from '@/shared/ui/ProfileDropdown';
 import { useGetRole } from '@/shared/hooks/useGetRole';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { useLogout } from '@/shared/hooks/useLogout';
@@ -34,7 +34,7 @@ export default function WaiterHeader() {
           {/* Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <div className="hidden xl:block h-12 w-12 rounded-full border-2 border-gray-400" />
-            <p className="font-bold uppercase text-lg">BiteBuzz</p>
+            <p className="font-bold uppercase text-lg">Cravings</p>
           </div>
 
           {/* Navigation Links - Desktop */}
@@ -43,11 +43,10 @@ export default function WaiterHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-                  isActive(link.href)
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${isActive(link.href)
                     ? 'bg-white/90 text-green-600 shadow-sm'
                     : 'text-gray-700 hover:bg-white/50'
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -86,9 +85,8 @@ export default function WaiterHeader() {
 
       {/* Mobile Dropdown Menu */}
       <div
-        className={`xl:hidden bg-gradient-to-b from-white to-gray-50 fixed w-full top-20 border-b border-gray-200 shadow-2xl z-[45] duration-300 ease-in-out ${
-          opened ? 'max-h-[calc(100vh-80px)] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
-        }`}
+        className={`xl:hidden bg-gradient-to-b from-white to-gray-50 fixed w-full top-20 border-b border-gray-200 shadow-2xl z-[45] duration-300 ease-in-out ${opened ? 'max-h-[calc(100vh-80px)] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+          }`}
       >
         <div className="flex flex-col h-[calc(100vh-80px)] overflow-hidden">
           <div className="flex-1 overflow-y-auto">
@@ -100,11 +98,10 @@ export default function WaiterHeader() {
               <Link
                 href="/waiter/orders"
                 onClick={() => setOpened(false)}
-                className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-medium text-sm transition-all ${
-                  pathname.includes('/waiter/orders')
+                className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-medium text-sm transition-all ${pathname.includes('/waiter/orders')
                     ? 'bg-gradient-to-r from-green-50 to-green-100/50 text-green-600 shadow-sm'
                     : 'text-gray-700 hover:bg-gray-100 active:scale-[0.98]'
-                }`}
+                  }`}
               >
                 <span>Orders</span>
                 {pathname.includes('/waiter/orders') && (
@@ -114,11 +111,10 @@ export default function WaiterHeader() {
               <Link
                 href="/waiter/tables"
                 onClick={() => setOpened(false)}
-                className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-medium text-sm transition-all ${
-                  pathname.includes('/waiter/tables')
+                className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-medium text-sm transition-all ${pathname.includes('/waiter/tables')
                     ? 'bg-gradient-to-r from-green-50 to-green-100/50 text-green-600 shadow-sm'
                     : 'text-gray-700 hover:bg-gray-100 active:scale-[0.98]'
-                }`}
+                  }`}
               >
                 <span>Tables</span>
                 {pathname.includes('/waiter/tables') && (

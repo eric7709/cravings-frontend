@@ -55,7 +55,6 @@ export const useDashboardOverview = () => {
 
   useEffect(() => {
     if (query.data) {
-      console.log("Setting overview in store:", query.data);
       setOverview(query.data);
     }
   }, [query.data, setOverview]);
@@ -70,7 +69,6 @@ export const useDashboardStats = () => {
     queryKey: ["dashboardStats", startDate, endDate],
     queryFn: async () => {
       const data = await fetchDashboardStats(startDate, endDate);
-      console.log("Fetched stats data:", data);
       return data;
     },
     placeholderData: keepPreviousData,

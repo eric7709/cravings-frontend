@@ -1,4 +1,5 @@
 import { Customer } from "@/models/customer/type";
+import { CustomerOrderDTO } from "@/models/orders/types";
 import { Table } from "@/models/table/types";
 
 export type Item = {
@@ -17,11 +18,13 @@ export type Book = {
   tableId: null | string | number
   category: string;
   search: string;
+  customerOrders: CustomerOrderDTO[]
   activeModal: "customer" | "confirm" | "success" | "clear" | "cart"| "history" | null;
   customer: Customer | null;
   setCustomer: (customer: Customer) => void;
   table: Table | null;
   setTable: (table: Table) => void;
+  setCustomerOrders: (orders: CustomerOrderDTO[]) => void;
   resetItems: () => void;
   unavailableErrorTrue: () => void;
   unavailableErrorFalse: () => void;

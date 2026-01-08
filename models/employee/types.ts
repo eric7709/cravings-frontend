@@ -1,10 +1,11 @@
-import { ROLE } from "../auth/types";
+import { GENDER, ROLE } from "../auth/types";
 
 export type Employee = {
   id: number;
-  role: string;
+  role: ROLE;
   email: string;
   firstName: string;
+  gender: GENDER 
   lastName: string;
   phoneNumber: string;
   createdAt: string
@@ -13,10 +14,11 @@ export type Employee = {
 
 
 export type EmployeeValues = {
-  role: string;
+  role: ROLE;
   email: string;
   firstName: string;
   lastName: string;
+  gender: GENDER 
   phoneNumber: string;
 };
 

@@ -9,11 +9,13 @@ export const useBook = create<Book>((set, get) => ({
   category: "all",
   search: "",
   customer: null,
+  customerOrders: [],
   table: null,
   activeModal: null,
   tableId: null,
   // ---- Setters ----
   setCategory: (category) => set({ category }),
+  setCustomerOrders: (customerOrders) => set({ customerOrders }),
   setSearch: (search) => set({ search }),
   setCustomer: (customer) => {
     storeCustomer(customer); // persist in localStorage

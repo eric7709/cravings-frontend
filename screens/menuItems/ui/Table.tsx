@@ -3,7 +3,7 @@
 import { useUpdateMenuItem } from "@/models/menuItems/hook";
 import { useMenuItemStore } from "@/models/menuItems/store";
 import { MenuItem } from "@/models/menuItems/types";
-import {  motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Eye, EyeOff, Pencil, Trash2, Package } from "lucide-react";
 
 const idColors = [
@@ -18,7 +18,7 @@ const idColors = [
 ];
 
 export default function MenuTable() {
-  const { menuItems, setSelectedMenuItem, openUpdateModal, search, openDeleteModal, updateMenuItem } = useMenuItemStore();
+  const { menuItems, setSelectedMenuItem, openUpdateModal, search, openDeleteModal, updateMenuItem, status } = useMenuItemStore();
   const { mutate } = useUpdateMenuItem();
 
   const toggleStatus = (item: MenuItem) => {
@@ -31,20 +31,25 @@ export default function MenuTable() {
 
   if (!menuItems?.length) return null;
 
-  const data = menuItems.filter(item => {
+  const filteredData = menuItems.filter(item => {
     const term = search.toLowerCase().trim();
 
-    return (
+    const matchesSearch =
       item.name.toLowerCase().includes(term) ||
       item.description.toLowerCase().includes(term) ||
       item.categoryName.toLowerCase().includes(term) ||
-      item.price.toString().includes(term)
-    );
+      item.price.toString().includes(term);
+
+    const matchesStatus =
+      status == null || item.status === status;
+
+    return matchesSearch && matchesStatus;
   });
 
 
+
   return (
-    <div className="p-2 sm:p-4">
+    <div className="p-2 flex-1 overflow-y-auto sm:p-4 ">
       <div className="flex-1 bg-white shadow border border-gray-100 shadow-gray-200 p-2 sm:p-4 rounded-2xl overflow-x-auto">
         <p className="font-semibold text-lg sm:text-2xl mb-3 sm:mb-4">Menu Items</p>
         <div className="overflow-x-auto">
@@ -65,7 +70,7 @@ export default function MenuTable() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, idx) => (
+                {filteredData.map((item, idx) => (
                   <motion.tr
                     key={item.id}
                     initial={{ opacity: 0, x: -20 }}
@@ -85,14 +90,9 @@ export default function MenuTable() {
 
                     {/* Item Name */}
                     <td className="p-1 sm:p-4">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center group-hover:from-indigo-100 group-hover:to-purple-100 transition-all duration-300">
-                          <Package className="text-gray-600 group-hover:text-indigo-600 transition-colors" size={16} />
-                        </div>
-                        <span className="font-bold text-gray-900 text-sm sm:text-base tracking-tight group-hover:text-indigo-700 transition-colors">
-                          {item.name}
-                        </span>
-                      </div>
+                      <span className="font-bold text-gray-900 text-sm sm:text-base tracking-tight group-hover:text-indigo-700 transition-colors">
+                        {item.name}
+                      </span>
                     </td>
 
                     {/* Category */}

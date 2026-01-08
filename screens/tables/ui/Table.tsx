@@ -41,7 +41,7 @@ export default function Table() {
 
 
   return (
-    <div className="flex-1 bg-white shadow shadow-gray-200 p-4 rounded-2xl overflow-x-auto">
+    <div className="flex-1 overflow-y-auto bg-white shadow shadow-gray-200 p-4 rounded-2xl overflow-x-auto">
       <p className="font-semibold text-xl lg:text-2xl mb-4">Tables</p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
