@@ -10,6 +10,7 @@ import { useGeneralStore } from "@/shared/store/useGeneralStore";
 import { getPageTitle } from "@/shared/lib/getPageTitle";
 import MobileSidebar from "./MobileSidenav";
 import { useGetRole } from "@/shared/hooks/useGetRole";
+import Image from "next/image";
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -49,7 +50,7 @@ export default function AdminHeader() {
             <ProfileDropdown>
               <div className="flex cursor-pointer items-center gap-2">
                 <div className="h-12 w-12 rounded-full border-2 relative overflow-hidden border-orange-400">
-                  <img
+                  <Image
                     src="/admin.png"
                     className="h-full w-full object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     alt=""
@@ -89,7 +90,7 @@ export default function AdminHeader() {
           </div>
           <ProfileDropdown>
             <div className="h-10 w-10 rounded-full border border-gray-300 cursor-pointer hover:opacity-80 transition-opacity">
-              <img
+              <Image
                 src="/image.png"
                 className="object-cover rounded-full h-full w-full"
                 alt=""

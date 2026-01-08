@@ -2,6 +2,7 @@ import { MenuItem } from '@/models/menuItems/types';
 import { formatPrice } from '@/shared/utils/formatPrice';
 import { useBook } from '../store/useBook';
 import { Ban, Plus, Trash2 } from 'lucide-react';
+import Image from 'next/image';
 
 type Props = {
     menuItem: MenuItem;
@@ -30,8 +31,8 @@ export default function MenuItemCard({ menuItem }: Props) {
         <div className='text-sm '>
             <div className="border bg-white border-gray-200 shadow-md rounded-2xl ">
                 <div className="h-52 shrink-0 rounded-xl overflow-hidden border-gray-200 border">
-                    <img src={"/rice.jpg"} className='object-cover h-full w-full' alt="" />
-                    {/* <img src={menuItem.imageUrl} className='object-cover h-full w-full' alt="" /> */}
+                    <Image src={"/rice.jpg"} className='object-cover h-full w-full' alt="" />
+                    {/* <Image src={menuItem.imageUrl} className='object-cover h-full w-full' alt="" /> */}
                 </div>
                 <div className="p-4 flex flex-col">
                     <p className={`font-semibold duration-500 ${menuItem.name.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-500"} text-[15px] capitalize`}>{menuItem.name}</p>

@@ -19,6 +19,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { usePathname } from 'next/navigation';
 import { useGetRole } from '@/shared/hooks/useGetRole';
 import { RxHamburgerMenu } from "react-icons/rx";
+import Image from 'next/image';
 
 export default function CashierHeaderTopBar() {
     const { search, setSearch, setStartDate, startDate, todayOrderStats } = useOrderStore();
@@ -63,7 +64,7 @@ export default function CashierHeaderTopBar() {
                     <ProfileDropdown>
                         <div className="flex cursor-pointer items-center gap-2 hover:opacity-80 transition-opacity">
                             <div className="grid h-12 w-12 shrink-0 overflow-hidden place-content-center rounded-full border border-gray-600">
-                                <img src="/cashier.webp" className='h-full w-full ' alt="" />
+                                <Image src="/cashier.webp" className='h-full w-full ' alt="" />
                             </div>
                             <div>
                                 <p className="font-semibold">{user?.firstName} {user?.lastName}</p>

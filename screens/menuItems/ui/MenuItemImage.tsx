@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { useMenuItemFormStore } from "../hooks/useMenuFormStore";
 import { useMenuItemStore } from "@/models/menuItems/store";
+import Image from "next/image";
 
 export default function MenuItemImage() {
   const [preview, setPreview] = useState<string>("");
@@ -69,7 +70,7 @@ export default function MenuItemImage() {
       >
         {hasImage ? (
           <>
-            <img
+            <Image
               src={preview}
               alt="Preview"
               className="h-full w-full object-cover"

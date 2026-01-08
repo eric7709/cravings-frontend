@@ -4,6 +4,7 @@ import { useBook } from '../store/useBook'
 import { BsClockHistory } from "react-icons/bs";
 import { getGreeting } from '@/shared/utils/getGreeting';
 import { useCustomerOrdersToday } from '@/models/orders/hooks';
+import Image from 'next/image';
 
 export default function HeaderTopBar() {
     const { items, customer, openHistoryModal, openCartModal } = useBook()
@@ -13,7 +14,7 @@ export default function HeaderTopBar() {
     return (
         <div className="flex px-3 py-3 items-center gap-3 ">
             <div className="h-11 bg-blue-50 shadow w-11 border-2 border-orange-600 rounded-full">
-                <img src="/guy.png" alt="" className="h-full w-full object-contain rounded-full" />
+                <Image src="/guy.png" alt="" className="h-full w-full object-contain rounded-full" />
             </div>
             <div className="leading-none">
                 <p className='text-[15px] mb-0.5 font-semibold'>Hello {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>
