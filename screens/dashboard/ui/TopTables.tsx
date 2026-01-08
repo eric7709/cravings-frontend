@@ -55,7 +55,7 @@ export default function TopTables() {
                   <Cell key={`cell-${index}`} fill={data[index].color} />
                 ))}
               </Pie>
-              <Tooltip formatter={(v: number) => `₦${v.toLocaleString()}`} />
+              <Tooltip formatter={(v?: number) => `₦${Number(v).toLocaleString()}`} />
             </PieChart>
           </ResponsiveContainer>
         </div>
