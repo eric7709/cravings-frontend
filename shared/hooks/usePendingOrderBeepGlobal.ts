@@ -8,14 +8,12 @@ export function usePendingOrderBeepGlobal() {
   const orders = useOrderStore((state) => state.orders);
   const audioInitializedRef = useRef(false);
   const beepIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
   // Initialize audio on first user interaction
   useEffect(() => {
     const handleUserInteraction = async () => {
       if (!audioInitializedRef.current) {
         await initializeAudio();
         audioInitializedRef.current = true;
-        console.log("Audio initialized");
       }
     };
 
@@ -32,13 +30,9 @@ export function usePendingOrderBeepGlobal() {
   }, []);
 
   useEffect(() => {
-    console.log("orders in beep hook:", orders);
-
     const hasPendingOrder = orders.some(
       (order) => order.orderStatus === "PENDING"
     );
-
-    console.log("hasPendingOrder:", hasPendingOrder);
 
     // Clear existing interval
     if (beepIntervalRef.current) {
@@ -47,8 +41,6 @@ export function usePendingOrderBeepGlobal() {
     }
 
     if (hasPendingOrder) {
-      console.log("Starting beep interval");
-      
       // Play immediately
       if (audioInitializedRef.current) {
         playBeep({

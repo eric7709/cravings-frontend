@@ -25,7 +25,7 @@ export default function Base({ tableId }: Props) {
     useMenuItemRealtime()
     return (
         <TableWrapper tableId={tableId}>
-            <div className='bg-gray-100 min-h-screen'>
+            <div className='bg-gradient-to-b from-red-100 via-orange-100 to-red-200 flex flex-col min-h-screen'>
                 <Header />
                 <OrderHistory />
                 <OrderSuccessModal />

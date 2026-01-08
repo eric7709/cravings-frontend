@@ -7,7 +7,6 @@ export async function initializeAudio(): Promise<void> {
   
   if (audioCtx.state === "suspended") {
     await audioCtx.resume();
-    console.log("AudioContext resumed");
   }
 }
 
@@ -42,8 +41,6 @@ export async function playBeep({
 
     oscillator.start(audioCtx.currentTime);
     oscillator.stop(audioCtx.currentTime + duration / 1000);
-    
-    console.log("Beep played successfully");
   } catch (error) {
     console.error("Failed to play beep:", error);
   }

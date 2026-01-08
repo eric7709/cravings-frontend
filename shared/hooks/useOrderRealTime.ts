@@ -19,8 +19,6 @@ export function useOrderRealtime() {
     });
 
     client.onConnect = () => {
-      console.log("✅ STOMP connected (orders)");
-
       client.subscribe("/topic/orders/created", (msg: Message) => {
         const newOrder: Order = JSON.parse(msg.body);
         addOrder(newOrder);

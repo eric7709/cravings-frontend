@@ -14,7 +14,6 @@ export function useCustomerOrderRealtime() {
       reconnectDelay: 5000,
     });
     client.onConnect = () => {
-      console.log("✅ Customer STOMP connected");
       client.subscribe(`/topic/orders/customer/${customer.id}`, () => {
         queryClient.invalidateQueries({
           queryKey: ["customer-orders-today", customer.id],

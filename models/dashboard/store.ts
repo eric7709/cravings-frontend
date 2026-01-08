@@ -3,7 +3,6 @@ import { DashboardStore } from "./types";
 
 const today = new Date().toISOString().split("T")[0];
 
-console.log(today, "Today");
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
   startDate: today,

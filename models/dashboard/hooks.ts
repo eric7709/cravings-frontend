@@ -39,15 +39,10 @@ export const fetchLastOrders = async (): Promise<Order[]> => {
 
 export const useDashboardOverview = () => {
   const { startDate, endDate, setOverview } = useDashboardStore();
-
-  console.log("useDashboardOverview - startDate, endDate:", startDate, endDate);
-
   const query = useQuery({
     queryKey: ["dashboard-overview", startDate, endDate],
     queryFn: async () => {
-      console.log("Fetching dashboard overview for:", startDate, endDate);
       const data = await fetchDashboardOverview({ startDate, endDate });
-      console.log("Fetched overview data:", data);
       return data;
     },
     placeholderData: keepPreviousData,

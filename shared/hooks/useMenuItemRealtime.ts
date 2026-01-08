@@ -15,10 +15,8 @@ export function useMenuItemRealtime() {
       webSocketFactory: () =>
         new SockJS("http://localhost:8080/ws"),
       reconnectDelay: 5000,
-      debug: (str) => console.log(str), 
     });
     client.onConnect = () => {
-      console.log("✅ STOMP connected Menu items");
       // CREATED
       client.subscribe("/topic/menuItems/created", (msg: Message) => {
         const newItem: MenuItem = JSON.parse(msg.body);
@@ -36,7 +34,6 @@ export function useMenuItemRealtime() {
       });
     };
     client.onStompError = (frame) => {
-      console.error("❌ STOMP error", frame);
     }
     client.activate();
     return () => {

@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const BASE_URL =
+  process.env.NEXT_PUBLIC_ENVIRONMENT == "DEVELOPMENT"
+    ? process.env.NEXT_PUBLIC_BACKEND_DEV_URL
+    : process.env.NEXT_PUBLIC_BACKEND_PRO_URL;
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -104,7 +107,6 @@ api.interceptors.response.use(
 
       if (!refreshToken) {
         // No refresh token, clear and redirect
-        console.log("No refresh token found, redirecting to login");
         isRefreshing = false;
         processQueue(new Error("No refresh token"), null);
         localStorage.removeItem("accessToken");
@@ -117,8 +119,6 @@ api.interceptors.response.use(
       }
 
       try {
-        console.log("Attempting to refresh token...");
-
         // Call your refresh token endpoint using plain axios to avoid interceptor loop
         const response = await axios.post(
           `${BASE_URL}/auth/refresh`,
@@ -127,8 +127,6 @@ api.interceptors.response.use(
         );
 
         const newAccessToken = response.data.accessToken;
-
-        console.log("Token refreshed successfully");
 
         // Save new access token
         localStorage.setItem("accessToken", newAccessToken);
@@ -152,21 +150,17 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         // Refresh failed, clear tokens and redirect to login
-        console.log("Token refresh failed, redirecting to login");
         processQueue(refreshError, null);
         isRefreshing = false;
 
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-
         // Clear the authorization header
         delete api.defaults.headers.common["Authorization"];
-
         // ✅ Only redirect if not already on public route
         if (!isPublicRoute()) {
           window.location.href = "/auth/login";
         }
-
         return Promise.reject(refreshError);
       }
     }

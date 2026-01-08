@@ -1,4 +1,7 @@
+"use client"
 import CashierHeaderTopBar from "@/models/cashier/ui/CashierHeaderTopBar";
+import { usePendingOrderBeep } from "@/shared/hooks/usePendingOrderBeep";
+import { usePendingOrderBeepGlobal } from "@/shared/hooks/usePendingOrderBeepGlobal";
 import Blocker from "@/shared/provider/Blocker";
 
 export default function CashierLayout({
@@ -6,6 +9,7 @@ export default function CashierLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    usePendingOrderBeepGlobal()
     return (
         <Blocker>
             <div className="h-screen flex flex-col">

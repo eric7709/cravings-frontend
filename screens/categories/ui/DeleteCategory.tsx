@@ -18,7 +18,6 @@ export default function DeleteCategory() {
         removeCategory(selectedCategory.id);
         closeModal();
       },
-      onError: console.log,
     });
   };
 

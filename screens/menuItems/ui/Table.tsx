@@ -75,17 +75,15 @@ export default function MenuTable() {
                     key={item.id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.03, type: "spring", stiffness: 120, damping: 15 }}
+                    transition={{ delay: idx * 0.05, type: "spring", stiffness: 120, damping: 15 }}
                     className="group border-b border-gray-100/50 hover:bg-gradient-to-r hover:from-indigo-50/40 hover:via-purple-50/30 hover:to-pink-50/40"
                   >
                     {/* ID Badge */}
                     <td className="p-1 sm:p-4">
-                      <motion.div whileHover={{ scale: 1.05, rotate: -2 }} transition={{ type: "spring", stiffness: 250 }}>
                         <div className={`h-8 w-8 sm:h-12 sm:w-12 rounded-full bg-gradient-to-br ${idColors[idx % idColors.length]} flex items-center justify-center text-white font-bold text-xs sm:text-sm group-hover:shadow-md transition-shadow`}>
                           {item.id}
                           <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                      </motion.div>
                     </td>
 
                     {/* Item Name */}

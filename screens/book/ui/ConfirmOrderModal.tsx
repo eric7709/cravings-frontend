@@ -71,9 +71,6 @@ export function ConfirmOrderModal() {
       return;
     }
 
-    console.log(table, "DHDHDHDHDH")
-    
-
     mutate(
       {
         customerId: customer.id,

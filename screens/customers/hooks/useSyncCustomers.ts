@@ -8,6 +8,5 @@ export const useSyncCustomers = () => {
 
   useEffect(() => {
     if (data) setCustomers(data);
-    console.log(data)
   }, [setCustomers, data]);
 };
