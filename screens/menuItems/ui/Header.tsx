@@ -12,7 +12,7 @@ export default function Header() {
   const [opened, setOpened] = useState(false);
 
   return (
-    <div className="px-4 py-3 bg-white border-b border-gray-100">
+    <div className="px-4 py-3 relative z-10 bg-white border-b border-gray-100">
       {/* Desktop */}
       <div className="hidden lg:flex bg-white items-center justify-between py-4 px-3 border border-gray-100 rounded-2xl shadow shadow-gray-200">
         <Search value={search} onChange={(e) => setSearch(e.target.value)} className="w-56" placeholder="Search Menu-items..." />
