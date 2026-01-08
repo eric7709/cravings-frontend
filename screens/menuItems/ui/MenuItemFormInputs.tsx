@@ -130,9 +130,8 @@ export default function MenuItemFormInputs() {
               label="Status"
               onChange={(e) => setField("status", e.target.value as MENUITEM_STATUS)}
               error={errors.status}
-              value={values.status}
+              value={values.status as string}
               capitalize
-              
               options={statusOption}
             />
           </motion.div>

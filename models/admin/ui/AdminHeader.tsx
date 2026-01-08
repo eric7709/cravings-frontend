@@ -10,7 +10,6 @@ import { useGeneralStore } from "@/shared/store/useGeneralStore";
 import { getPageTitle } from "@/shared/lib/getPageTitle";
 import MobileSidebar from "./MobileSidenav";
 import { useGetRole } from "@/shared/hooks/useGetRole";
-import DarkModeToggle from "@/shared/ui/DarkModeToggle";
 
 export default function AdminHeader() {
   const pathname = usePathname();

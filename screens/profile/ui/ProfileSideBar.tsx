@@ -36,7 +36,7 @@ export function ProfileSidebar() {
                 {/* Avatar Section */}
                 <div className="relative pt-8 pb-6 px-6 text-center">
                     <div className="relative inline-block">
-                        <div className={`w-32 h-32 bg-gradient-to-br ${getRoleColor(user.role)} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white`}>
+                        <div className={`w-32 h-32 bg-gradient-to-br ${getRoleColor(user.role as string)} rounded-full flex items-center justify-center shadow-xl ring-4 ring-white`}>
                             <User size={64} className="text-white" />
                         </div>
                         <button className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full shadow-lg border-2 border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors">
@@ -51,7 +51,7 @@ export function ProfileSidebar() {
                     <div className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full">
                         <Shield className="w-4 h-4 text-blue-600" />
                         <span className="text-sm font-semibold text-blue-700">
-                            {getRoleDisplay(user.role)}
+                            {getRoleDisplay(user.role as string)}
                         </span>
                     </div>
                 </div>

@@ -102,10 +102,10 @@ export default function EmployeeTable() {
                       <div className="flex ">
                         <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 250 }}>
                           <span
-                            className={`inline-flex items-center px-3 lg:px-4 py-1 lg:py-2 text-xs lg:text-xs rounded-full font-bold tracking-wide border ${roleColors[emp.role] || "bg-gray-500/10 text-gray-600 border-gray-500/20"
+                            className={`inline-flex items-center px-3 lg:px-4 py-1 lg:py-2 text-xs lg:text-xs rounded-full font-bold tracking-wide border ${roleColors[emp.role as any] || "bg-gray-500/10 text-gray-600 border-gray-500/20"
                               }`}
                           >
-                            {roleMap[emp.role] || "Unknown"}
+                            {roleMap[emp.role as any] || "Unknown"}
                           </span>
                         </motion.div>
                       </div>

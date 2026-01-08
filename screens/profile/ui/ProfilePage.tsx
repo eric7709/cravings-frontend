@@ -21,8 +21,7 @@ export default function ProfilePage() {
       exit={{ opacity: 0 , y:10}}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <ProfileBanner role={user.role} />
-
+      <ProfileBanner role={user.role as string} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-36">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <ProfileSidebar />

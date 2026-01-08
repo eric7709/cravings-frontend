@@ -1,6 +1,5 @@
 "use client"
 import CashierHeaderTopBar from "@/models/cashier/ui/CashierHeaderTopBar";
-import { usePendingOrderBeep } from "@/shared/hooks/usePendingOrderBeep";
 import { usePendingOrderBeepGlobal } from "@/shared/hooks/usePendingOrderBeepGlobal";
 import Blocker from "@/shared/provider/Blocker";
 

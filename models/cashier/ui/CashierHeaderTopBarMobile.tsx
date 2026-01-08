@@ -72,7 +72,7 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                 <div className="mx-4 my-3 p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-100">
                     <div className="flex items-center justify-between mb-3">
                         <div>
-                            <p className="text-xs font-medium text-gray-600 mb-1">Today's Revenue</p>
+                            <p className="text-xs font-medium text-gray-600 mb-1">Today/'s Revenue</p>
                             <p className="text-2xl font-bold text-green-600">
                                 {formatPrice(todayOrderStats.total)}
                             </p>

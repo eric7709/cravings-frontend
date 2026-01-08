@@ -1,12 +1,11 @@
 import React from 'react'
 type Props = {
     status: "available" | "occupied" | "selected" | "driver";
-    onClick?: () => void;
     seatNumber?: number
     className?: string
 };
 
-export const BusSeat = ({ status, onClick, seatNumber, className }: Props) => {
+export const BusSeat = ({ status, seatNumber, className }: Props) => {
     const bg = status == "available" ? "bg-green-300" : status == "occupied" ? "bg-red-300" : status == "driver" ? "bg-blue-300" : "bg-gray-300"
     const border = status == "available" ? "border-green-500" : status == "occupied" ? "border-red-500" : status == "driver" ? "border-blue-500" : "border-gray-500"
     return (

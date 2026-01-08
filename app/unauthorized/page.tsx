@@ -38,7 +38,7 @@ export default function Page() {
 
         {/* Description */}
         <p className="text-gray-400 text-lg mb-8 max-w-md mx-auto">
-          You don't have permission to access this page.
+          You do not have permission to access this page.
         </p>
 
         {/* Actions */}
