@@ -22,7 +22,7 @@ export default function AdminHeaderStatus() {
 
   return (
     <div className="relative z-50">
-      <div ref={ref} onClick={() => setOpen(!open)} className="h-11 flex border-2 items-center xl:w-fit px-3 cursor-pointer duration-300 border-gray-200 rounded-full shadow gap-3 text-[13px] text-gray-600 font-medium">
+      <div ref={ref} onClick={() => setOpen(!open)} className="h-11 flex border-2 items-center xl:w-fit px-3 cursor-pointer duration-300 border-gray-200 rounded-xl shadow gap-3 text-[13px] text-gray-600 font-medium">
         <p>{selectedStatus?.label ?? "All"}</p>
         <TiArrowSortedDown className={`duration-300 ml-auto xl:ml-0 ${open && "-rotate-180"}`}/>
       </div>

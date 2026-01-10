@@ -66,14 +66,15 @@ export default function MenuItemImage() {
 
       <div
         onClick={!hasImage ? handleSelectImage : undefined}
-        className="relative h-48 lg:h-60 w-full cursor-pointer overflow-hidden rounded-2xl border border-gray-300 bg-gray-50 flex items-center justify-center"
+        className="relative h-52 lg:h-60 w-full cursor-pointer overflow-hidden rounded-2xl border border-gray-300 bg-gray-50 flex items-center justify-center"
       >
         {hasImage ? (
           <>
             <Image
               src={preview}
               alt="Preview"
-              className="h-full w-full object-cover"
+              fill
+              className="h-full w-full absolute  object-cover"
             />
 
             {/* ❌ Clear button */}

@@ -17,7 +17,7 @@ export default function AdminHeaderPagination() {
   const end = Math.min(start + contentPerPage - 1, totalOrders);
 
   return (
-    <div className="flex h-11 items-center gap-5 justify-between rounded-full border-2 border-slate-200 bg-white px-5 shadow-sm">
+    <div className="flex h-11 items-center gap-5 justify-between rounded-xl border-2 border-slate-200 bg-white px-5 shadow-sm">
       <p className="text-sm text-slate-600">
         {start}-{end} of {totalOrders}
       </p>

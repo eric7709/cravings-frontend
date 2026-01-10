@@ -1,9 +1,9 @@
 "use client";
 
-import { Pencil, Trash2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Pencil, Trash2, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEmployeeStore } from "@/models/employee/store";
-import { idColors, roleColors } from "../data/colors";
+import { roleColors } from "../data/colors";
 
 export default function EmployeeTable() {
   const { employees, setSelectedEmployee, openUpdateModal, openDeleteModal, search } =
@@ -11,7 +11,7 @@ export default function EmployeeTable() {
 
   if (!employees?.length) return null;
 
-  const data = employees.filter(el => {
+  const filteredData = employees.filter(el => {
     const test =
       el.email.toLowerCase().includes(search.toLowerCase()) ||
       el.firstName.toLowerCase().includes(search.toLowerCase()) ||
@@ -21,132 +21,128 @@ export default function EmployeeTable() {
     return test && test2;
   });
 
+  const roleMap: Record<string, string> = {
+    ROLE_WAITER: "Waiter",
+    ROLE_CASHIER: "Cashier",
+    ROLE_MANAGER: "Manager",
+    ROLE_ADMIN: "Admin",
+    ROLE_COOK: "Cook",
+    ROLE_CHEF: "Chef",
+  };
+
   return (
-    <div className="p-4 flex-1 overflow-y-auto">
-      <div className=" p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
-        <p className="font-semibold mb-4 lg:text-2xl text-lg">Employees</p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-2xl overflow-x-auto"
-        >
-          <table className="w-full border-collapse min-w-[900px]">
+    <div className="p-4 flex-1 overflow-y-auto w-full mx-auto">
+      <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-200/60 bg-gradient-to-r from-gray-50/50 to-gray-100/30">
-                {["Name", "Phone", "Email", "Role", "Gender", "Actions"].map((h) => (
-                  <th
-                    key={h}
-                    className="p-3 lg:p-5 text-left lg:text-left text-xs lg:text-xs font-bold uppercase tracking-widest text-gray-500"
-                  >
-                    {h}
-                  </th>
-                ))}
+              <tr className="border-b border-slate-100 bg-slate-50/50">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Name</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">Phone</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden sm:table-cell">Email</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Role</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider hidden lg:table-cell">Gender</th>
+                <th className="px-6 py-4 text-right text-xs font-semibold text-slate-600 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {data.map((emp, idx) => {
-                const firstLetter = emp.firstName?.[0]?.toUpperCase();
-                const roleMap: Record<string, string> = {
-                  ROLE_WAITER: "Waiter",
-                  ROLE_CASHIER: "Cashier",
-                  ROLE_MANAGER: "Manager",
-                  ROLE_ADMIN: "Admin",
-                  ROLE_COOK: "Cook",
-                  ROLE_CHEF: "Chef",
-                };
+            <tbody className="divide-y divide-slate-100">
+              <AnimatePresence>
+                {filteredData.map((emp, idx) => {
+                  const firstLetter = emp.firstName?.[0]?.toUpperCase();
 
-                return (
-                  <motion.tr
-                    key={emp.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.04, type: "spring", stiffness: 120, damping: 15 }}
-                    className="group border-b border-gray-100/50 hover:bg-gradient-to-r hover:from-indigo-50/40 hover:via-purple-50/30 hover:to-pink-50/40"
-                  >
-                    {/* Avatar + Name */}
-                    <td className="p-2 lg:p-4">
-                      <div className="flex items-center gap-3 lg:gap-4">
-                        <motion.div
-                          whileHover={{ scale: 1.06, rotate: -2 }}
-                          transition={{ type: "spring", stiffness: 250 }}
-                          className="relative"
-                        >
-                          <div
-                            className={`h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-gradient-to-br ${idColors[idx % idColors.length]
-                              } flex items-center justify-center text-white font-bold text-sm lg:text-base group-hover:shadow-md transition-shadow`}
-                          >
+                  return (
+                    <motion.tr
+                      key={emp.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ delay: idx * 0.03 }}
+                      className="group hover:bg-slate-50/50 transition-colors"
+                    >
+                      {/* Name */}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
                             {firstLetter}
-                            <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
-                        </motion.div>
-                        <span className="font-bold text-gray-900 text-sm lg:text-base tracking-tight group-hover:text-indigo-700 transition-colors">
-                          {emp.firstName} {emp.lastName}
+                          <div>
+                            <div className="font-semibold text-slate-900 text-sm sm:text-base">
+                              {emp.firstName} {emp.lastName}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Phone */}
+                      <td className="px-6 py-4 hidden sm:table-cell">
+                        <div className="text-sm text-slate-900">
+                          {emp.phoneNumber || <span className="text-slate-400 italic">Not provided</span>}
+                        </div>
+                      </td>
+
+                      {/* Email */}
+                      <td className="px-6 py-4 hidden sm:table-cell">
+                        <div className="text-sm text-slate-900">
+                          {emp.email || <span className="text-slate-400 italic">Not provided</span>}
+                        </div>
+                      </td>
+
+                      {/* Role */}
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${roleColors[emp.role as any] || "bg-slate-100 text-slate-700 ring-1 ring-slate-600/20"}`}>
+                          {roleMap[emp.role as any] || "Unknown"}
                         </span>
-                      </div>
-                    </td>
+                      </td>
 
-                    {/* Phone */}
-                    <td className="p-2 lg:p-4 text-sm lg:text-base">
-                      {emp.phoneNumber || <span className="italic text-gray-400">Not provided</span>}
-                    </td>
+                      {/* Gender */}
+                      <td className="px-6 py-4 hidden lg:table-cell">
+                        <div className="text-sm text-slate-900">
+                          {emp.gender === "MALE" ? "Male" : "Female"}
+                        </div>
+                      </td>
 
-                    {/* Email */}
-                    <td className="p-2 lg:p-4 text-sm lg:text-base">
-                      {emp.email || <span className="italic text-gray-400">Not provided</span>}
-                    </td>
-
-
-
-                    {/* Role Badge */}
-                    <td className="p-2 lg:p-4">
-                      <div className="flex ">
-                        <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 250 }}>
-                          <span
-                            className={`inline-flex items-center px-3 lg:px-4 py-1 lg:py-2 text-xs lg:text-xs rounded-full font-bold tracking-wide border ${roleColors[emp.role as any] || "bg-gray-500/10 text-gray-600 border-gray-500/20"
-                              }`}
+                      {/* Actions */}
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-end gap-2">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => { setSelectedEmployee(emp); openUpdateModal(); }}
+                            className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors cursor-pointer"
+                            title="Edit employee"
                           >
-                            {roleMap[emp.role as any] || "Unknown"}
-                          </span>
-                        </motion.div>
-                      </div>
-                    </td>
+                            <Pencil size={18} />
+                          </motion.button>
 
-                    <td className="p-2 lg:p-4 text-sm lg:text-base">
-                      {emp.gender == "MALE" ? "Male": "Female"}
-                    </td>
-
-                    {/* Action Buttons */}
-                    <td className="p-2 lg:p-4 flex   gap-1 lg:gap-2">
-                      <motion.button
-                        whileHover={{ scale: 1.05, y: -1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          setSelectedEmployee(emp);
-                          openUpdateModal();
-                        }}
-                        className="h-8 w-8 lg:h-10 lg:w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center cursor-pointer"
-                      >
-                        <Pencil className="text-white transition-transform" size={14} />
-                      </motion.button>
-
-                      <motion.button
-                        whileHover={{ scale: 1.05, y: -1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          setSelectedEmployee(emp);
-                          openDeleteModal();
-                        }}
-                        className="h-8 w-8 lg:h-10 lg:w-10 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center cursor-pointer"
-                      >
-                        <Trash2 className="text-white transition-transform" size={14} />
-                      </motion.button>
-                    </td>
-                  </motion.tr>
-                );
-              })}
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => { setSelectedEmployee(emp); openDeleteModal(); }}
+                            className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
+                            title="Delete employee"
+                          >
+                            <Trash2 size={18} />
+                          </motion.button>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  );
+                })}
+              </AnimatePresence>
             </tbody>
           </table>
-        </motion.div>
+        </div>
+
+        {/* Empty State */}
+        {filteredData.length === 0 && (
+          <div className="py-16 text-center">
+            <div className="text-slate-400 mb-2">
+              <Search size={48} className="mx-auto mb-4 opacity-50" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">No employees found</h3>
+            <p className="text-slate-500">Try adjusting your search</p>
+          </div>
+        )}
       </div>
     </div>
   );

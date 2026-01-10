@@ -2,7 +2,6 @@ import { useUserStore } from '@/models/auth/store'
 import { Order } from '@/models/orders/types'
 import { formatSmartTime } from '@/shared/utils/formatSmartTime'
 import { User } from 'lucide-react'
-import React from 'react'
 import { MdTableBar } from 'react-icons/md'
 
 type Props = {
@@ -17,7 +16,7 @@ export default function OrderCardHeader({ order, statusConfig }: Props) {
         <div className=''>
             <div className="flex py-3 px-3 sm:py-4 sm:px-4 border-b border-gray-200 items-center gap-2 sm:gap-3">
                 <div className="text-xs sm:text-sm">
-                    <p className="font-semibold text-base capitalize">{order.customerName ?? "Unknown"}</p>
+                    <p className="font-semibold text-base capitalize">{order.customerTitle} {order.customerName ?? "Unknown"}</p>
                     <p className="text-[11px]">{formatSmartTime(order.createdAt)}</p>
                     <p className='text-xs text-gray-700 font-medium mt-1'>#{order.invoiceNumber}</p>
                 </div>

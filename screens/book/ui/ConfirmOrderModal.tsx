@@ -76,7 +76,7 @@ export function ConfirmOrderModal() {
         customerId: customer.id,
         customerName: customer.name,
         customerPhoneNumber: customer.phoneNumber ?? "",
-        customerTitle: customer.title,
+        customerTitle: customer.title.toLowerCase(),
         cashierId: table.cashierId,
         items,
         orderStatus: "PENDING",

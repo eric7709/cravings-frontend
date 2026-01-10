@@ -12,7 +12,7 @@ export default function AdminHeaderSort() {
   const sortLabel = data.find(el => el.value == sortBy)
   return (
     <div  className="relative z-20">
-      <div ref={dropdownRef} onClick={() => setOpen(!open)} className="px-4 h-11 text-[13px] xl:w-fit duration-300 cursor-pointer font-medium border-2 border-gray-300 text-gray-700 flex items-center gap-2 rounded-full">
+      <div ref={dropdownRef} onClick={() => setOpen(!open)} className="px-4 h-11 text-[13px] xl:w-fit duration-300 cursor-pointer font-medium border-2 border-gray-300 text-gray-700 flex items-center gap-2 rounded-xl">
         <span>{sortLabel?.label}</span>
         <TiArrowSortedDown className={`duration-300 ml-auto xl:ml-0 ${open && "-rotate-180"}`}/>
       </div>

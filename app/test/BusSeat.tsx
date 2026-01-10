@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react'
 type Props = {
     status: "available" | "occupied" | "selected" | "driver";
     seatNumber?: number
@@ -12,7 +11,7 @@ export const BusSeat = ({ status, seatNumber, className }: Props) => {
     return (
         <div className={`${className}`}>
             <div className=" h-14 w-[72px] bg-gray-600 relative flex items-end p-[7px] justify-center rounded-3xl rounded-t-sm ">
-                {status == "driver" && <Image src="/driver.png" alt="" className='absolute shadow-lg rounded-full z-20 h-10 w-10 -top-8 ' />}
+                {status == "driver" && <Image fill src="/driver.png" alt="" className='absolute shadow-lg rounded-full z-20 h-10 w-10 -top-8 ' />}
                 <div className={`h-[60px] border w-full ${border} relative grid rounded-t-lg place-content-center rounded-2xl ${bg}`}>
                     {status != "driver" &&
                         <p className='font-bold '>{seatNumber}</p>

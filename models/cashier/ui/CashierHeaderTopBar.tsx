@@ -6,7 +6,7 @@ import { formatPrice } from '@/shared/utils/formatPrice';
 import { Bell } from 'lucide-react';
 import { MdOutlineMoreHoriz } from 'react-icons/md';
 import Search from '@/shared/ui/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePillPicker from './DatePillPicker';
 import { toLocalDateString } from '@/shared/utils/toLocalDateString';
 import { getTodayISODate } from '@/shared/utils/getTodayISODate';
@@ -22,20 +22,14 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Image from 'next/image';
 
 export default function CashierHeaderTopBar() {
-    const { search, setSearch, setStartDate, startDate, todayOrderStats } = useOrderStore();
+    const { search, setSearch, setStartDate, startDate, setEndDate, todayOrderStats } = useOrderStore();
     const [opened, setOpened] = useState(false);
     const { user } = useUserStore();
     const role = useGetRole()
-    const pathname = usePathname();
-
-    const navLinks = [
-        { href: '/cashier/orders', label: 'Orders' },
-    ];
-
-    const isActive = (href: string) => pathname === href;
+    
 
     return (
-        <div className="bg-gradient-to-r relative h-20 z-50 ">
+        <div className=" relative h-20 z-50 ">
             <div className="flex justify-between items-center px-4 h-full gap-4">
                 {/* Logo */}
                 <div className="flex items-center gap-3 shrink-0">
@@ -45,7 +39,6 @@ export default function CashierHeaderTopBar() {
                 <div className="absolute -translate-x-44 [@media(min-width:1600px)]:-translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2">
                     <Search
                         value={search}
-
                         className='w-64 [@media(min-width:1600px)]:w-72 hidden xl:block'
                         placeholder="Search Orders"
                         onChange={(e) => setSearch(e.target.value)}
@@ -57,14 +50,19 @@ export default function CashierHeaderTopBar() {
                         <p>Revenue:</p>
                         <p className="text-xl font-bold text-green-600">{formatPrice(todayOrderStats.total)}</p>
                     </div>
-                    <DatePillPicker value={startDate ?? getTodayISODate()} onChange={(el) => setStartDate(toLocalDateString(el))} />
+                    <DatePillPicker value={startDate ?? getTodayISODate()} onChange={(el) => {
+                        setStartDate(toLocalDateString(el))
+                        setEndDate(toLocalDateString(el))
+                    }} />
                     <div className="grid h-12 w-12 shrink-0 place-content-center rounded-full border border-gray-600 hover:bg-white/50 cursor-pointer transition-colors">
                         <Bell className="h-5 w-5" />
                     </div>
                     <ProfileDropdown>
                         <div className="flex cursor-pointer items-center gap-2 hover:opacity-80 transition-opacity">
-                            <div className="grid h-12 w-12 shrink-0 overflow-hidden place-content-center rounded-full border border-gray-600">
-                                <Image src="/cashier.webp" className='h-full w-full ' alt="" />
+                            <div className="grid h-12 w-12 relative shadow-md shrink-0 overflow-hidden place-content-center rounded-full border border-gray-600">
+                                <Image src="/cashier.webp"
+                                    className="h-full w-full object-contain absolute"
+                                    fill alt="" />
                             </div>
                             <div>
                                 <p className="font-semibold">{user?.firstName} {user?.lastName}</p>

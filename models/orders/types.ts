@@ -36,6 +36,7 @@ export type Order = {
   tableName: string;
   customerName: string;
   customerId: number;
+  customerTitle: string;
   invoiceNumber: string;
   paymentStatus: PAYMENT_STATUS;
   orderStatus: ORDER_STATUS;

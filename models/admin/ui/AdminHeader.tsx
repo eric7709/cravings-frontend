@@ -52,7 +52,9 @@ export default function AdminHeader() {
                 <div className="h-12 w-12 rounded-full border-2 relative overflow-hidden border-orange-400">
                   <Image
                     src="/admin.png"
-                    className="h-full w-full object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    height={48}
+                    width={48}
+                    className="h-full w-full object-contain absolute"
                     alt=""
                   />
                 </div>
@@ -93,6 +95,7 @@ export default function AdminHeader() {
               <Image
                 src="/image.png"
                 className="object-cover rounded-full h-full w-full"
+                fill
                 alt=""
               />
             </div>

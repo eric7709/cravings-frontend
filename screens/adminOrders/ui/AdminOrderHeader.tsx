@@ -21,7 +21,6 @@ export default function AdminOrderHeader() {
         <AdminHeaderPagination />
       </div>
       <AdminHeaderCounts todayOrderStats={todayOrderStats} />
-
     </div>
   );
 }

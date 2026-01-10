@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { OrderStore } from "./types";
+import { getTodayISODate } from "@/shared/utils/getTodayISODate";
 
 export const useOrderStore = create<OrderStore>((set) => ({
   sortBy: "createdAt",
@@ -12,8 +13,8 @@ export const useOrderStore = create<OrderStore>((set) => ({
   minTotal: null,
   maxTotal: null,
   hasHydrated: false,
-  startDate: null,
-  endDate: null,
+  startDate: getTodayISODate(),
+  endDate: getTodayISODate(),
   search: "",
 
   loading: false,

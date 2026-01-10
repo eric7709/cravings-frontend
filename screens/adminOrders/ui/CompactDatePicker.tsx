@@ -26,7 +26,7 @@ export function CompactDatePicker({ value, onChange, className }: Props) {
       className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-11 items-center cursor-pointer gap-3 rounded-full border-2 border-gray-200 bg-white px-3 min-w-32 shadow-sm hover:bg-slate-50"
+        className="flex h-11 items-center cursor-pointer gap-3 rounded-xl border-2 border-gray-200 bg-white px-3 min-w-32 shadow-sm hover:bg-slate-50"
       >
         <div className="flex gap-2">
           <p className="text-3xl font-semibold text-slate-900">{d}</p>
