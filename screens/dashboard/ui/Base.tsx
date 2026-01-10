@@ -9,11 +9,12 @@ import { useDashboardStore } from "@/models/dashboard/store";
 import Loader2 from "@/shared/ui/Loader2";
 import Filter from "./Filter";
 import MenuItemForm from "@/screens/menuItems/ui/MenuItemForm";
+import Overview from "./Overview";
 
 export default function Base() {
   useDashboardStats()
   useDashboardOverview()
-  const {hasHydrated} = useDashboardStore()
+  const {hasHydrated, overview} = useDashboardStore()
 
 
   if(!hasHydrated) return <Loader2 />
@@ -23,11 +24,7 @@ export default function Base() {
       <Filter />
       <MenuItemForm />
       <Statistics />
-      <div className="grid mt-1 p-4 gap-4 xl:grid-cols-3">
-        <TopCategories />
-        <TopMenuItems />
-        <TopTables />
-      </div>
+      <Overview />
       <RecentOrders />
     </div>
   )

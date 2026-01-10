@@ -88,7 +88,7 @@ export default function TableQRCodeModal() {
 
   return (
     <Backdrop modalOpened={activeModal === "qrcode"} closeModal={closeModal}>
-      <div className="flex flex-col items-center justify-center px-4 sm:px-10 py-4 sm:py-6 bg-gradient-to-b from-gray-50 to-white rounded-3xl shadow-2xl space-y-4 sm:space-y-6 min-w-[280px] max-w-[360px]">
+      <div className="flex flex-col items-center justify-center px-4 sm:px-10 py-4 sm:py-6 bg-linear-to-b from-gray-50 to-white rounded-3xl shadow-2xl space-y-4 min-w-70 max-w-90">
         {/* Header */}
         <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">Table QR Code</h2>
 
@@ -100,7 +100,7 @@ export default function TableQRCodeModal() {
 
         {/* QR Code */}
         <div className="flex flex-col items-center bg-white p-3 sm:p-4 rounded-2xl border-gray-200">
-          <QRCode ref={qrRef as any} value={qrValue} size={200} />
+          <QRCode ref={qrRef as any} value={qrValue} size={300} />
           <a
             href={qrValue}
             target="_blank"
@@ -114,7 +114,7 @@ export default function TableQRCodeModal() {
         {/* Print Button */}
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-green-700 transition font-bold text-sm sm:text-base"
+          className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-green-500 to-green-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-green-700 transition font-bold text-sm sm:text-base"
         >
           <Printer size={16} />
           Print QR

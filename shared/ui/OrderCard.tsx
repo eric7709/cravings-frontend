@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { Order } from "@/models/orders/types";
-import { useUpdateTime } from "@/shared/provider/useUpdateTime";
+import { useUpdateTime } from "@/shared/hooks/useUpdateTime";
 import OrderCardHeader from "./OrderCardHeader";
 import OrderCardItems from "./OrderCardItems";
 import OrderCardAction from "./OrderCardAction";

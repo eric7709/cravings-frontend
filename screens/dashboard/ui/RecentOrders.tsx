@@ -8,6 +8,7 @@ import { useLastOrders } from "@/models/dashboard/hooks";
 import { useEffect, useState } from "react";
 import { Order} from "@/models/orders/types";
 import Loader2 from "@/shared/ui/Loader2";
+import { formatHumanTime } from "@/shared/utils/formatHumanTime";
 
 const idColors = [
   "from-violet-500 to-purple-600",
@@ -42,9 +43,9 @@ export default function RecentOrders() {
           animate={{ opacity: 1, y: 0 }}
           className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-2xl overflow-x-auto"
         >
-          <table className="w-full min-w-[900px] border-collapse">
+          <table className="w-full min-w-225 border-collapse">
             <thead>
-              <tr className="border-b border-gray-200/60 bg-gradient-to-r from-gray-50/50 to-gray-100/30">
+              <tr className="border-b border-gray-200/60 bg-linear-to-r from-gray-50/50 to-gray-100/30">
                 <th className="p-5 text-left text-xs font-bold uppercase tracking-widest text-gray-500">
                   Customer
                 </th>
@@ -61,7 +62,7 @@ export default function RecentOrders() {
                 <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
                   Amount
                 </th>
-                <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="p-5 text-left text-xs font-bold uppercase tracking-widest text-gray-500">
                   Date
                 </th>
               </tr>
@@ -75,13 +76,13 @@ export default function RecentOrders() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.04, type: "spring", stiffness: 120, damping: 15 }}
-                    className="group border-b border-gray-100/50 hover:bg-gradient-to-r hover:from-indigo-50/40 hover:via-purple-50/30 hover:to-pink-50/40"
+                    className="group border-b border-gray-100/50 hover:bg-linear-to-r hover:from-indigo-50/40 hover:via-purple-50/30 hover:to-pink-50/40"
                   >
                     {/* Customer */}
                     <td className="p-4">
                       <div className="flex items-center gap-4">
                         <div
-                          className={`h-12 w-12 rounded-full bg-gradient-to-br ${idColors[idx % idColors.length]
+                          className={`h-12 w-12 rounded-full bg-linear-to-br ${idColors[idx % idColors.length]
                             } flex items-center justify-center text-white font-bold text-base group-hover:shadow-md transition-shadow`}
                         >
                           {firstLetter}
@@ -103,13 +104,9 @@ export default function RecentOrders() {
 
                     {/* Amount */}
                     <td className="p-4 text-center font-bold text-gray-900">{formatPrice(order.total)}</td>
-
                     {/* Date */}
-                    <td className="p-4 text-center">
-                      <div className="flex items-center justify-center gap-2 text-gray-600">
-                        <Calendar size={15} />
-                        <p className="text-sm">{formatSmartTime(order.createdAt)}</p>
-                      </div>
+                    <td className="p-4 ">
+                        <p className="text-sm">{formatHumanTime(order.createdAt)}</p>
                     </td>
                   </motion.tr>
                 );

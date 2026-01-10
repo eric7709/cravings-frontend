@@ -1,4 +1,4 @@
-import { differenceInCalendarDays, isSameWeek, isSameMonth, isSameYear, subDays, subWeeks, subMonths, subYears } from "date-fns";
+import { differenceInCalendarDays, isSameWeek, isSameMonth, isSameYear, subWeeks, subMonths, subYears } from "date-fns";
 
 export function getComparisonText(startDateStr: string, endDateStr: string) {
   if (!startDateStr || !endDateStr) return "";

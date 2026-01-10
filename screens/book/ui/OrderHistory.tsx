@@ -4,18 +4,16 @@ import { X, Package } from "lucide-react";
 import type { ORDER_STATUS } from "@/models/orders/types";
 import { statusConfig } from "../util/helper";
 import { formatPrice } from "@/shared/utils/formatPrice";
-import { useEffect } from "react";
 
 export default function OrderHistory() {
-  const { data, isLoading, isError } = useCustomerOrdersToday();
+  const { data, isError } = useCustomerOrdersToday();
   const { activeModal, closeModal } = useBook();
 
-  if (isLoading) return <p className="p-3 text-sm">Loading...</p>;
   if (isError) return <p className="p-3 text-sm text-red-600">Failed to load</p>;
 
   return (
     <div
-      className={`fixed inset-0 z-[500] bg-gray-50 overflow-y-auto transition-all duration-300 ${activeModal === "history" ? "opacity-100 visible" : "opacity-0 invisible"
+      className={`fixed inset-0 z-500 bg-gray-50 overflow-y-auto transition-all duration-300 ${activeModal === "history" ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
     >
       {/* Header */}
@@ -44,7 +42,7 @@ export default function OrderHistory() {
                 className="bg-white rounded-xl shadow-md overflow-hidden"
               >
                 {/* Header */}
-                <div className={`bg-gradient-to-r ${config.bg} px-4 py-2`}>
+                <div className={`bg-linear-to-r ${config.bg} px-4 py-2`}>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <div className={`w-2.5 h-2.5 rounded-full ${config.dot}`} />
@@ -56,7 +54,6 @@ export default function OrderHistory() {
                   </div>
                   <p className="text-xs font-medium mt-1 ml-5">{config.text}</p>
                 </div>
-
                 {/* Items */}
                 <div className="p-3 space-y-2">
                   {order.items.map((item) => (

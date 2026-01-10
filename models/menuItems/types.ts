@@ -49,6 +49,7 @@ type MenuItemModal = "create" | "update" | "delete" | null;
 export type MenuItemStore = {
   // Pagination + filtering
   sortDir: "asc" | "desc";
+  hasHydrated: boolean
   sort: string;
   filter: string;
   currentPage: number;

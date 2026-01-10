@@ -8,6 +8,7 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
   currentPage: 1,
   contentPerPage: 10,
   totalMenuItem: 0,
+  hasHydrated: false,
   search: "",
   activeModal: null,
   selectedMenuItem: null,
@@ -26,7 +27,7 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
   openDeleteModal: () => set({ activeModal: "delete" }),
   openUpdateModal: () => set({ activeModal: "update" }),
   setMenuItems: (data) =>
-    set(() => ({ menuItems: data, totalMenuItem: data.length })),
+    set(() => ({ menuItems: data, totalMenuItem: data.length, hasHydrated: true })),
   addMenuItem: (item) => {
     const menuItems = get().menuItems;
     if (get().menuItems.find((el) => el.id == item.id)) {
