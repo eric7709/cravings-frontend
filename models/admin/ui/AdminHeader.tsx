@@ -91,10 +91,10 @@ export default function AdminHeader() {
             <Bell className="w-4 h-4 text-gray-500" />
           </div>
           <ProfileDropdown>
-            <div className="h-10 w-10 rounded-full border border-gray-300 cursor-pointer hover:opacity-80 transition-opacity">
+            <div className="h-10 w-10 rounded-full border relative border-gray-300 cursor-pointer hover:opacity-80 transition-opacity">
               <Image
                 src="/image.png"
-                className="object-cover rounded-full h-full w-full"
+                className="object-cover rounded-full absolute h-full w-full"
                 fill
                 alt=""
               />

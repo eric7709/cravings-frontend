@@ -8,7 +8,10 @@ export async function uploadMenuItemImage(file: File, folder: string = ""): Prom
   const { error } = await supabase.storage
     .from("menuitemimages")
     .upload(filePath, file, { cacheControl: "3600", upsert: false });
-  if (error) throw error;
+  if (error) {
+    console.log(error, "SUPABASE ERROR")
+    throw error;
+  }
 
   const { data: publicUrlData } = supabase.storage
     .from("menuitemimages")

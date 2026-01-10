@@ -13,7 +13,7 @@ export default function MenuItemForm() {
   return (
     <Backdrop closeModal={closeModal} modalOpened={activeModal === "create" || activeModal === "update"}>
       <div className="px-4">
-        <div className="w-full lg:w-[450px] max-h-[80%] flex flex-col bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
+        <div className="w-full lg:w-112.5 max-h-[80%] flex flex-col bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
           <MenuItemFormHeader />
           <div className="flex-1 overflow-y-auto">
             <MenuItemImage />

@@ -23,7 +23,7 @@ export default function MenuItemStatus() {
       <div
         ref={ref}
         onClick={() => setOpen(!open)}
-        className="h-12 flex border-2 items-center xl:w-fit px-5 cursor-pointer duration-300 border-gray-200 rounded-full shadow gap-3 text-sm font-medium"
+        className="h-12 flex border-2 items-center xl:w-fit px-5 cursor-pointer duration-300 border-gray-200 rounded-xl shadow gap-3 text-sm font-medium"
       >
         <p>{statusText}</p>
         <TiArrowSortedDown

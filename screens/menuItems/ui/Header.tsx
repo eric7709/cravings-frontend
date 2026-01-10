@@ -33,7 +33,7 @@ export default function Header() {
 
         <div
           className={`space-y-3 overflow-hidden duration-300 ${
-            opened ? "max-h-[600px] mt-3" : "max-h-0"
+            opened ? "max-h-150 mt-3" : "max-h-0"
           }`}
         >
           <Search className="w-full" placeholder="Search Menu-items..." />

@@ -53,7 +53,6 @@ export default function MenuItemFormFooter() {
           data: payload,
         });
       }
-
       reset();
       closeModal();
     } catch (error) {
@@ -85,11 +84,9 @@ export default function MenuItemFormFooter() {
 /* -------------------------------------------------------------------------- */
 function validate(values: any) {
   const errors: Record<string, string> = {};
-
   if (!values.name.trim()) errors.name = "Menu item name is required";
   if (!values.categoryId) errors.categoryId = "Category is required";
   if (!values.description) errors.description = "Description is required";
   if (!values.price || Number(values.price) <= 0) errors.price = "Enter a valid price";
-
   return errors;
 }

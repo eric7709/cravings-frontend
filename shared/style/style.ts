@@ -1,1 +1,1 @@
-export const style = "h-12 border text-[15px] w-fit cursor-pointer gap-2 rounded-full border-gray-200 shadow flex items-center px-4 "
+export const style = "h-12 border text-[15px] w-fit cursor-pointer gap-2 rounded-xl border-gray-200 shadow flex items-center px-4 "

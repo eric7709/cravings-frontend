@@ -26,7 +26,7 @@ export default function Filter() {
     const { setStartDate, setEndDate } = useDashboardStore();
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [rangeOpen, setRangeOpen] = useState(false);
-    const [selectedRange, setSelectedRange] = useState("Today");
+    const [selectedRange, setSelectedRange] = useState("This Week");
     const calendarRef = useRef<HTMLDivElement>(null);
     const [date, setDate] = useState<Date | undefined>(new Date());
     const rangeRef = useRef<HTMLDivElement>(null);
