@@ -11,7 +11,7 @@ export default function Page() {
 
   useEffect(() => {
     if (!role) {
-      router.push("/login")
+      router.push("/auth/login")
     }; // wait until role is loaded
 
     switch (role) {
@@ -26,7 +26,7 @@ export default function Page() {
         break;
       default:
         // Optional: fallback route for unknown role
-        router.push("/login");
+        router.push("/auth/login");
         break;
     }
   }, [role, router]);
