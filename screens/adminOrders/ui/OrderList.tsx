@@ -22,8 +22,7 @@ export default function OrderList() {
     return (
         <div className="flex-1 overflow-y-auto">
             <div 
-                initial="hidden"
-                animate="show" className="grid p-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                className="grid p-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                 {orders?.map(order => <OrderCard order={order} key={order.id} />)}
             </div>
         </div >
