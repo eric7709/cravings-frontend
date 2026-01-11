@@ -10,7 +10,9 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!role) return; // wait until role is loaded
+    if (!role) {
+      router.push("/login")
+    }; // wait until role is loaded
 
     switch (role) {
       case "admin":
