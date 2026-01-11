@@ -8,6 +8,7 @@ export default function CartProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         const stored = getCustomer();
         if (stored) setCustomer(stored);
+            console.log(stored, "CUSTOMER")
     }, [setCustomer]);
     return <>{children}</>;
 }

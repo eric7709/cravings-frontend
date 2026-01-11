@@ -12,6 +12,10 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
   search: "",
   activeModal: null,
   selectedMenuItem: null,
+  selectedCategory: {
+    id: 0,
+    name: "all",
+  },
   status: null,
   menuItems: [],
   setSelectedMenuItem: (selectedMenuItem) =>
@@ -22,12 +26,20 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
     set({
       status,
     }),
+  setSelectedCategory: (selectedCategory) =>
+    set({
+      selectedCategory,
+    }),
   closeModal: () => set({ activeModal: null }),
   openCreateModal: () => set({ activeModal: "create" }),
   openDeleteModal: () => set({ activeModal: "delete" }),
   openUpdateModal: () => set({ activeModal: "update" }),
   setMenuItems: (data) =>
-    set(() => ({ menuItems: data, totalMenuItem: data.length, hasHydrated: true })),
+    set(() => ({
+      menuItems: data,
+      totalMenuItem: data.length,
+      hasHydrated: true,
+    })),
   addMenuItem: (item) => {
     const menuItems = get().menuItems;
     if (get().menuItems.find((el) => el.id == item.id)) {

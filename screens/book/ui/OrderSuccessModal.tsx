@@ -14,8 +14,8 @@ export function OrderSuccessModal() {
         
         {/* Success Icon */}
         <div className="flex justify-center mb-5">
-          <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center">
-            <CheckCircle size={36} className="text-green-600" />
+          <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center">
+            <CheckCircle size={36} className="text-orange-600" />
           </div>
         </div>
 
@@ -37,8 +37,8 @@ export function OrderSuccessModal() {
         {/* Button */}
         <button
           onClick={closeModal}
-          className="mt-6 w-full py-3 rounded-full bg-green-600 text-white font-semibold
-                     hover:bg-green-700 active:scale-95 transition-all duration-200"
+          className="mt-6 w-full py-3 rounded-full bg-orange-600 text-white font-semibold
+                     hover:bg-orange-700 active:scale-95 transition-all duration-200"
         >
           Thank you
         </button>

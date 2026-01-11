@@ -15,9 +15,7 @@ export default function Overview() {
                     <TopTables />
                 </div>
                 :
-                <div className="h-60 my-4 bg-gray-100 rounded-xl shadow-md mx-4 text-3xl font-bold grid place-content-center">
-                    <p>No Data</p>
-                </div>
+                <div className='mb-5'></div>
             }
         </div>
     )

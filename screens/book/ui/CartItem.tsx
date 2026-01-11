@@ -5,79 +5,108 @@ import { Item } from "../types/types";
 import { useBook } from "../store/useBook";
 import { formatPrice } from "@/shared/utils/formatPrice";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 type Props = {
   length: number;
   item: Item;
   current: number;
-  index: number; 
+  index: number;
 };
 
 export default function MiniCartItem({ length, current, item, index }: Props) {
-  const { menuItemId, menuItemName, price, quantity, takeOut, categoryName } = item;
-  const { toggleTakeOut, increaseQty, decreaseQty, removeFromCart, unavailables } = useBook();
+  const {
+    menuItemId,
+    menuItemName,
+    price,
+    quantity,
+    takeOut,
+    categoryName,
+  } = item;
+
+  const {
+    toggleTakeOut,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+    unavailables,
+  } = useBook();
+
+  const isUnavailable = unavailables.includes(menuItemId);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ duration: 0.3, delay: index * 0.05, ease: "easeOut" }}
-      className={`p-4 shadow ${!unavailables.includes(item.menuItemId) ? "bg-white": "bg-red-200"} ${current !== length - 1 ? "border-b border-gray-300" : ""} rounded-2xl`}
+      exit={{ opacity: 0, y: 16 }}
+      transition={{ duration: 0.25, delay: index * 0.04 }}
+      className={`
+        relative rounded-2xl p-4
+        ${isUnavailable ? "bg-rose-50 border border-rose-200" : "bg-white"}
+        ${current !== length - 1 ? "mb-3" : ""}
+        shadow-sm hover:shadow-md transition
+      `}
     >
+      {/* Unavailable badge */}
+      {isUnavailable && (
+        <span className="absolute right-4 top-4 rounded-full bg-rose-500 px-3 py-1 text-xs font-semibold text-white">
+          Unavailable
+        </span>
+      )}
+
       {/* HEADER */}
-      <div className="flex items-start justify-between">
-        <div className="space-y-0.5">
-          <p className="text-sm font-semibold text-gray-900">{menuItemName}</p>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-sm font-semibold text-gray-900">
+            {menuItemName}
+          </p>
           <p className="text-xs text-gray-500">{categoryName}</p>
         </div>
 
         <button
           onClick={() => removeFromCart(menuItemId)}
-          className="p-1 text-red-500 hover:text-red-600 transition"
+          className="rounded-full p-2 text-red-500 hover:bg-red-50 active:scale-90 transition"
         >
-          <Trash2 size={18} />
+          <Trash2 size={16} />
         </button>
       </div>
 
       {/* FOOTER */}
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-4 flex items-center justify-between">
         {/* PRICE */}
-        <p className="text-sm font-semibold text-gray-900">
-          <span className="text-green-500 mr-0.5">₦</span>
+        <p className="text-base font-bold text-gray-900">
+          <span className="text-green-600 mr-1">₦</span>
           {formatPrice(price * quantity, true)}
         </p>
 
         <div className="flex items-center gap-3">
-          {/* DINE-IN / TAKE-OUT */}
+          {/* DINE / TAKEOUT */}
           <button
             onClick={() => toggleTakeOut(menuItemId)}
-            className={`h-9 px-4 text-xs font-semibold rounded-full border-2 transition active:scale-95 ${
+            className={`rounded-full px-4 py-1.5 text-xs font-semibold transition active:scale-95 ${
               takeOut
-                ? "bg-green-500 text-white border-green-600"
-                : "bg-blue-500 text-white border-blue-600 "
+                ? "bg-emerald-500 text-white"
+                : "bg-orange-500 text-white"
             }`}
           >
             {takeOut ? "Take-out" : "Dine-in"}
           </button>
 
           {/* QUANTITY */}
-          <div className="flex items-center rounded-full  bg-white">
+          <div className="flex items-center rounded-full border border-gray-300 bg-white shadow-inner">
             <button
               onClick={() => quantity > 1 && decreaseQty(menuItemId)}
-              className="w-8 h-8 border-2 grid place-content-center rounded-full text-red-500 hover:bg-gray-100 active:scale-90 transition"
+              className="h-8 w-8 grid place-content-center text-red-500 hover:bg-gray-100 active:scale-90 transition rounded-full"
             >
               <Minus size={14} />
             </button>
 
-            <span className="w-10 text-center text-sm font-semibold text-gray-800">
+            <span className="w-8 text-center text-sm font-semibold">
               {quantity}
             </span>
 
             <button
               onClick={() => increaseQty(menuItemId)}
-              className="w-8 h-8 grid border-2 place-content-center rounded-full text-green-500 hover:bg-gray-100 active:scale-90 transition"
+              className="h-8 w-8 grid place-content-center text-green-500 hover:bg-gray-100 active:scale-90 transition rounded-full"
             >
               <Plus size={14} />
             </button>

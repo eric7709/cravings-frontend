@@ -36,7 +36,7 @@ export default function OrderCardAction({ showDeleteBtn, getButtonText, cancelOr
             <div className={`px-4 grid duration-300 ${showUpdateStatusButton ? "mb-3 grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                 <div className=" overflow-hidden">
 
-                    <button onClick={changeStatus} className={`${statusConfig.button} text-sm bg-gradient-to-r w-full shadow-md rounded-full mt-auto cursor-pointer  text-white font-semibold py-4`}>
+                    <button onClick={changeStatus} className={`${statusConfig.button} text-sm bg-linear-to-r w-full shadow-md rounded-full mt-auto cursor-pointer  text-white font-semibold py-4`}>
                         {getButtonText}
                     </button>
                 </div>
@@ -50,7 +50,7 @@ export default function OrderCardAction({ showDeleteBtn, getButtonText, cancelOr
                     }} className={`bg-red-500   ${statusConfig.border} p-4 border-t-2 border-l-2  cursor-pointer text-white rounded-tl-2xl`}>Cancel Order</button>
                 </div>
             </div>
-            <div className={`lg:hidden ${canceButtonVisibleForMobile ? "grid": "hidden"}  duration-300`}>
+            <div className={`lg:hidden ${canceButtonVisibleForMobile ? "grid" : "hidden"}  duration-300`}>
                 <div className={`overflow-hidden grid-cols-1 grid text-sm cursor-pointer  duration-300 font-semibold w-full bg-white gap-2 `}>
                     <button onClick={() => {
                         cancelOrder()

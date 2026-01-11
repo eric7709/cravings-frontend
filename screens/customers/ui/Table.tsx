@@ -1,12 +1,11 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { useCustomerStore } from "@/models/customer/store";
 import { Search } from "lucide-react";
 
 export default function CustomerTable() {
   const { customers, search } = useCustomerStore();
-  
+
   if (!customers?.length) return null;
 
   const filteredData = customers.filter(el => {
@@ -32,22 +31,17 @@ export default function CustomerTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              <AnimatePresence>
                 {filteredData.map((customer, idx) => {
                   const firstLetter = customer.name?.[0]?.toUpperCase();
                   return (
-                    <motion.tr
+                    <tr
                       key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ delay: idx * 0.03 }}
                       className="group hover:bg-slate-50/50 transition-colors"
                     >
                       {/* Customer */}
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
+                          <div className="h-12 w-12 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
                             {firstLetter}
                           </div>
                           <div>
@@ -78,10 +72,9 @@ export default function CustomerTable() {
                           {customer.email || <span className="text-slate-400 italic">Not provided</span>}
                         </div>
                       </td>
-                    </motion.tr>
+                    </tr>
                   );
                 })}
-              </AnimatePresence>
             </tbody>
           </table>
         </div>

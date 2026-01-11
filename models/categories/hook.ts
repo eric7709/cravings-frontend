@@ -1,15 +1,25 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
 import { Category, CategoryPayload } from "./types";
+import { useCategoryStore } from "./store";
+import { useEffect } from "react";
 
 export const useCategories = () => {
-  return useQuery({
+  const {setCategories} = useCategoryStore()
+  const query = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await api.get<Category[]>("/categories");
       return res.data;
     },
   });
+            
+  useEffect(() => {
+    if(query.data)
+      setCategories(query.data)
+  }, [query.data, setCategories])
+  
+  return query;
 };
 
 export const useCreateCategory = () => {

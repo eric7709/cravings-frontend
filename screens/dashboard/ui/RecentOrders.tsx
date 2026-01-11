@@ -1,12 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
-import { formatSmartTime } from "@/shared/utils/formatSmartTime";
 import { formatPrice } from "@/shared/utils/formatPrice";
 import { useLastOrders } from "@/models/dashboard/hooks";
 import { useEffect, useState } from "react";
-import { Order} from "@/models/orders/types";
+import { Order } from "@/models/orders/types";
 import Loader2 from "@/shared/ui/Loader2";
 import { formatHumanTime } from "@/shared/utils/formatHumanTime";
 
@@ -28,10 +26,11 @@ export default function RecentOrders() {
   useEffect(() => {
     if (data)
       setOrders(data)
+      console.log(data, "RECENT")
   }, [isLoading, orders])
 
-  if(isLoading) return <Loader2 />
-  
+  if (isLoading) return <Loader2 />
+
   if (!orders?.length) return null;
 
   return (
@@ -106,7 +105,7 @@ export default function RecentOrders() {
                     <td className="p-4 text-center font-bold text-gray-900">{formatPrice(order.total)}</td>
                     {/* Date */}
                     <td className="p-4 ">
-                        <p className="text-sm">{formatHumanTime(order.createdAt)}</p>
+                      <p className="text-sm">{formatHumanTime(order.createdAt)}</p>
                     </td>
                   </motion.tr>
                 );

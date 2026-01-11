@@ -56,14 +56,14 @@ export default function TableCard({ table }: Props) {
   return (
     <div className={`group relative overflow-hidden rounded-2xl border-2 ${borderColor} bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
       {/* Gradient accent bar */}
-      <div className={`h-1.5 bg-gradient-to-r ${gradient}`} />
+      <div className={`h-1.5 bg-linear-to-r ${gradient}`} />
 
       <div className="p-5">
         {/* Header section */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-baseline gap-2 mb-1">
-              <span className={`text-3xl font-bold bg-gradient-to-br ${gradient} bg-clip-text text-transparent`}>
+              <span className={`text-3xl font-bold bg-linear-to-br ${gradient} bg-clip-text text-transparent`}>
                 {table.tableNumber}
               </span>
               <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">
@@ -85,13 +85,13 @@ export default function TableCard({ table }: Props) {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-4" />
+        <div className="h-px bg-linear-to-r from-transparent via-slate-200 to-transparent mb-4" />
 
         {/* Info section */}
         <div className="space-y-3">
           {/* Capacity */}
           <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
-            <div className={`p-2 rounded-lg bg-gradient-to-br ${gradient}`}>
+            <div className={`p-2 rounded-lg bg-linear-to-br ${gradient}`}>
               <Users className="w-4 h-4 text-white" />
             </div>
             <div className="flex-1">
@@ -107,7 +107,7 @@ export default function TableCard({ table }: Props) {
           {/* Cashier info */}
           {table.cashierName && (
             <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
-              <div className={`p-2 rounded-lg bg-gradient-to-br ${gradient}`}>
+              <div className={`p-2 rounded-lg bg-linear-to-br ${gradient}`}>
                 <User className="w-4 h-4 text-white" />
               </div>
               <div className="flex-1">
@@ -124,7 +124,7 @@ export default function TableCard({ table }: Props) {
       </div>
 
       {/* Hover effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-slate-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
     </div>
   );
 }

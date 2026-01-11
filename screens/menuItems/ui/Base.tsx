@@ -5,12 +5,12 @@ import Pagination from './Pagination';
 import MenuItemForm from './MenuItemForm';
 import DeleteMenuItem from './DeleteMenuItem';
 import { useSyncCategories } from '@/screens/categories/hooks/useSyncCategories';
-import { useSyncMenuItems } from '../hooks/useSyncMenuItems';
 import { useMenuItemRealtime } from '../../../shared/hooks/useMenuItemRealtime';
+import { useMenuItems } from '@/models/menuItems/hook';
 
 export default function Base() {
   useSyncCategories()
-  useSyncMenuItems()
+  useMenuItems()
   useMenuItemRealtime()
   return (
     <div className='flex-1 overflow-y-auto flex-col flex'>

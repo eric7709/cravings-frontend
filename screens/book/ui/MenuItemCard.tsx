@@ -31,11 +31,14 @@ export default function MenuItemCard({ menuItem }: Props) {
         <div className='text-sm '>
             <div className="border bg-white border-gray-200 shadow-md rounded-2xl ">
                 <div className="h-52 relative shrink-0 rounded-xl overflow-hidden border-gray-200 border">
-                    <Image fill src={"/rice.jpg"} className='object-cover absolute h-full w-full' alt="" />
-                    {/* <Image src={menuItem.imageUrl} fill className='object-cover h-full w-full' alt="" /> */}
+                    {menuItem.imageUrl ? (
+                        <Image fill src={menuItem.imageUrl} alt={menuItem.name} className='object-cover absolute h-full w-full' />
+                    ) : (
+                        <div className="text-[100px] h-full w-full grid place-content-center">🍽️</div>
+                    )}
                 </div>
                 <div className="p-4 flex flex-col">
-                    <p className={`font-semibold duration-500 ${menuItem.name.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-500"} text-[15px] capitalize`}>{menuItem.name}</p>
+                    <p className={`font-semibold duration-500 ${menuItem.name.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-800"} text-[15px] capitalize`}>{menuItem.name}</p>
                     <p className={`italic duration-500 ${menuItem.categoryName.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-500"} text-xs  mt-1 capitalize`}>{menuItem.categoryName}</p>
                     <p className={`line-clamp-2 mt-2 ${menuItem.description.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() && search.trim().length > 3 ? "text-orange-600" : "text-gray-500"} mb-3 text-gray-700`}>{menuItem.description}</p>
                     <div className="flex uppercase mt-auto relative justify-between items-center">

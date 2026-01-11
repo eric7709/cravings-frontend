@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -6,8 +6,8 @@ import { queryClient } from "@/shared/lib/queryClient";
 import { UserProvider } from "@/shared/provider/UserProvider";
 import CartProvider from "@/shared/provider/CartProvider";
 
-// ✅ Import Inter
-const font = Inter({
+// ✅ Import Poppins
+const font = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-nunito",

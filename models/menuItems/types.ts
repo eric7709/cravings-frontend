@@ -43,14 +43,18 @@ export type MenuItemErrors = {
 
 // Modal Types
 type MenuItemModal = "create" | "update" | "delete" | null;
-
+type Category = {
+  name: string;
+  id: number;
+};
 
 // Zustand Store
 export type MenuItemStore = {
   // Pagination + filtering
   sortDir: "asc" | "desc";
-  hasHydrated: boolean
+  hasHydrated: boolean;
   sort: string;
+  selectedCategory: Category | null;
   filter: string;
   currentPage: number;
   contentPerPage: number;
@@ -70,7 +74,8 @@ export type MenuItemStore = {
   openCreateModal: () => void;
   openDeleteModal: () => void;
   openUpdateModal: () => void;
-  setStatus: (status: MENUITEM_STATUS) => void
+  setStatus: (status: MENUITEM_STATUS) => void;
+  setSelectedCategory: (category: Category) => void;
   // CRUD state updates
   setMenuItems: (data: MenuItem[]) => void;
   addMenuItem: (item: MenuItem) => void;

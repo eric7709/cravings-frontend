@@ -21,7 +21,7 @@ export default function OrderCardHeader({ order, statusConfig }: Props) {
                     <p className='text-xs text-gray-700 font-medium mt-1'>#{order.invoiceNumber}</p>
                 </div>
                 <p
-                    className={`ml-auto capitalize font-semibold border-2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg shadow text-[11px] bg-gradient-to-tr ${statusConfig.bg} ${statusConfig.border}`}
+                    className={`ml-auto capitalize font-semibold border-2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg shadow text-[11px] bg-linear-to-tr ${statusConfig.bg} ${statusConfig.border}`}
                 >
                     {order.orderStatus}
                 </p>

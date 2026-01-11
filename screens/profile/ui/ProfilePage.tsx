@@ -15,10 +15,10 @@ export default function ProfilePage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50"
-      initial={{ opacity: 0, y:10 }}
-      animate={{ opacity: 1, y:0 }}
-      exit={{ opacity: 0 , y:10}}
+      className="min-h-screen bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <ProfileBanner role={user.role as string} />

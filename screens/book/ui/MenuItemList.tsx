@@ -1,53 +1,50 @@
+"use client";
+
 import MenuItemCard from './MenuItemCard'
 import { useBookMenuItems } from '../hooks/useBookMenuItems'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 
 const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.08, // 👈 controls stagger speed
-        },
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
     },
+  },
 }
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.3,
-        },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
     },
-}
+  },
+};
 
 export default function MenuItemList() {
-    const { hasHydrated, length, menuItems } = useBookMenuItems()
+  const { hasHydrated, length, menuItems } = useBookMenuItems()
 
-    if (length === 0 && hasHydrated)
-        return (
-            <div className="flex-1 flex flex-col justify-center items-center text-center text-xl font-semibold">
-                <p>No Items found</p>
-                <p className="text-base font-normal text-gray-700">
-                    Try adjusting your search
-                </p>
-            </div>
-        )
-
+  if (length === 0 && hasHydrated)
     return (
-        <motion.div
-            className="space-y-3 p-4 pt-2"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-        >
-            {menuItems?.map((menuItem) => (
-                <motion.div key={menuItem.id} variants={itemVariants}>
-                    <MenuItemCard menuItem={menuItem} />
-                </motion.div>
-            ))}
-        </motion.div>
+      <div className="flex-1 flex flex-col justify-center items-center text-center text-xl font-semibold">
+        <p>No Items found</p>
+        <p className="text-base font-normal text-gray-700">
+          Try adjusting your search
+        </p>
+      </div>
     )
+
+  return (
+    <div className="space-y-3 p-4 pt-2">
+      {menuItems?.map((menuItem) => (
+        <motion.div key={menuItem.id} variants={itemVariants}>
+          <MenuItemCard menuItem={menuItem} />
+        </motion.div>
+      ))}
+    </div>
+  )
 }

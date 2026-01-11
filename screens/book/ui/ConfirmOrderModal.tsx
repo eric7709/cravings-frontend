@@ -141,8 +141,8 @@ export function ConfirmOrderModal() {
           /* ---------- CONFIRM STATE ---------- */
           <div className="text-center">
             <div className="flex justify-center mb-4">
-              <div className="h-14 w-14 rounded-full bg-green-100 flex items-center justify-center">
-                <CheckCircle2 size={30} className="text-green-600" />
+              <div className="h-14 w-14 rounded-full bg-orange-100 flex items-center justify-center">
+                <CheckCircle2 size={30} className="text-orange-600" />
               </div>
             </div>
 
@@ -167,8 +167,8 @@ export function ConfirmOrderModal() {
               <button
                 onClick={onConfirm}
                 disabled={isPending}
-                className="flex-1 py-3 rounded-full bg-green-600 text-white
-                           font-semibold hover:bg-green-700 active:scale-95 transition-all"
+                className="flex-1 py-3 rounded-full bg-orange-600 text-white
+                           font-semibold hover:bg-orange-700 active:scale-95 transition-all"
               >
                 {isPending ? "Confirming" : "Confirm Order"}
               </button>

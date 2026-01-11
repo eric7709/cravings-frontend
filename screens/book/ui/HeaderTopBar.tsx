@@ -7,14 +7,14 @@ import { useCustomerOrdersToday } from '@/models/orders/hooks';
 import Image from 'next/image';
 
 export default function HeaderTopBar() {
-    const { items, customer, openHistoryModal, openCartModal } = useBook()
+    const { items, customer, openHistoryModal, openCartModal, } = useBook()
     const { data } = useCustomerOrdersToday();
     const pendingOrders = data?.filter(el => el.orderStatus == "PENDING").length ?? 0
     const cartEmpty = items.length == 0
     return (
         <div className="flex px-3 py-3 items-center gap-3 ">
-            <div className="h-11 bg-blue-50 relative overflow-hidden shadow w-11 border-2 border-orange-600 rounded-full">
-                <Image src="/guy.png" fill alt="" className="h-full w-full absolute object-cover rounded-full" />
+            <div className="h-11 text-white  border-orange-600 relative grid place-content-center text-2xl font-bold bg-orange-500 tx overflow-hidden shadow w-11 border-2  rounded-full">
+                {customer?.name[0]}
             </div>
             <div className="leading-none">
                 <p className='text-[15px] mb-0.5 font-semibold'>Hello {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>

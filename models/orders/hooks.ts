@@ -36,6 +36,24 @@ export const useOrders = () => {
     stopLoading
   } = useOrderStore();
 
+
+  console.log(  sortBy,
+    direction,
+    orderStatus,
+    waiterId,
+    cashierId,
+    tableId,
+    search,
+    minTotal,
+    maxTotal,
+    startDate,
+    endDate,
+    currentPage,
+    contentPerPage,
+    setOrders,
+    setTodayOrderStats,
+    stopLoading, "NKDWKDNWN")
+
   return useQuery({
     queryKey: [
       "orders",
@@ -148,7 +166,7 @@ export const useCustomerOrdersToday = () => {
   return useQuery({
     queryKey: ["customer-orders-today", customer?.id],
     queryFn: async () => {
-      const { data } = await api.get<CustomerOrderDTO[]>(`/orders/customer/1`);
+      const { data } = await api.get<CustomerOrderDTO[]>(`/orders/customer/${customer?.id}`);
       return data;
     },
     enabled: !!customer?.id,

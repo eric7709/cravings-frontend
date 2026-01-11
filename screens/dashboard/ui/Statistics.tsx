@@ -6,19 +6,19 @@ import { TrendingDown, TrendingUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CARD_BGS = [
-  "bg-gradient-to-tl from-purple-200 to-purple-50",
-  "bg-gradient-to-tl from-yellow-200 to-yellow-50",
-  "bg-gradient-to-tl from-blue-200 to-blue-50",
-  "bg-gradient-to-tl from-red-200 to-red-50",
-  "bg-gradient-to-tl from-green-200 to-green-50",
+  "bg-linear-to-tl from-purple-200 to-purple-50",
+  "bg-linear-to-tl from-yellow-200 to-yellow-50",
+  "bg-linear-to-tl from-blue-200 to-blue-50",
+  "bg-linear-to-tl from-red-200 to-red-50",
+  "bg-linear-to-tl from-green-200 to-green-50",
 ];
 
 const CARD_BGS2 = [
-  "bg-gradient-to-tr from-purple-400 to-purple-700",
-  "bg-gradient-to-tr from-yellow-400 to-yellow-700",
-  "bg-gradient-to-tr from-blue-400 to-blue-700",
-  "bg-gradient-to-tr from-red-400 to-red-700",
-  "bg-gradient-to-tr from-green-400 to-green-700",
+  "bg-linear-to-tr from-purple-400 to-purple-700",
+  "bg-linear-to-tr from-yellow-400 to-yellow-700",
+  "bg-linear-to-tr from-blue-400 to-blue-700",
+  "bg-linear-to-tr from-red-400 to-red-700",
+  "bg-linear-to-tr from-green-400 to-green-700",
 ];
 
 
@@ -33,7 +33,7 @@ export default function Statistics() {
       label: "Total Order",
       value: data.todaysOrders.value,
       percentage: data.todaysOrders.percentageChange,
-      footer: getComparisonText(startDate, endDate),
+      footer: "Compared to date range span",
     },
     {
       label: "Pending Orders",

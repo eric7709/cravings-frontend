@@ -1,18 +1,26 @@
+"use client"
 import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
-import {
-  MenuItem,
-  MenuItemPayload,
-} from "./types";
+import { MenuItem, MenuItemPayload } from "./types";
+import { useMenuItemStore } from "./store";
+import { useEffect } from "react";
 
 export const useMenuItems = () => {
-  return useQuery({
+  const { setMenuItems } = useMenuItemStore();
+  const query = useQuery({
     queryKey: ["menu-items"],
     queryFn: async () => {
       const res = await api.get<MenuItem[]>("/menu-items");
       return res.data;
     },
   });
+  useEffect(() => {
+    if (query.data) {
+      setMenuItems(query.data);
+    }
+  }, [query.data, setMenuItems]);
+
+  return query;
 };
 
 export const useMenuItem = (id: number | string) => {
@@ -37,13 +45,7 @@ export const useCreateMenuItem = () => {
 
 export const useUpdateMenuItem = () => {
   return useMutation({
-    mutationFn: async ({
-      data,
-      id,
-    }: {
-      data: MenuItemPayload;
-      id: number;
-    }) => {
+    mutationFn: async ({ data, id }: { data: MenuItemPayload; id: number }) => {
       const res = await api.put<MenuItem>(`/menu-items/${id}`, data);
       return res.data;
     },
@@ -56,8 +58,5 @@ export const useDeleteMenuItem = () => {
       await api.delete(`/menu-items/${id}`);
       return id;
     },
-   
   });
 };
-
-

@@ -1,7 +1,6 @@
 "use client";
 
 import { useTableStore } from "@/models/table/store";
-import { motion, AnimatePresence } from "framer-motion";
 import { Pencil, Trash2, Search } from "lucide-react";
 import { BsQrCode } from "react-icons/bs";
 
@@ -16,7 +15,7 @@ export default function Table() {
   } = useTableStore();
 
   if (!tables?.length) return null;
-  
+
   const filteredData = tables.filter(table => {
     const term = search.toLowerCase().trim();
 
@@ -44,20 +43,15 @@ export default function Table() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              <AnimatePresence>
                 {filteredData.map((table, idx) => (
-                  <motion.tr
+                  <tr
                     key={table.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ delay: idx * 0.03 }}
                     className="group hover:bg-slate-50/50 transition-colors"
                   >
                     {/* Table Number */}
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
-                        <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
+                        <div className="h-12 w-12 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
                           {table.tableNumber}
                         </div>
                       </div>
@@ -102,40 +96,33 @@ export default function Table() {
                     {/* Actions */}
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                        <button
                           onClick={() => { setSelectedTable(table); openUpdateModal(); }}
                           className="p-2 rounded-lg bg-indigo-50 cursor-pointer text-indigo-600 hover:bg-indigo-100 transition-colors"
                           title="Edit table"
                         >
                           <Pencil size={18} />
-                        </motion.button>
+                        </button>
 
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                        <button
                           onClick={() => { setSelectedTable(table); openQRCodeModal(); }}
                           className="p-2 rounded-lg bg-teal-50 cursor-pointer text-teal-600 hover:bg-teal-100 transition-colors"
                           title="Generate QR Code"
                         >
                           <BsQrCode size={18} />
-                        </motion.button>
+                        </button>
 
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                        <button
                           onClick={() => { setSelectedTable(table); openDeleteModal(); }}
                           className="p-2 rounded-lg bg-rose-50 cursor-pointer text-rose-600 hover:bg-rose-100 transition-colors"
                           title="Delete table"
                         >
                           <Trash2 size={18} />
-                        </motion.button>
+                        </button>
                       </div>
                     </td>
-                  </motion.tr>
+                  </tr>
                 ))}
-              </AnimatePresence>
             </tbody>
           </table>
         </div>

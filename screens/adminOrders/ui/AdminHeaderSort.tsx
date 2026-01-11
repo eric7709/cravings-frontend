@@ -7,8 +7,8 @@ import { TiArrowSortedDown } from "react-icons/ti"
 export default function AdminHeaderSort() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { sortBy, setSortBy, direction, setDirection } = useOrderStore()
   useClickOutside(dropdownRef as any, () => setOpen(false), open);
+  const { sortBy, setSortBy, direction, setDirection } = useOrderStore()
   const sortLabel = data.find(el => el.value == sortBy)
   return (
     <div  className="relative z-20">

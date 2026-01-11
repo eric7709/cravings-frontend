@@ -13,26 +13,42 @@ import { useGetRole } from '@/shared/hooks/useGetRole';
 import { Bell, User, Settings, LogOut, ChevronRight } from "lucide-react";
 import { useLogout } from '@/shared/hooks/useLogout';
 import CashierHeaderStatusMobile from './CashierHeaderStatusMobile';
+import { useEffect } from 'react';
+import { useCashierPage } from '../hooks/useCashierPage';
 
 interface Props {
     opened: boolean;
+    setOpened: (e: boolean) => void
 }
 
-export default function CashierHeaderTopBarMobile({ opened }: Props) {
+export default function CashierHeaderTopBarMobile({ opened, setOpened }: Props) {
     const { search, setSearch, setStartDate, startDate, todayOrderStats } = useOrderStore();
     const { user } = useUserStore();
     const pathname = usePathname();
     const role = useGetRole();
     const logout = useLogout();
 
+    const { isOrdersPage } = useCashierPage()
+
     const navLinks = [
         { href: '/cashier/orders', label: 'Orders' },
+        { href: '/cashier/menu-items', label: 'Menu Items' },
+        { href: '/cashier/profile', label: 'Profile' },
     ];
+
+    useEffect(() => {
+        close()
+    }, [startDate])
+
+
+    const close = () => {
+        setOpened(false)
+    }
 
     const isActive = (href: string) => pathname === href;
 
     return (
-        <div className={`xl:hidden bg-gradient-to-b from-white to-gray-50 fixed w-full border-t duration-300 ease-in-out border-gray-200 shadow-2xl ${opened ? "h-[calc(100vh-80px)] opacity-100 visible" : "h-0 opacity-0 invisible"}`}>
+        <div className={`xl:hidden bg-linear-to-b from-white to-gray-50 fixed w-full border-t duration-300 ease-in-out border-gray-200 shadow-2xl ${opened ? "h-[calc(100vh-80px)] opacity-100 visible" : "h-0 opacity-0 invisible"}`}>
             <div className="flex flex-col h-full overflow-y-auto">
                 {/* Search Section */}
                 <div className="sticky top-0 bg-white z-10 border-b border-gray-100">
@@ -43,7 +59,7 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
-                    <CashierHeaderStatusMobile />
+                    <CashierHeaderStatusMobile close={close} />
                 </div>
 
                 {/* Navigation Links */}
@@ -55,8 +71,9 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                         <Link
                             key={link.href}
                             href={link.href}
+                            onClick={close}
                             className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-medium text-sm transition-all ${isActive(link.href)
-                                ? 'bg-gradient-to-r from-blue-50 to-blue-100/50 text-blue-600 shadow-sm'
+                                ? 'bg-linear-to-r from-blue-50 to-blue-100/50 text-blue-600 shadow-sm'
                                 : 'text-gray-700 hover:bg-gray-100 active:scale-[0.98]'
                                 }`}
                         >
@@ -69,7 +86,7 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                 </nav>
 
                 {/* Revenue & Date Section */}
-                <div className="mx-4 my-3 p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-100">
+                {isOrdersPage && <div className="mx-4 my-3 p-4 bg-linear-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-100">
                     <div className="flex items-center justify-between mb-3">
                         <div>
                             <p className="text-xs font-medium text-gray-600 mb-1">Today/'s Revenue</p>
@@ -87,14 +104,15 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                         onChange={(el) => setStartDate(toLocalDateString(el))}
                     />
                 </div>
+                }
                 {/* Spacer to push profile to bottom */}
                 <div className="flex-1" />
                 {/* User Profile Section */}
                 <div className="sticky bottom-0 bg-white border-t border-gray-200">
                     <div className="p-4">
-                        <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-gray-100">
+                        <div className="flex items-center gap-3 p-3 bg-linear-to-r from-gray-50 to-blue-50/30 rounded-xl border border-gray-100">
                             <div className="relative">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-md">
+                                <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-md">
                                     {user?.firstName?.[0]}{user?.lastName?.[0]}
                                 </div>
                                 <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
@@ -112,7 +130,8 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
 
                         {/* Action Buttons */}
                         <div className="mt-3 space-y-1">
-                            <Link 
+                            <Link
+                                onClick={close}
                                 href="/cashier/profile"
                                 className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 active:scale-[0.98] transition-all group"
                             >
@@ -125,7 +144,10 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                                 <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
                             </Link>
 
-                            <button className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 active:scale-[0.98] transition-all group">
+                            <button
+                                onClick={close}
+
+                                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 active:scale-[0.98] transition-all group">
                                 <div className="flex items-center gap-3">
                                     <div className="w-9 h-9 rounded-lg bg-purple-50 flex items-center justify-center">
                                         <Settings className="h-4 w-4 text-purple-600" />
@@ -136,7 +158,10 @@ export default function CashierHeaderTopBarMobile({ opened }: Props) {
                             </button>
 
                             <button
-                                onClick={logout}
+                                onClick={() => {
+                                    logout()
+                                    close()
+                                }}
                                 className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 active:scale-[0.98] transition-all group"
                             >
                                 <div className="flex items-center gap-3">

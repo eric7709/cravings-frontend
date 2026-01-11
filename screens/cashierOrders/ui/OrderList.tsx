@@ -7,6 +7,7 @@ import { PackageSearch } from "lucide-react";
 import { motion } from "framer-motion";
 import Loader from "@/shared/ui/Loader";
 import AdjustSearch from "@/shared/ui/AdjustSearch";
+import { useOrders } from "@/models/orders/hooks";
 
 const container = {
   hidden: { opacity: 0 },
@@ -17,32 +18,27 @@ const container = {
 };
 
 export default function OrderList() {
-  const { orders: data, hasHydrated, loading } = useOrderStore();
+  const { orders, hasHydrated, loading } = useOrderStore();
   const { user } = useUserStore();
 
+  
+  
   if (!user) return
 
   if (!hasHydrated || loading) {
     return <Loader />;
   }
 
-  const orders = data.filter(
-    (el) => el.cashierId === user.id
-  );
-
   if (orders.length === 0) return <AdjustSearch title="Orders" />
   
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="show"
+    <div
       className="grid grid-cols-1 bg-gray-100 flex-1 auto-rows-max overflow-y-auto
                  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 p-4"
     >
       {orders.map((order) => (
         <OrderCard key={order.id} order={order} />
       ))}
-    </motion.div>
+    </div>
   );
 }

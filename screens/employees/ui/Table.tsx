@@ -1,7 +1,6 @@
 "use client";
 
 import { Pencil, Trash2, Search } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useEmployeeStore } from "@/models/employee/store";
 import { roleColors } from "../data/colors";
 
@@ -46,89 +45,79 @@ export default function EmployeeTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              <AnimatePresence>
-                {filteredData.map((emp, idx) => {
-                  const firstLetter = emp.firstName?.[0]?.toUpperCase();
+              {filteredData.map((emp, idx) => {
+                const firstLetter = emp.firstName?.[0]?.toUpperCase();
 
-                  return (
-                    <motion.tr
-                      key={emp.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ delay: idx * 0.03 }}
-                      className="group hover:bg-slate-50/50 transition-colors"
-                    >
-                      {/* Name */}
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
-                            {firstLetter}
-                          </div>
-                          <div>
-                            <div className="font-semibold text-slate-900 text-sm sm:text-base">
-                              {emp.firstName} {emp.lastName}
-                            </div>
+                return (
+                  <tr
+                    key={emp.id}
+                    className="group hover:bg-slate-50/50 transition-colors"
+                  >
+                    {/* Name */}
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-4">
+                        <div className="h-12 w-12 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
+                          {firstLetter}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-slate-900 text-sm sm:text-base">
+                            {emp.firstName} {emp.lastName}
                           </div>
                         </div>
-                      </td>
+                      </div>
+                    </td>
 
-                      {/* Phone */}
-                      <td className="px-6 py-4 hidden sm:table-cell">
-                        <div className="text-sm text-slate-900">
-                          {emp.phoneNumber || <span className="text-slate-400 italic">Not provided</span>}
-                        </div>
-                      </td>
+                    {/* Phone */}
+                    <td className="px-6 py-4 hidden sm:table-cell">
+                      <div className="text-sm text-slate-900">
+                        {emp.phoneNumber || <span className="text-slate-400 italic">Not provided</span>}
+                      </div>
+                    </td>
 
-                      {/* Email */}
-                      <td className="px-6 py-4 hidden sm:table-cell">
-                        <div className="text-sm text-slate-900">
-                          {emp.email || <span className="text-slate-400 italic">Not provided</span>}
-                        </div>
-                      </td>
+                    {/* Email */}
+                    <td className="px-6 py-4 hidden sm:table-cell">
+                      <div className="text-sm text-slate-900">
+                        {emp.email || <span className="text-slate-400 italic">Not provided</span>}
+                      </div>
+                    </td>
 
-                      {/* Role */}
-                      <td className="px-6 py-4">
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${roleColors[emp.role as any] || "bg-slate-100 text-slate-700 ring-1 ring-slate-600/20"}`}>
-                          {roleMap[emp.role as any] || "Unknown"}
-                        </span>
-                      </td>
+                    {/* Role */}
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${roleColors[emp.role as any] || "bg-slate-100 text-slate-700 ring-1 ring-slate-600/20"}`}>
+                        {roleMap[emp.role as any] || "Unknown"}
+                      </span>
+                    </td>
 
-                      {/* Gender */}
-                      <td className="px-6 py-4 hidden lg:table-cell">
-                        <div className="text-sm text-slate-900">
-                          {emp.gender === "MALE" ? "Male" : "Female"}
-                        </div>
-                      </td>
+                    {/* Gender */}
+                    <td className="px-6 py-4 hidden lg:table-cell">
+                      <div className="text-sm text-slate-900">
+                        {emp.gender === "MALE" ? "Male" : "Female"}
+                      </div>
+                    </td>
 
-                      {/* Actions */}
-                      <td className="px-6 py-4">
-                        <div className="flex items-center justify-end gap-2">
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => { setSelectedEmployee(emp); openUpdateModal(); }}
-                            className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors cursor-pointer"
-                            title="Edit employee"
-                          >
-                            <Pencil size={18} />
-                          </motion.button>
+                    {/* Actions */}
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => { setSelectedEmployee(emp); openUpdateModal(); }}
+                          className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors cursor-pointer"
+                          title="Edit employee"
+                        >
+                          <Pencil size={18} />
+                        </button>
 
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => { setSelectedEmployee(emp); openDeleteModal(); }}
-                            className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
-                            title="Delete employee"
-                          >
-                            <Trash2 size={18} />
-                          </motion.button>
-                        </div>
-                      </td>
-                    </motion.tr>
-                  );
-                })}
-              </AnimatePresence>
+                        <button
+                          onClick={() => { setSelectedEmployee(emp); openDeleteModal(); }}
+                          className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
+                          title="Delete employee"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

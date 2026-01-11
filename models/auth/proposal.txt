@@ -1,0 +1,376 @@
+# Restaurant QR Ordering System
+
+## Project Proposal
+
+### Executive Summary
+
+This restaurant management system modernizes the dining experience through QR code-based ordering, enabling customers to browse menus, place orders, and track their order status in real-time. The system provides role-based access for administrators, cashiers, and waiters, streamlining restaurant operations and improving customer satisfaction.
+
+### Problem Statement
+
+Traditional restaurant ordering processes often involve:
+
+- Long wait times for customers to place orders
+- Communication gaps between customers, waiters, and kitchen staff
+- Difficulty tracking order status and history
+- Manual menu updates that don't reflect real-time availability
+- Limited visibility into customer preferences and order patterns
+
+### Proposed Solution
+
+A comprehensive QR code-based ordering system that connects customers directly with restaurant staff through a web application, featuring:
+
+#### Customer Features
+
+- **QR Code Table Booking**: Customers scan a table-specific QR code to access the ordering system
+- **Smart Customer Recognition**: New customers complete a registration form, while returning customers have their details auto-filled from local storage
+- **Order History Tracking**: Returning customers can view their complete order history
+- **Queue Management**: Display of queue number when orders are pending attention
+- **Real-time Menu Availability**: Automatic validation of menu item availability before order confirmation
+- **Order Status Tracking**: Live updates on order preparation and delivery status
+
+#### Staff Features
+
+**Admin Capabilities:**
+
+- Full system oversight and management
+- Exclusive order cancellation privileges
+- Menu item management (add, edit, delete, activate/deactivate)
+- Revenue tracking with customizable date range filtering
+- Access to performance analytics and reporting
+- Staff management
+
+**Cashier Capabilities:**
+
+- Order status management based on preparation progress
+- Order processing and payment handling
+- Access to current orders for assigned tables
+- View menu items and current availability
+
+**Waiter Capabilities:**
+
+- View orders assigned to their tables
+- Update order delivery status
+- Customer assistance and communication
+
+#### Technical Features
+
+- **Real-time Synchronization**: Menu changes and order updates propagate instantly across all connected clients
+- **Availability Validation**: Pre-submission checks ensure all selected items are currently available
+- **Role-Based Access Control**: Granular permissions based on user roles
+- **Local Storage Integration**: Seamless customer recognition and data persistence
+- **Responsive Design**: Optimized for mobile and desktop devices
+
+### System Workflow
+
+1. **Customer Arrival**: Customer scans QR code at their table
+2. **Registration/Recognition**: System checks local storage for existing customer data
+3. **Menu Browsing**: Customer views available menu items in real-time
+4. **Order Placement**: Customer selects items and submits order
+5. **Availability Verification**: System validates all items are still available
+6. **Order Assignment**: Order automatically routes to assigned cashier and waiter
+7. **Status Updates**: Cashier updates order status as it progresses
+8. **Order Fulfillment**: Waiter delivers order and updates delivery status
+9. **History Recording**: Order added to customer's history for future reference
+
+### Benefits
+
+**For Customers:**
+
+- Faster ordering process
+- Transparency in order status
+- Personalized experience with order history
+- Reduced wait times
+
+**For Restaurant:**
+
+- Improved operational efficiency
+- Reduced order errors
+- Better resource allocation
+- Data-driven insights into popular items and customer preferences
+- Enhanced customer satisfaction
+
+**For Staff:**
+
+- Clear order tracking and management
+- Reduced manual coordination
+- Real-time menu control
+- Streamlined workflow
+
+### Technology Stack
+
+- **Frontend**: Next.js 14+ with TypeScript
+- **State Management**: Zustand
+- **Real-time Communication**: WebSockets
+- **Styling**: Tailwind CSS
+- **Backend**: Spring Boot (Java)
+- **Data Persistence**: Local Storage (client-side), Spring Boot + Database (server-side)
+
+### Success Metrics
+
+- Average order processing time
+- Customer satisfaction ratings
+- Order accuracy rate
+- Staff efficiency improvements
+- Repeat customer rate
+
+---
+
+## GitHub README
+
+# 🍽️ Restaurant QR Ordering System
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.0-61dafb)](https://reactjs.org/)
+
+A modern, real-time restaurant management and ordering system that connects customers with restaurant staff through QR code technology.
+
+## 🌟 Features
+
+### 👥 Customer Experience
+
+- **📱 QR Code Ordering**: Scan table QR code to instantly access the menu
+- **🔄 Smart Recognition**: Automatic customer identification using local storage
+- **📋 Order History**: View complete ordering history for returning customers
+- **🎫 Queue Management**: Real-time queue number display for pending orders
+- **✅ Live Validation**: Real-time menu availability checking before order submission
+- **📊 Order Tracking**: Live status updates from placement to delivery
+
+### 👨‍💼 Admin Panel
+
+- **🎛️ Full System Control**: Complete oversight of restaurant operations
+- **❌ Order Management**: Exclusive authority to cancel orders
+- **🍽️ Menu Management**: Add, edit, delete, and toggle menu item availability
+- **💰 Revenue Analytics**: Track revenue with customizable date range filters
+- **📈 Performance Dashboard**: Comprehensive metrics and insights
+- **👤 Staff Management**: Manage cashiers and waiters
+
+### 💰 Cashier Interface
+
+- **📝 Order Processing**: Update order status based on preparation progress
+- **💳 Payment Handling**: Process payments and finalize orders
+- **👀 Table Monitoring**: View all orders for assigned tables
+- **📋 Menu Viewing**: Access menu items and availability status
+
+### 🚶 Waiter Interface
+
+- **📋 Order Viewing**: Access orders for assigned tables
+- **✓ Delivery Updates**: Mark orders as delivered
+- **👥 Customer Service**: Assist customers with order-related queries
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+```bash
+Node.js >= 18.0.0
+npm or yarn
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/restaurant-qr-ordering.git
+
+# Navigate to project directory
+cd restaurant-qr-ordering
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Run development server
+npm run dev
+```
+
+Visit `http://localhost:3000` to see the application.
+
+## 🏗️ System Architecture
+
+### Customer Flow
+
+```
+1. Scan QR Code → 2. Check Local Storage → 3. New Customer Form / Auto-fill
+                                          ↓
+4. Browse Menu ← 5. Real-time Availability ← 6. Select Items
+                                          ↓
+7. Submit Order → 8. Validate Availability → 9. Confirm/Remove Unavailable
+                                          ↓
+10. Order Assigned → 11. Status Updates → 12. Order Delivered
+```
+
+### Order Status Flow
+
+```
+Pending → Confirmed → Preparing → Ready → Delivered
+                 ↓
+            Cancelled (Admin Only)
+```
+
+## 🔐 Role-Based Permissions
+
+| Feature                | Customer | Waiter        | Cashier       | Admin    |
+| ---------------------- | -------- | ------------- | ------------- | -------- |
+| Place Orders           | ✅       | ❌            | ❌            | ✅       |
+| View Order History     | ✅ (Own) | ✅ (Assigned) | ✅ (Assigned) | ✅ (All) |
+| Update Order Status    | ❌       | ✅ (Delivery) | ✅ (All)      | ✅       |
+| Cancel Orders          | ❌       | ❌            | ❌            | ✅       |
+| Manage Menu Items      | ❌       | ❌            | ❌            | ✅       |
+| View Revenue Analytics | ❌       | ❌            | ❌            | ✅       |
+
+## 🔄 Real-time Features
+
+### Menu Item Deactivation
+
+When an admin deactivates a menu item:
+
+1. Change propagates instantly to all connected clients via WebSocket
+2. Item becomes unavailable for new selections
+3. Existing carts with the item trigger validation on checkout
+4. Customers receive notification to remove unavailable items
+
+### Revenue Tracking
+
+- Admin dashboard displays revenue analytics
+- Customizable date range filters (daily, weekly, monthly, custom)
+- Real-time revenue calculations
+- Visual charts showing revenue trends over selected periods
+
+### Order Status Updates
+
+- Real-time status changes visible to customers
+- Automatic notifications for status transitions
+- Queue position updates for pending orders
+
+## 💾 Data Persistence
+
+### Local Storage (Customer)
+
+```javascript
+{
+  customerId: "uuid",
+  name: "John Doe",
+  phone: "+1234567890",
+  email: "john@example.com",
+  orderHistory: [...],
+  lastVisit: "2024-01-10"
+}
+```
+
+### Server-side Storage
+
+- Customer profiles
+- Order records
+- Menu items and availability
+- Staff assignments
+- Analytics data
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+- **Framework**: Next.js 14+ (React 18)
+- **Language**: TypeScript
+- **State Management**: Zustand
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Charts**: Recharts
+- **QR Generation**: react-qr-code
+- **Real-time**: WebSocket Client
+
+### Backend
+
+- **Framework**: Spring Boot 3.x
+- **Language**: Java 17+
+- **Real-time**: WebSocket (STOMP)
+- **Database**: PostgreSQL/MySQL
+- **Authentication**: JWT
+
+### Communication
+
+- **REST API**: Spring Boot endpoints
+- **WebSocket**: Bi-directional real-time updates
+- **Storage**: LocalStorage (client), JPA/Hibernate (server)
+
+## 📱 Responsive Design
+
+Fully optimized for:
+
+- 📱 Mobile devices (QR scanning)
+- 💻 Desktop (admin/staff panels)
+- 📲 Tablets (kitchen displays)
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run e2e tests
+npm run test:e2e
+
+# Generate coverage report
+npm run test:coverage
+```
+
+## 🚀 Deployment
+
+```bash
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## 📊 Environment Variables
+
+### Frontend (.env.local)
+
+```env
+NEXT_PUBLIC_BASE_URL=https://yourrestaurant.com
+NEXT_PUBLIC_API_URL=https://api.yourrestaurant.com
+NEXT_PUBLIC_WS_URL=wss://api.yourrestaurant.com/ws
+```
+
+### Backend (application.properties)
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/restaurant_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+jwt.secret=your_jwt_secret_key
+server.port=8080
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👏 Acknowledgments
+
+- QR code technology for seamless customer onboarding
+- Real-time updates for enhanced user experience
+- Modern React ecosystem for robust development
+
+## 📞 Support
+
+For support, email support@yourrestaurant.com or open an issue in the repository.
+
+---
+
+**Built with ❤️ for modern restaurants**

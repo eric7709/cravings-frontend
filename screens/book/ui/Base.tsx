@@ -2,7 +2,6 @@
 import CustomerFormModal from './CustomerFormModal'
 import MenuItemList from './MenuItemList'
 import OrderSuccess from './OrderSuccess'
-import { useSyncMenuItems } from '@/screens/menuItems/hooks/useSyncMenuItems'
 import { useSyncCategories } from '@/screens/categories/hooks/useSyncCategories'
 import { useSyncTables } from '@/screens/tables/hooks/useSyncTables'
 import TableWrapper from './TableWrapper'
@@ -13,12 +12,13 @@ import { OrderSuccessModal } from './OrderSuccessModal'
 import Header from './Header'
 import OrderHistory from './OrderHistory'
 import { useCustomerOrderRealtime } from '@/shared/hooks/useCustomerRealTimeUpdate'
+import { useMenuItems } from '@/models/menuItems/hook'
 
 type Props = {
     tableId: string
 }
 export default function Base({ tableId }: Props) {
-    useSyncMenuItems()
+    useMenuItems()
     useSyncCategories()
     useCustomerOrderRealtime()
     useSyncTables()

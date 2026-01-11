@@ -46,9 +46,9 @@ export default function ProfileDropdown({ children }: Props) {
         <div className={`absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50  duration-300 ${open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-3"}`}>
           {/* User Info Section */}
           {user && (
-            <div className="px-4 py-3.5 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100">
+            <div className="px-4 py-3.5 bg-linear-to-br from-gray-50 to-white border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-sm">
                   {user.firstName.charAt(0) || "U"}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -62,7 +62,6 @@ export default function ProfileDropdown({ children }: Props) {
               </div>
             </div>
           )}
-
           {/* Menu Items */}
           <div className="py-1.5">
             <Link

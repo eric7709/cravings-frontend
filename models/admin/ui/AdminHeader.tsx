@@ -44,19 +44,16 @@ export default function AdminHeader() {
 
           {/* Right */}
           <div className="flex items-center gap-5">
-            <div className="grid h-12 w-12 text-gray-600 place-content-center rounded-full border-2 border-orange-500">
+            <div className="grid h-12 w-12 text-orange-600 place-content-center rounded-full border-2 border-orange-500">
               <Bell />
             </div>
             <ProfileDropdown>
               <div className="flex cursor-pointer items-center gap-2">
-                <div className="h-12 w-12 rounded-full border-2 relative overflow-hidden border-orange-400">
-                  <Image
-                    src="/admin.png"
-                    height={48}
-                    width={48}
-                    className="h-full w-full object-contain absolute"
-                    alt=""
-                  />
+                <div className="relative bg-orange-600 text-white font-semibold grid place-content-center text-lg h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-orange-500 shadow-md group-hover:border-orange-300 transition-colors">
+                  <p className='font-semibold'>
+                    {user?.firstName[0]}
+                    {user?.lastName[0]}
+                  </p>
                 </div>
                 <div>
                   <p className="font-semibold">
@@ -91,13 +88,11 @@ export default function AdminHeader() {
             <Bell className="w-4 h-4 text-gray-500" />
           </div>
           <ProfileDropdown>
-            <div className="h-10 w-10 rounded-full border relative border-gray-300 cursor-pointer hover:opacity-80 transition-opacity">
-              <Image
-                src="/image.png"
-                className="object-cover rounded-full absolute h-full w-full"
-                fill
-                alt=""
-              />
+            <div className="relative bg-orange-600 text-white font-semibold grid place-content-center text-lg h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-gray-200 shadow-md group-hover:border-orange-300 transition-colors">
+              <p className='font-semibold'>
+                {user?.firstName[0]}
+                {user?.lastName[0]}
+              </p>
             </div>
           </ProfileDropdown>
         </div>

@@ -69,7 +69,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
@@ -97,7 +97,7 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Sparkles className="text-blue-400" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Elite VA
             </span>
           </div>
@@ -110,7 +110,7 @@ const Portfolio = () => {
                 className="relative group text-gray-300 hover:text-blue-400 transition-colors duration-300"
               >
                 {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-blue-400 to-pink-400 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -154,7 +154,7 @@ const Portfolio = () => {
               <span className="text-blue-300 text-sm font-medium">Your Success Partner</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-pink-400 to-blue-400 bg-clip-text text-transparent leading-tight pb-2">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-linear-to-r from-blue-400 via-pink-400 to-blue-400 bg-clip-text text-transparent leading-tight pb-2">
               Ibeh Blessing Ifunanya
             </h1>
 
@@ -169,7 +169,7 @@ const Portfolio = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="#contact"
-                className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center space-x-2"
+                className="group px-8 py-4 bg-linear-to-r from-blue-600 to-pink-600 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center space-x-2"
               >
                 <span>Let's Work Together</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -194,19 +194,19 @@ const Portfolio = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="group relative p-8 bg-gradient-to-br from-slate-900/80 to-blue-900/30 border border-blue-400/30 rounded-3xl backdrop-blur-md hover:scale-110 transition-all duration-500 overflow-hidden"
+                className="group relative p-8 bg-linear-to-br from-slate-900/80 to-blue-900/30 border border-blue-400/30 rounded-3xl backdrop-blur-md hover:scale-110 transition-all duration-500 overflow-hidden"
                 style={{
                   animation: `float ${3 + i * 0.5}s ease-in-out infinite`,
                   animationDelay: `${i * 0.2}s`,
                 }}
               >
                 {/* Animated gradient background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-linear-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
 
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
                     style={{
                       animation: 'shine 2s ease-in-out infinite',
                     }}
@@ -220,7 +220,7 @@ const Portfolio = () => {
                   </div>
 
                   {/* Value with gradient */}
-                  <div className={`text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div className={`text-4xl md:text-5xl font-bold mb-2 bg-linear-to-r ${stat.color} bg-clip-text text-transparent`}>
                     {stat.value}
                   </div>
 
@@ -255,7 +255,7 @@ const Portfolio = () => {
       <section id="services" className="py-20 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Services Offered
             </h2>
             <p className="text-gray-400 text-lg">Comprehensive solutions tailored to your needs</p>
@@ -265,7 +265,7 @@ const Portfolio = () => {
             {services.map((service, i) => (
               <div
                 key={i}
-                className="group p-8 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 backdrop-blur-sm"
+                className="group p-8 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 backdrop-blur-sm"
                 style={{
                   animation: `slideUp 0.6s ease-out ${i * 0.1}s backwards`,
                 }}
@@ -285,7 +285,7 @@ const Portfolio = () => {
       <section id="skills" className="py-20 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Core Competencies
             </h2>
             <p className="text-gray-400 text-lg">Excellence in every aspect of virtual assistance</p>
@@ -295,13 +295,13 @@ const Portfolio = () => {
             {skills.map((skill, i) => (
               <div
                 key={i}
-                className="group relative p-8 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden"
+                className="group relative p-8 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden"
                 style={{
                   animation: `fadeIn 0.6s ease-out ${i * 0.1}s backwards`,
                 }}
               >
                 {/* Animated background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   {/* Circular progress indicator */}
@@ -346,7 +346,7 @@ const Portfolio = () => {
                   {/* Linear progress bar */}
                   <div className="relative h-2 bg-slate-800 rounded-full overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-600 to-pink-600 rounded-full transition-all duration-1000 ease-out"
+                      className="absolute inset-y-0 left-0 bg-linear-to-r from-blue-600 to-pink-600 rounded-full transition-all duration-1000 ease-out"
                       style={{
                         width: `${skill.level}%`,
                         animation: `expandWidth 1.5s ease-out ${i * 0.1}s backwards`,
@@ -386,7 +386,7 @@ const Portfolio = () => {
       <section id="tools" className="py-20 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Tools & Technologies
             </h2>
             <p className="text-gray-400 text-lg">Proficient in industry-leading platforms and software</p>
@@ -396,14 +396,14 @@ const Portfolio = () => {
             {tools.map((tool, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden p-6 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm"
+                className="group relative overflow-hidden p-6 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl hover:border-blue-400/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm"
                 style={{
                   animation: `fadeIn 0.6s ease-out ${i * 0.05}s backwards`,
                 }}
               >
                 {/* Animated background gradient */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  className={`absolute inset-0 bg-linear-to-br ${tool.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                 />
 
                 <div className="relative z-10">
@@ -417,7 +417,7 @@ const Portfolio = () => {
                 {/* Shine effect on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent"
                     style={{
                       animation: 'shine 2s ease-in-out infinite',
                     }}
@@ -429,17 +429,17 @@ const Portfolio = () => {
 
           {/* Tool Categories Summary */}
           <div className="mt-16 grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-400/20 rounded-xl text-center">
+            <div className="p-6 bg-linear-to-br from-blue-500/10 to-blue-600/5 border border-blue-400/20 rounded-xl text-center">
               <div className="text-3xl mb-2">💼</div>
               <div className="text-xl font-bold text-blue-300 mb-2">Project Management</div>
               <p className="text-sm text-gray-400">Organize workflows and track progress efficiently</p>
             </div>
-            <div className="p-6 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-400/20 rounded-xl text-center">
+            <div className="p-6 bg-linear-to-br from-blue-500/10 to-blue-600/5 border border-blue-400/20 rounded-xl text-center">
               <div className="text-3xl mb-2">🚀</div>
               <div className="text-xl font-bold text-blue-300 mb-2">Communication</div>
               <p className="text-sm text-gray-400">Stay connected with teams and clients seamlessly</p>
             </div>
-            <div className="p-6 bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-400/20 rounded-xl text-center">
+            <div className="p-6 bg-linear-to-br from-pink-500/10 to-pink-600/5 border border-pink-400/20 rounded-xl text-center">
               <div className="text-3xl mb-2">⚙️</div>
               <div className="text-xl font-bold text-pink-300 mb-2">Automation</div>
               <p className="text-sm text-gray-400">Streamline repetitive tasks and boost productivity</p>
@@ -452,7 +452,7 @@ const Portfolio = () => {
       <section id="testimonials" className="py-20 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Client Success Stories
             </h2>
             <p className="text-gray-400 text-lg">Real results from real partnerships</p>
@@ -462,7 +462,7 @@ const Portfolio = () => {
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="p-8 bg-gradient-to-br from-slate-900/80 to-blue-900/20 border border-blue-400/20 rounded-2xl backdrop-blur-sm hover:border-blue-400/50 transition-all duration-500 hover:scale-105"
+                className="p-8 bg-linear-to-br from-slate-900/80 to-blue-900/20 border border-blue-400/20 rounded-2xl backdrop-blur-sm hover:border-blue-400/50 transition-all duration-500 hover:scale-105"
                 style={{
                   animation: `fadeIn 0.8s ease-out ${i * 0.2}s backwards`,
                 }}
@@ -487,7 +487,7 @@ const Portfolio = () => {
       <section id="contact" className="py-20 px-6 relative">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
               Let's Connect
             </h2>
             <p className="text-gray-400 text-lg">Ready to transform your workflow? Reach out today!</p>
@@ -497,7 +497,7 @@ const Portfolio = () => {
             <div className="space-y-6 flex flex-col justify-between">
               <a
                 href="mailto:hello@eliteva.com"
-                className="flex items-center space-x-4 p-6 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
+                className="flex items-center space-x-4 p-6 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
               >
                 <Mail className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
                 <div>
@@ -508,7 +508,7 @@ const Portfolio = () => {
 
               <a
                 href="tel:+1234567890"
-                className="flex items-center space-x-4 p-6 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
+                className="flex items-center space-x-4 p-6 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
               >
                 <Phone className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
                 <div>
@@ -519,7 +519,7 @@ const Portfolio = () => {
 
               <a
                 href="https://linkedin.com"
-                className="flex items-center space-x-4 p-6 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
+                className="flex items-center space-x-4 p-6 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-xl hover:border-blue-400/50 transition-all duration-300 group"
               >
                 <Linkedin className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
                 <div>
@@ -529,7 +529,7 @@ const Portfolio = () => {
               </a>
             </div>
 
-            <div className="p-8 bg-gradient-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl backdrop-blur-sm h-full flex flex-col">
+            <div className="p-8 bg-linear-to-br from-slate-900/50 to-blue-900/20 border border-blue-400/20 rounded-2xl backdrop-blur-sm h-full flex flex-col">
               <h3 className="text-2xl font-bold mb-6 text-blue-300">Quick Inquiry</h3>
               <div className="space-y-4 flex-1 flex flex-col">
                 <input
@@ -554,7 +554,7 @@ const Portfolio = () => {
                 />
                 <button
                   onClick={handleSubmit}
-                  className="w-full py-3 bg-gradient-to-r from-blue-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+                  className="w-full py-3 bg-linear-to-r from-blue-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
                 >
                   Send Message
                 </button>

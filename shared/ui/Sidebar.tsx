@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "../constants/NAV_ITEMS";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -18,23 +18,10 @@ export default function Sidebar() {
         transition-all duration-500 ease-in-out
       "
     >
-      {/* HEADER */}
-      <div className="relative px-4 py-4 flex items-center gap-3">
-        <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 flex items-center justify-center shadow-md shadow-blue-500/30">
-          <Zap className="w-6 h-6 text-white" fill="white" />
-        </div>
-        <div>
-          <p className="text-xl font-black tracking-tight">
-            Bite<span className="text-red-600">Buzz</span>
-          </p>
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
-            Dashboard
-          </p>
-        </div>
+      <div className="px-4 py-6">
+        <Logo />
       </div>
-
-      {/* NAV */}
-      <nav className="px-3 py-4 mt-2 space-y-1.5">
+      <nav className="px-3 mt-3 space-y-1.5">
         {NAV_ITEMS.map(({ name, href, icon: Icon }, idx) => {
           const isActive =
             href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
@@ -60,7 +47,7 @@ export default function Sidebar() {
                     className={`
                       h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-300
                       ${isActive
-                        ? "bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 shadow-md shadow-blue-500/30"
+                        ? "bg-linear-to-br from-orange-400 via-red-500 to-pink-500 shadow-md shadow-blue-500/30"
                         : "bg-slate-100 group-hover:bg-slate-200"
                       }
                     `}
@@ -94,7 +81,7 @@ export default function Sidebar() {
                         layoutId="activeDot"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-2 h-2 rounded-full bg-gradient-to-br from-orange-400 via-red-500 to-pink-500"
+                        className="w-2 h-2 rounded-full bg-linear-to-br from-orange-400 via-red-500 to-pink-500"
                       />
                     )}
                   </motion.div>

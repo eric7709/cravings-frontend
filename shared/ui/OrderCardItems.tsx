@@ -16,7 +16,7 @@ export default function OrderCardItems({ items }: Props) {
         >
           <div className="flex items-center gap-3 flex-1 min-w-0">
             {/* Quantity badge */}
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
+            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
               {item.quantity}
             </div>
 

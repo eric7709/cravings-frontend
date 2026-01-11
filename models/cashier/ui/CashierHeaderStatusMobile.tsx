@@ -9,10 +9,18 @@ import {
   DollarSign,
   XCircle,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useCashierPage } from "../hooks/useCashierPage";
 
-export default function CashierHeaderStatusMobile() {
+type Props = {
+  close: () => void
+}
+
+export default function CashierHeaderStatusMobile({ close }: Props) {
   const { todayOrderStats, orderStatus, setOrderStatus } = useOrderStore();
+  const {isOrdersPage} = useCashierPage()
 
+  
   const data = useMemo(() => {
     if (!todayOrderStats) return [];
     return [
@@ -56,6 +64,8 @@ export default function CashierHeaderStatusMobile() {
 
   if (!todayOrderStats) return null;
 
+  if(!isOrdersPage) return
+
   return (
     <div className="xl:hidden border-b px-4 border-gray-200 bg-white">
       <div className="flex md:grid md:grid-cols-5 gap-3 py-3 overflow-x-auto scrollbar-hide">
@@ -66,15 +76,17 @@ export default function CashierHeaderStatusMobile() {
           return (
             <button
               key={el.status}
-              onClick={() =>
+              onClick={() => {
+
                 setOrderStatus(active ? null : el.status)
+                close()
               }
-              className={`shrink-0 min-w-[110px] px-4 py-3 rounded-2xl border
+              }
+              className={`shrink-0 min-w-22.7 px-4 py-3 rounded-2xl border
                 flex items-center justify-between gap-3 transition-all
-                ${
-                  active
-                    ? `${el.bg} text-white border-transparent`
-                    : "bg-white border-gray-300 text-gray-700"
+                ${active
+                  ? `${el.bg} text-white border-transparent`
+                  : "bg-white border-gray-300 text-gray-700"
                 }`}
             >
               <div>
@@ -88,16 +100,14 @@ export default function CashierHeaderStatusMobile() {
 
               <div
                 className={`h-9 w-9 rounded-full grid place-content-center
-                  ${
-                    active
-                      ? "bg-white/20"
-                      : `${el.bg}`
+                  ${active
+                    ? "bg-white/20"
+                    : `${el.bg}`
                   }`}
               >
                 <Icon
-                  className={`h-5 w-5 ${
-                    active ? "text-white" : "text-white"
-                  }`}
+                  className={`h-5 w-5 ${active ? "text-white" : "text-white"
+                    }`}
                 />
               </div>
             </button>

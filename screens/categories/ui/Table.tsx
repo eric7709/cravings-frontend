@@ -1,5 +1,4 @@
 'use client';
-import { motion, AnimatePresence } from "framer-motion";
 import { Pencil, Trash2, Search } from "lucide-react";
 import { useCategoryStore } from "@/models/categories/store";
 
@@ -7,7 +6,7 @@ export default function CategoryTable() {
   const { categories, search, openUpdateModal, setSelectedCategory, openDeleteModal } = useCategoryStore();
 
   if (!categories?.length) return null;
-  
+
   const filteredData = categories.filter(cat => {
     const term = search.toLowerCase().trim();
 
@@ -33,71 +32,61 @@ export default function CategoryTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              <AnimatePresence>
-                {filteredData.map((cat, idx) => (
-                  <motion.tr
-                    key={cat.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ delay: idx * 0.03 }}
-                    className="group hover:bg-slate-50/50 transition-colors"
-                  >
-                    {/* Category */}
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-4">
-                        <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
-                          {cat.id}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-slate-900 text-sm sm:text-base capitalize">
-                            {cat.name}
-                          </div>
+              {filteredData.map((cat, idx) => (
+                <tr
+                  key={cat.id}
+                  className="group hover:bg-slate-50/50 transition-colors"
+                >
+                  {/* Category */}
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-4">
+                      <div className="h-12 w-12 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200/50 group-hover:shadow-xl group-hover:scale-105 transition-all">
+                        {cat.id}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-slate-900 text-sm sm:text-base capitalize">
+                          {cat.name}
                         </div>
                       </div>
-                    </td>
+                    </div>
+                  </td>
 
-                    {/* Description */}
-                    <td className="px-6 py-4 hidden sm:table-cell">
-                      <p className="text-sm text-slate-600 max-w-md truncate" title={cat.description || ""}>
-                        {cat.description || <span className="text-slate-400 italic">No description</span>}
-                      </p>
-                    </td>
+                  {/* Description */}
+                  <td className="px-6 py-4 hidden sm:table-cell">
+                    <p className="text-sm text-slate-600 max-w-md truncate" title={cat.description || ""}>
+                      {cat.description || <span className="text-slate-400 italic">No description</span>}
+                    </p>
+                  </td>
 
-                    {/* Items Count */}
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-slate-900">
-                        {cat.menuItemCount} {cat.menuItemCount === 1 ? 'Item' : 'Items'}
-                      </div>
-                    </td>
+                  {/* Items Count */}
+                  <td className="px-6 py-4">
+                    <div className="font-bold text-slate-900">
+                      {cat.menuItemCount} {cat.menuItemCount === 1 ? 'Item' : 'Items'}
+                    </div>
+                  </td>
 
-                    {/* Actions */}
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-end gap-2">
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => { setSelectedCategory(cat); openUpdateModal(); }}
-                          className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors cursor-pointer"
-                          title="Edit category"
-                        >
-                          <Pencil size={18} />
-                        </motion.button>
+                  {/* Actions */}
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        onClick={() => { setSelectedCategory(cat); openUpdateModal(); }}
+                        className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors cursor-pointer"
+                        title="Edit category"
+                      >
+                        <Pencil size={18} />
+                      </button>
 
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => { setSelectedCategory(cat); openDeleteModal(); }}
-                          className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
-                          title="Delete category"
-                        >
-                          <Trash2 size={18} />
-                        </motion.button>
-                      </div>
-                    </td>
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
+                      <button
+                        onClick={() => { setSelectedCategory(cat); openDeleteModal(); }}
+                        className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition-colors cursor-pointer"
+                        title="Delete category"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
