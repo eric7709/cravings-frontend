@@ -3,7 +3,6 @@
 import Loader from "@/shared/ui/Loader";
 import { useLoginForm } from "../hooks/useLoginForm";
 import FormInput from "@/shared/ui/FormInput";
-import { Utensils } from "lucide-react";
 import { VscLoading } from "react-icons/vsc";
 import Logo from "@/shared/ui/Logo";
 
@@ -17,8 +16,8 @@ export default function LoginForm() {
     <div className="relative flex min-h-screen items-center justify-center bg-linear-to-br from-[#0f172a] via-[#020617] to-black px-4">
 
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-[400px] w-[400px] rounded-full bg-orange-500/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-red-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-40 -left-40 h-100 w-100 rounded-full bg-orange-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-75 w-75 rounded-full bg-red-500/20 blur-3xl" />
 
       {/* Card */}
       <div className="relative w-full max-w-sm">

@@ -83,7 +83,7 @@ export default function MenuTable() {
 
                   {/* Status - Fixed Width */}
                   <td className="px-6 py-4 w-40">
-                    <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold w-32 justify-center ${item.status === "AVAILABLE"
+                    <span className={`inline-flex items-center gap-2 px-2 py-2 rounded-full text-xs font-semibold w-32 justify-center ${item.status === "AVAILABLE"
                       ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-600/20"
                       : "bg-rose-50 text-rose-700 ring-1 ring-rose-600/20"
                       }`}>

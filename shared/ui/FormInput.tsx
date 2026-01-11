@@ -9,6 +9,7 @@ type FormInputProps = {
   textarea?: boolean;
   options?: Option[];
   capitalize?: boolean;
+  labelColor?: string
   className?: string;
 } & React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
 
@@ -17,6 +18,7 @@ export default function FormInput({
   error,
   textarea = false,
   options,
+  labelColor,
   className = "",
   capitalize,
   ...rest
@@ -37,7 +39,7 @@ export default function FormInput({
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <label className="text-gray-800 text-sm font-medium capitalize lg:text-base mb-1">{label}</label>
+      <label style={{color: labelColor}} className="text-gray-800 text-sm font-medium capitalize lg:text-base mb-1">{label}</label>
 
       {isSelect ? (
         <select
