@@ -1,4 +1,6 @@
 
+"use client"
+
 export default function page() {
   return (
     <div className='h-screen bg-blue-100 overflow-y-auto flex flex-col'>
