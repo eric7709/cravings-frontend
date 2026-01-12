@@ -1,4 +1,3 @@
-import { useUserStore } from '@/models/auth/store'
 import { ORDER_STATUS } from '@/models/orders/types'
 import { formatPrice } from '@/shared/utils/formatPrice'
 import { useHandleOrder } from '../../screens/adminOrders/hooks/useHandleOrder'

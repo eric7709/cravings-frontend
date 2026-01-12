@@ -1,27 +1,15 @@
-import React from 'react'
-import SeatContainer from './SeatsContainer'
-import { ArrowRight } from 'lucide-react'
 
 export default function page() {
   return (
-    <div className='flex p-4 gap-3 flex-col'>
-      <p className='flex items-center justify-between font-bold gap-3 text-2xl text-center'>LAGOS <ArrowRight /> AWKA</p>
-      <p className='text-2xl text-center mb-2 font-bold'>$5,000.00</p>
-      <div className="flex justify-between font-semibold text-sm flex-wrap">
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="h-4 w-6 rounded-sm bg-red-300 border border-red-500"></div>
-          <p>OCCUPIED</p>
-        </div>
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="h-4 w-6 rounded-sm bg-green-300 border border-green-500"></div>
-          <p>AVAILABLE</p>
-        </div>
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="h-4 w-6 rounded-sm bg-gray-300 border border-gray-500"></div>
-          <p>SELECTED</p>
+    <div className='h-screen bg-blue-100 overflow-y-auto flex flex-col'>
+      <div  onClick={() => alert("Red")}  className="h-20 bg-red-400"></div>
+      <div className="flex-1 bg-blue-500 overflow-y-auto flex  p-4">
+        <div className="h-1000 w-64 bg-amber-300 mx-auto font-bold text-3xl flex flex-col justify-between items-center">
+          <p>TOP</p>
+          <p>BOTTOM</p>
         </div>
       </div>
-      <SeatContainer />
+      <div onClick={() => alert("Purple")} className="h-20 bg-purple-400"></div>
     </div>
   )
 }
