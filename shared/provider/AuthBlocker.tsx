@@ -8,17 +8,17 @@ import { useOrderStore } from "@/models/orders/store";
 
 export default function AuthBlocker({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { user, isHydrated } = useUserStore();
+  const { user, hasHydrated } = useUserStore();
   const { setCashierId, setWaiterId } = useOrderStore()
 
   const decision = useMemo(() => {
-    if (!isHydrated) return "loading";
+    if (!hasHydrated) return "loading";
 
     // 🚫 If user exists, prevent access to auth pages
     if (user) return "redirect";
 
     return "allow";
-  }, [isHydrated, user]);
+  }, [hasHydrated, user]);
 
   useEffect(() => {
     if (decision === "redirect" && user) {

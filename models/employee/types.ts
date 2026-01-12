@@ -5,20 +5,18 @@ export type Employee = {
   role: ROLE;
   email: string;
   firstName: string;
-  gender: GENDER 
+  gender: GENDER;
   lastName: string;
   phoneNumber: string;
-  createdAt: string
+  createdAt: string;
 };
-
-
 
 export type EmployeeValues = {
   role: ROLE;
   email: string;
   firstName: string;
   lastName: string;
-  gender: GENDER 
+  gender: GENDER;
   phoneNumber: string;
 };
 
@@ -34,14 +32,16 @@ export type EmployeeErrors = {
 
 export type EmployeeStore = {
   sortDir: "asc" | "desc";
-
+  loading: boolean;
   sort: string;
   waiterOptions: { label: string; value: string }[];
   cashierOptions: { label: string; value: string }[];
+  setLoading: (loading: boolean) => void;
   filter: string;
   currentPage: number;
   contentPerPage: number;
   totalEmployee: number;
+  hasHydrated: boolean;
   search: string;
   selectedEmployee: Employee | null;
   activeModal: "create" | "update" | "delete" | null;

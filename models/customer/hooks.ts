@@ -1,7 +1,8 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
 import { Customer, CustomerPayload } from "./type";
-
+import { useEffect } from "react";
+import { useCustomerStore } from "./store";
 
 export const useCustomer = (id: number) => {
   return useQuery({
@@ -13,15 +14,23 @@ export const useCustomer = (id: number) => {
   });
 };
 
-
 export const useCustomers = () => {
-  return useQuery({
+  const { setCustomers, setLoading } = useCustomerStore();
+  const query = useQuery({
     queryKey: ["customers"],
     queryFn: async () => {
       const res = await api.get<Customer[]>("/customers");
       return res.data;
     },
   });
+  useEffect(() => {
+    setLoading(query.isLoading)
+  }, [query.isLoading]);
+
+  useEffect(() => {
+    if (query.data) setCustomers(query.data);
+  }, [query.data]);
+  return query;
 };
 
 export const useCreateCustomer = () => {

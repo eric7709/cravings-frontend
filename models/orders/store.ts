@@ -37,8 +37,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
   orders: [],
 
   /* ---------------- Loading ---------------- */
-  startLoading: () => set({ loading: true }),
-  stopLoading: () => set({ loading: false }),
+  setLoading: (loading) => set({ loading }),
 
   /* ---------------- Orders ---------------- */
   setOrders: (data, totalElements, totalPages, pageNumber, pageSize) =>
@@ -49,7 +48,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
       currentPage: pageNumber,
       contentPerPage: pageSize,
       loading: false,
-      hasHydrated: true // 🔥 stop loading after fetch
+      hasHydrated: true 
     }),
 
   addOrder: (order) =>

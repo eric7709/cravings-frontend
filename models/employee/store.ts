@@ -12,12 +12,14 @@ export const useEmployeeStore = create<EmployeeStore>((set) => ({
   search: "",
   employees: [],
   activeModal: null,
+  loading: false,
   waiterOptions: [],
   cashierOptions: [],
+  hasHydrated: false,
   selectedEmployee: null,
 
   // METHODS
-  
+
   setSelectedEmployee(selectedEmployee) {
     set({ selectedEmployee });
   },
@@ -25,6 +27,7 @@ export const useEmployeeStore = create<EmployeeStore>((set) => ({
   clearEmployee() {
     set({ selectedEmployee: null });
   },
+  setLoading: (loading) => set({ loading }),
   openCreateModal() {
     set({ activeModal: "create" });
   },
@@ -42,6 +45,7 @@ export const useEmployeeStore = create<EmployeeStore>((set) => ({
     set({
       employees: data,
       totalEmployee: data.length,
+      hasHydrated: true,
       waiterOptions: data
         .filter((e) => e.role === "ROLE_WAITER")
         .map((e) => ({

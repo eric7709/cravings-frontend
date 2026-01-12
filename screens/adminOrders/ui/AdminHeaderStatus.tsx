@@ -31,7 +31,6 @@ export default function AdminHeaderStatus() {
         {OPTIONS.map((el) => (
           <div key={el.value} className={`text-[13px] flex justify-between items-center cursor-pointer duration-300 font-medium  ${el.value == orderStatus ? "bg-blue-600 text-white border-blue-600" : "bg-white hover:bg-blue-100 border-gray-200"} px-4 py-2 `} onClick={() => setOrderStatus(el.value)}>
             <p>{el.label}</p>
-            <p>{el.count}</p>
           </div>
         ))}
       </div>

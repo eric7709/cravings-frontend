@@ -19,7 +19,6 @@ export default function Header() {
           <CreateButton title="Create Table" onClick={openCreateModal} />
         </div>
       </div>
-
       {/* Mobile Header */}
       <div className="lg:hidden">
         <button
@@ -28,10 +27,9 @@ export default function Header() {
         >
           Options <TiArrowSortedDown className={`duration-300 ${opened ? "-rotate-180" : ""}`} />
         </button>
-
         <div
           className={`space-y-3 overflow-hidden transition-all duration-300 ease-in-out ${
-            opened ? "max-h-[600px] mt-3" : "max-h-0"
+            opened ? "max-h-150 mt-3" : "max-h-0"
           }`}
         >
           <Search placeholder="Search Tables..." className="w-full" />

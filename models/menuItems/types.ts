@@ -53,6 +53,7 @@ export type MenuItemStore = {
   // Pagination + filtering
   sortDir: "asc" | "desc";
   hasHydrated: boolean;
+  loading: boolean;
   sort: string;
   selectedCategory: Category | null;
   filter: string;
@@ -73,6 +74,7 @@ export type MenuItemStore = {
   closeModal: () => void;
   openCreateModal: () => void;
   openDeleteModal: () => void;
+  setLoading: (loading: boolean) => void;
   openUpdateModal: () => void;
   setStatus: (status: MENUITEM_STATUS) => void;
   setSelectedCategory: (category: Category) => void;

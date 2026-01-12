@@ -154,8 +154,7 @@ export type OrderStore = {
   setOrders: (data: Order[], totalElements: number, totalPages: number, pageNumber: number, pageSize: number) => void;
   addOrder: (order: Order) => void;
   updateOrder: (order: Order) => void;
-  startLoading: () => void;
-  stopLoading: () => void;
+  setLoading: (loading: boolean) => void;
   removeOrder: (id: string | number) => void;
   setTodayOrderStats: (stats: TodayOrderStats) => void;
 

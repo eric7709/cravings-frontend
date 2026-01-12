@@ -1,8 +1,6 @@
 "use client"
 import CustomerFormModal from './CustomerFormModal'
 import MenuItemList from './MenuItemList'
-import { useSyncCategories } from '@/screens/categories/hooks/useSyncCategories'
-import { useSyncTables } from '@/screens/tables/hooks/useSyncTables'
 import TableWrapper from './TableWrapper'
 import CartPage from './CartPage'
 import { useMenuItemRealtime } from '@/shared/hooks/useMenuItemRealtime'
@@ -12,15 +10,17 @@ import OrderHistory from './OrderHistory'
 import { useCustomerOrderRealtime } from '@/shared/hooks/useCustomerRealTimeUpdate'
 import { useMenuItems } from '@/models/menuItems/hook'
 import { ConfirmOrderModal } from './ConfirmOrderModal'
+import { useCategories } from '@/models/categories/hook'
+import { useTables } from '@/models/table/hooks'
 
 type Props = {
     tableId: string
 }
 export default function Base({ tableId }: Props) {
     useMenuItems()
-    useSyncCategories()
+    useCategories()
     useCustomerOrderRealtime()
-    useSyncTables()
+    useTables()
     useMenuItemRealtime()
     return (
         <TableWrapper tableId={tableId}>

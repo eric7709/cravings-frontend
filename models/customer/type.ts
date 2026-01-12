@@ -31,6 +31,8 @@ export type CustomerStore = {
   // Pagination + filtering
   sortDir: "asc" | "desc";
   sort: string;
+  loading: boolean 
+  hasHydrated: boolean
   filter: string;
   currentPage: number;
   contentPerPage: number;
@@ -49,6 +51,7 @@ export type CustomerStore = {
   openCreateModal: () => void;
   openDeleteModal: () => void;
   openUpdateModal: () => void;
+  setLoading: (loading: boolean) => void
 
   // CRUD state updates
   setCustomers: (data: Customer[]) => void;

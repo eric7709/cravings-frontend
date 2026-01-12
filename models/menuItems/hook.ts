@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
 import { MenuItem, MenuItemPayload } from "./types";
@@ -6,7 +6,7 @@ import { useMenuItemStore } from "./store";
 import { useEffect } from "react";
 
 export const useMenuItems = () => {
-  const { setMenuItems } = useMenuItemStore();
+  const { setMenuItems, setLoading } = useMenuItemStore();
   const query = useQuery({
     queryKey: ["menu-items"],
     queryFn: async () => {
@@ -18,7 +18,11 @@ export const useMenuItems = () => {
     if (query.data) {
       setMenuItems(query.data);
     }
-  }, [query.data, setMenuItems]);
+  }, [query.data]);
+
+  useEffect(() => {
+    setLoading(query.isLoading);
+  }, [query.isLoading]);
 
   return query;
 };

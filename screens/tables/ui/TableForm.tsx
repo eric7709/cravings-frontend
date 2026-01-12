@@ -19,7 +19,7 @@ export default function TableForm({ errors, isPending, onSubmit, register }: Pro
     return (
         <Backdrop modalOpened={activeModal == "create" || activeModal == "update"} closeModal={closeModal}>
             <div className="px-4">
-            <div className="w-full lg:w-[450px] bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
+            <div className="w-full lg:w-112.5 bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
                 <TableFormHeader />
                 <TableFormInputs register={register} errors={errors} />
                 <TableFormFooter activeModal={activeModal} onSubmit={onSubmit} isPending={isPending} />

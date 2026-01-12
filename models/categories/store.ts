@@ -11,9 +11,16 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
   search: "",
   selectedCategory: null,
   activeModal: null,
+  hasHydrated: false,
+  loading: false,
   categories: [],
   setCategories: (data) =>
-    set(() => ({ categories: data, totalCategory: data.length })),
+    set(() => ({ categories: data, totalCategory: data.length , hasHydrated: true})),
+
+  setLoading: (loading) =>
+    set({
+      loading,
+    }),
 
   addCategory: (category) =>
     set((state) => {

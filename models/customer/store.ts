@@ -7,21 +7,21 @@ export const useCustomerStore = create<CustomerStore>((set) => ({
   filter: "",
   currentPage: 1,
   contentPerPage: 10,
+  hasHydrated: false,
+  loading: false,
   totalCustomer: 0,
   search: "",
-
   customers: [],
   selectedCustomer: null,
   activeModal: null,
-
   // --------------------
   // MODAL ACTIONS
   // --------------------
   closeModal: () => set({ activeModal: null }),
   openCreateModal: () => set({ activeModal: "create" }),
+  setLoading: (loading) => set({ loading }),
   openDeleteModal: () => set({ activeModal: "delete" }),
   openUpdateModal: () => set({ activeModal: "update" }),
-
   // --------------------
   // CRUD
   // --------------------

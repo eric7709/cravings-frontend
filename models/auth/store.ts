@@ -3,7 +3,7 @@ import { UserState } from "./types";
 
 export const useUserStore = create<UserState>((set, get) => ({
   user: null,
-  isHydrated: false,
+  hasHydrated: false,
   activeModal: null,
   loading: false,
   openChangePasswordModal: () =>
@@ -15,7 +15,7 @@ export const useUserStore = create<UserState>((set, get) => ({
       activeModal: null,
     }),
   setUser: (user) => {
-    set({ user, isHydrated: true });
+    set({ user, hasHydrated: true });
   },
   updateUser: (updated) =>
     set((state) => ({

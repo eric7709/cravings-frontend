@@ -5,7 +5,7 @@ import { useCategoryStore } from "./store";
 import { useEffect } from "react";
 
 export const useCategories = () => {
-  const {setCategories} = useCategoryStore()
+  const { setCategories, setLoading } = useCategoryStore();
   const query = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -13,12 +13,15 @@ export const useCategories = () => {
       return res.data;
     },
   });
-            
+
   useEffect(() => {
-    if(query.data)
-      setCategories(query.data)
-  }, [query.data, setCategories])
-  
+    setLoading(query.isLoading);
+  }, [query.isLoading]);
+
+  useEffect(() => {
+    if (query.data) setCategories(query.data);
+  }, [query.data]);
+
   return query;
 };
 

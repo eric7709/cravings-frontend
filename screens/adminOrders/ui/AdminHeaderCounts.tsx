@@ -1,5 +1,6 @@
 'use client';
 
+import { useOrderStore } from '@/models/orders/store';
 import { TodayOrderStats } from '@/models/orders/types';
 import { formatPrice } from '@/shared/utils/formatPrice';
 

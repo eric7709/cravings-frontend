@@ -54,6 +54,7 @@ export type TableModal =
 export type TableStore = {
   sortDir: "asc" | "desc";
   sort: string;
+  loading: boolean;
   hasHydrated: boolean;
   filter: string;
   currentPage: number;
@@ -70,6 +71,7 @@ export type TableStore = {
   openAllocateModal: () => void;
   openDeleteModal: () => void;
   getTable: (id: number | string) => Table | null;
+  setLoading: (loading: boolean) => void;
   closeModal: () => void;
 
   setTables: (data: Table[]) => void;

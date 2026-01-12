@@ -46,14 +46,13 @@ export type ROLE =
   | "ROLE_WAITER"
   | "ROLE_CASHIER"
   | "ROLE_MANAGER"
-  | null
-  ;
+  | null;
 
 export type UserState = {
   user: User | null;
   activeModal: "change-password" | null;
   loading: boolean;
-  isHydrated: boolean;
+  hasHydrated: boolean;
   setUser: (user: User | null) => void;
   openChangePasswordModal: () => void;
   closeModal: () => void;

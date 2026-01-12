@@ -5,12 +5,11 @@ import Pagination from './Pagination';
 import { useCategoryForm } from '../hooks/useCategoryForm';
 import CategoryForm from './CategoryForm';
 import DeleteModal from './DeleteCategory';
-import { useSyncCategories } from '../hooks/useSyncCategories';
+import { useCategories } from '@/models/categories/hook';
 
 export default function Base() {
   const { onSubmit, isPending, errors, register } = useCategoryForm();
-  useSyncCategories();
-
+  useCategories()
   return (
     <div className='flex-1 overflow-y-auto flex flex-col'>
       <Header />

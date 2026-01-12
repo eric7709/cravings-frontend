@@ -4,12 +4,12 @@ import Table from './Table';
 import Pagination from './Pagination';
 import MenuItemForm from './MenuItemForm';
 import DeleteMenuItem from './DeleteMenuItem';
-import { useSyncCategories } from '@/screens/categories/hooks/useSyncCategories';
 import { useMenuItemRealtime } from '../../../shared/hooks/useMenuItemRealtime';
 import { useMenuItems } from '@/models/menuItems/hook';
+import { useCategories } from '@/models/categories/hook';
 
 export default function Base() {
-  useSyncCategories()
+  useCategories()
   useMenuItems()
   useMenuItemRealtime()
   return (

@@ -2,19 +2,39 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
 import { Table, TablePayload } from "./types";
+import { useTableStore } from "./store";
+import { useEffect } from "react";
 
 // ==============================
 // Get all categories
 // ==============================
 export const useTables = () => {
-  return useQuery({
+  const { setLoading, setTables } = useTableStore();
+
+  const query = useQuery({
     queryKey: ["tables"],
     queryFn: async () => {
       const res = await api.get<Table[]>("/tables");
       return res.data;
     },
+    staleTime: 1000 * 60, // optional but recommended
   });
+
+  /* sync loading */
+  useEffect(() => {
+    setLoading(query.isLoading);
+  }, [query.isLoading]);
+
+  /* sync data */
+  useEffect(() => {
+    if (query.data) {
+      setTables(query.data);
+    }
+  }, [query.data]);
+
+  return query;
 };
+
 
 export const useTable = (id: number | string) => {
   return useQuery({

@@ -24,6 +24,8 @@ export type CategoryStore = {
   sortDir: "asc" | "desc";
   sort: string;
   filter: string;
+  hasHydrated: boolean 
+  loading: boolean 
   currentPage: number;
   contentPerPage: number;
   totalCategory: number;
@@ -33,6 +35,7 @@ export type CategoryStore = {
 
   activeModal: null | "create" | "update" | "delete";
   openCreateModal: () => void;
+  setLoading: (loading: boolean) => void
   closeModal: () => void;
   openUpdateModal: () => void;
   openDeleteModal: () => void;

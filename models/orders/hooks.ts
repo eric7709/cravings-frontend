@@ -14,7 +14,7 @@ import {
 } from "./types";
 import { useOrderStore } from "./store";
 import { useBook } from "@/screens/book/store/useBook";
-
+import { useEffect } from "react";
 
 export const useOrders = () => {
   const {
@@ -33,28 +33,10 @@ export const useOrders = () => {
     contentPerPage,
     setOrders,
     setTodayOrderStats,
-    stopLoading
+    setLoading,
   } = useOrderStore();
 
-
-  console.log(  sortBy,
-    direction,
-    orderStatus,
-    waiterId,
-    cashierId,
-    tableId,
-    search,
-    minTotal,
-    maxTotal,
-    startDate,
-    endDate,
-    currentPage,
-    contentPerPage,
-    setOrders,
-    setTodayOrderStats,
-    stopLoading, "NKDWKDNWN")
-
-  return useQuery({
+  const query = useQuery({
     queryKey: [
       "orders",
       {
@@ -91,22 +73,34 @@ export const useOrders = () => {
           size: contentPerPage,
         },
       });
-      if (data?.orders && data?.statusCounts) {
-        setOrders(
-          data.orders.content,
-          data.orders.totalElements,
-          data.orders.totalPages,
-          data.orders.number,
-          data.orders.size
-        );
-        setTodayOrderStats(data.statusCounts);
-      }
-      stopLoading()
       return data;
     },
-    placeholderData: keepPreviousData, // prevents UI flicker when changing filters/pagination
+    placeholderData: keepPreviousData,
   });
+
+  // Only set loading while query has NO data
+  useEffect(() => {
+    setLoading(!query.data && query.isLoading);
+  }, [query.isLoading, query.data]);
+
+  // Update store whenever new data arrives
+  useEffect(() => {
+    if (query.data) {
+      const { orders, statusCounts } = query.data;
+      setOrders(
+        orders.content,
+        orders.totalElements,
+        orders.totalPages,
+        orders.number,
+        orders.size
+      );
+      setTodayOrderStats(statusCounts);
+    }
+  }, [query.data]);
+
+  return query;
 };
+
 
 export const useOrder = (id: number) => {
   return useQuery({
@@ -137,7 +131,6 @@ export const useCreateOrder = () => {
   });
 };
 
-
 export const useUpdateOrder = () => {
   const queryClient = useQueryClient();
   return useMutation<Order, Error, UpdateOrderInput>({
@@ -146,7 +139,11 @@ export const useUpdateOrder = () => {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["orders", "customer-orders-today", "dashboardStats"] as any);
+      queryClient.invalidateQueries([
+        "orders",
+        "customer-orders-today",
+        "dashboardStats",
+      ] as any);
     },
   });
 };
@@ -159,14 +156,14 @@ export const useDeleteOrder = () => {
   });
 };
 
-
-
 export const useCustomerOrdersToday = () => {
-  const {customer} = useBook()
+  const { customer } = useBook();
   return useQuery({
     queryKey: ["customer-orders-today", customer?.id],
     queryFn: async () => {
-      const { data } = await api.get<CustomerOrderDTO[]>(`/orders/customer/${customer?.id}`);
+      const { data } = await api.get<CustomerOrderDTO[]>(
+        `/orders/customer/${customer?.id}`
+      );
       return data;
     },
     enabled: !!customer?.id,

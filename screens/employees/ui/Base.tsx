@@ -4,11 +4,11 @@ import Table from './Table'
 import DeleteEmployee from './DeleteEmployee'
 import { useEmployeeForm } from '../hooks/useEmployeeForm'
 import EmployeeForm from './EmployeeForm'
-import { useSyncEmployees } from '../hooks/useSyncEmployees'
+import { useEmployees } from '@/models/employee/hooks'
 
 export default function Base() {
   const { errors, register, onSubmit, isPending } = useEmployeeForm()
-  useSyncEmployees()
+  useEmployees()
   return (
     <div className='flex flex-col flex-1 overflow-y-auto'>
         <Header />

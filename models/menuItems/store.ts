@@ -10,6 +10,7 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
   totalMenuItem: 0,
   hasHydrated: false,
   search: "",
+  loading: false,
   activeModal: null,
   selectedMenuItem: null,
   selectedCategory: {
@@ -31,6 +32,7 @@ export const useMenuItemStore = create<MenuItemStore>((set, get) => ({
       selectedCategory,
     }),
   closeModal: () => set({ activeModal: null }),
+  setLoading: (loading) => set({ loading }),
   openCreateModal: () => set({ activeModal: "create" }),
   openDeleteModal: () => set({ activeModal: "delete" }),
   openUpdateModal: () => set({ activeModal: "update" }),

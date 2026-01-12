@@ -8,10 +8,10 @@ import { usePathname, useRouter } from "next/navigation";
 export default function Blocker({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, isHydrated } = useUserStore();
+  const { user, hasHydrated } = useUserStore();
 
   const decision = useMemo(() => {
-    if (!isHydrated) return "loading";
+    if (!hasHydrated) return "loading";
 
     const segments = pathname.split("/").filter(Boolean);
     const isAuthPage = segments[0] === "auth";
@@ -35,7 +35,7 @@ export default function Blocker({ children }: { children: React.ReactNode }) {
       return "unauthorized";
 
     return "allow";
-  }, [isHydrated, user, pathname]);
+  }, [hasHydrated, user, pathname]);
 
   useEffect(() => {
     if (decision === "login") {

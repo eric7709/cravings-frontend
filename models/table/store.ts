@@ -12,6 +12,7 @@ export const useTableStore = create<TableStore>((set, get) => ({
   tables: [],
   selectedTable: null,
   hasHydrated: false,
+  loading: false,
   activeModal: null,
   openCreateModal: () => set({ activeModal: "create" }),
   openUpdateModal: () => set({ activeModal: "update" }),
@@ -20,8 +21,10 @@ export const useTableStore = create<TableStore>((set, get) => ({
   openDeallocateModal: () => set({ activeModal: "deallocate" }),
   openQRCodeModal: () => set({ activeModal: "qrcode" }),
   closeModal: () => set({ activeModal: null }),
+  setLoading: (loading) => set({ loading }),
 
-  setTables: (data) => set(() => ({ tables: data, totalTable: data.length, hasHydrated: true })),
+  setTables: (data) =>
+    set(() => ({ tables: data, totalTable: data.length, hasHydrated: true })),
   setSelectedTable: (selectedTable) => set(() => ({ selectedTable })),
 
   addTable: (table) =>
@@ -37,8 +40,8 @@ export const useTableStore = create<TableStore>((set, get) => ({
     }),
 
   getTable: (id: number | string) => {
-  return get().tables.find((el) => el.id === Number(id)) ?? null;
-},
+    return get().tables.find((el) => el.id === Number(id)) ?? null;
+  },
 
   updateTable: (updatedTable) =>
     set((state) => {
