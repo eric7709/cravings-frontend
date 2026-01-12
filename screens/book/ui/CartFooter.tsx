@@ -13,7 +13,7 @@ export default function CartFooter() {
             openOrderConfirmationModal()
     }
     return (
-        <div className={`flex fixed bottom-0 left-0 w-full py-3 bg-white/0 border-t border-gray-200 duration-300 backdrop-blur items-center gap-5 justify-between px-4 ${getTotal() > 0 ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+        <div className={`flex w-full py-3 bg-white/0 border-t border-gray-200 duration-300 backdrop-blur items-center gap-5 justify-between px-4 ${getTotal() > 0 ? "opacity-100 visible" : "opacity-0 invisible"}`}>
             <div className="flex gap-4 items-center">
                 <div className="relative w-fit">
                     <BsCart3 className='text-2xl' />

@@ -13,7 +13,7 @@ export default function CartList() {
       {activeModal === "cart" && (
         <motion.div
           key="cart"
-          className="flex-1 pt-20 p-4 space-y-3 pb-[100px] overflow-y-auto"
+          className="flex-1 pt-20 p-4 space-y-3 overflow-y-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

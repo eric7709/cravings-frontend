@@ -29,8 +29,8 @@ export default function MenuItemCard({ menuItem }: Props) {
 
     return (
         <div className='text-sm '>
-            <div className="border bg-white border-gray-200 shadow-md rounded-2xl ">
-                <div className="h-52 relative shrink-0 rounded-xl overflow-hidden border-gray-200 border">
+            <div className="border bg-white border-gray-200 shadow rounded-2xl ">
+                <div className="h-52 relative shrink-0 rounded overflow-hidden border-gray-200 border-b">
                     {menuItem.imageUrl ? (
                         <Image fill src={menuItem.imageUrl} alt={menuItem.name} className='object-cover absolute h-full w-full' />
                     ) : (

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import Backdrop from "@/shared/ui/Backdrop";
 import FormInput from "@/shared/ui/FormInput";
 import { useBook } from "../store/useBook";
@@ -20,20 +20,20 @@ export default function CustomerFormModal() {
     <Backdrop modalOpened={activeModal === "customer"} closeModal={closeModal}>
       <form
         onSubmit={handleSubmit}
-        className="w-[350px] bg-white rounded-t-3xl rounded-b-2xl flex flex-col gap-6 shadow-md"
+        className="w-87.5 rounded-3xl flex flex-col shadow-lg overflow-hidden"
       >
         {/* Header */}
-        <div className="text-center border-b border-gray-200 px-6 py-4">
-          <h2 className="text-xl font-bold text-gray-800">
-            Let’s get you started!
+        <div className="text-center p-4 bg-orange-500">
+          <h2 className="text-xl font-bold text-white">
+            Customer Information
           </h2>
-          <p className="text-gray-500 text-sm mt-1">
-            Just a few details to prepare your order
+          <p className="text-orange-100 text-sm mt-1">
+            Please provide your details to complete the order.
           </p>
         </div>
 
-        {/* Inputs */}
-        <div className="flex flex-col gap-4 px-6">
+        {/* Body */}
+        <div className="flex flex-col gap-4 px-6 py-6 bg-white">
           <FormInput
             label="Title"
             placeholder="Select title"
@@ -44,27 +44,27 @@ export default function CustomerFormModal() {
 
           <FormInput
             label="Name"
-            placeholder="Your name"
-            {...register("name", { required: "Name is required" })}
+            placeholder="Enter full name"
+            {...register("name", { required: "Full name is required" })}
             error={errors.name?.message}
           />
 
           <FormInput
-            label="Phone (optional)"
-            placeholder="Your phone number"
+            label="Phone Number (optional)"
+            placeholder="Enter phone number"
             {...register("phoneNumber")}
             error={errors.phoneNumber?.message}
           />
         </div>
 
         {/* Footer */}
-        <div className="px-6 pb-6">
+        <div className=" p-4 bg-white">
           <button
             type="submit"
             disabled={isPending}
-            className="w-full bg-green-600 text-white py-3.5 rounded-xl font-semibold hover:bg-green-700 transition"
+            className="w-full bg-orange-500 text-white py-3.5 rounded-xl font-semibold hover:bg-orange-600 transition shadow-md"
           >
-            {isPending ? "Almost there..." : "Let’s go 🚀"}
+            {isPending ? "Submitting..." : "Confirm Details"}
           </button>
         </div>
       </form>

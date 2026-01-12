@@ -7,6 +7,7 @@ import { useMenuItemStore } from "@/models/menuItems/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { VscLoading } from "react-icons/vsc";
 
 export function ConfirmOrderModal() {
   const router = useRouter();
@@ -105,14 +106,13 @@ export function ConfirmOrderModal() {
 
   return (
     <Backdrop modalOpened={activeModal === "confirm"} closeModal={close}>
-      <div className="w-[92%] max-w-sm mx-auto bg-white rounded-3xl p-7 shadow-xl">
-        
+      <div className="w-[92%] max-w-sm mx-auto rounded-3xl shadow-xl overflow-hidden bg-white">
         {/* ---------- UNAVAILABLE STATE ---------- */}
         {unavailableError ? (
-          <div className="text-center">
+          <div className="p-7 text-center">
             <div className="flex justify-center mb-4">
-              <div className="h-14 w-14 rounded-full bg-red-100 flex items-center justify-center">
-                <AlertTriangle size={30} className="text-red-600" />
+              <div className="h-16 w-16 rounded-full bg-red-100 flex items-center justify-center">
+                <AlertTriangle size={32} className="text-red-600" />
               </div>
             </div>
 
@@ -123,8 +123,7 @@ export function ConfirmOrderModal() {
             <p className="mt-2 text-sm text-gray-700">
               Please remove the
               <span className="font-semibold text-red-600">
-                {" "}
-                {unavailItemsIds.length === 1 ? "item" : "items"}{" "}
+                {` ${unavailItemsIds.length === 1 ? "item" : "items"} `}
               </span>
               marked in red before proceeding.
             </p>
@@ -139,20 +138,19 @@ export function ConfirmOrderModal() {
           </div>
         ) : (
           /* ---------- CONFIRM STATE ---------- */
-          <div className="text-center">
+          <div className="p-7 text-center">
             <div className="flex justify-center mb-4">
-              <div className="h-14 w-14 rounded-full bg-orange-100 flex items-center justify-center">
-                <CheckCircle2 size={30} className="text-orange-600" />
+              <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center">
+                <CheckCircle2 size={32} className="text-orange-500" />
               </div>
             </div>
 
-            <h2 className="text-lg font-bold text-gray-900">
-              Confirm Order
+            <h2 className="text-lg font-bold text-orange-500">
+              Confirm Your Order
             </h2>
 
             <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-              Once confirmed, your order will be sent to the kitchen and
-              preparation will begin immediately.
+              Once confirmed, your order will be sent to the kitchen immediately. Please ensure all details are correct.
             </p>
 
             <div className="mt-6 flex gap-3">
@@ -167,10 +165,17 @@ export function ConfirmOrderModal() {
               <button
                 onClick={onConfirm}
                 disabled={isPending}
-                className="flex-1 py-3 rounded-full bg-orange-600 text-white
-                           font-semibold hover:bg-orange-700 active:scale-95 transition-all"
+                className="flex-1 py-3 rounded-full bg-orange-500 text-white
+                           font-semibold hover:bg-orange-600 active:scale-95 transition-all flex items-center justify-center gap-2"
               >
-                {isPending ? "Confirming" : "Confirm Order"}
+                {isPending ? (
+                  <>
+                    <VscLoading className="animate-spin h-5 w-5" />
+                    Confirming...
+                  </>
+                ) : (
+                  "Confirm Order"
+                )}
               </button>
             </div>
           </div>

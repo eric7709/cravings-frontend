@@ -39,7 +39,7 @@ export default function MenuItemList() {
     )
 
   return (
-    <div className="space-y-3 p-4 pt-2">
+    <div className="space-y-3 flex-1 flex flex-col overflow-y-auto p-4 pt-2">
       {menuItems?.map((menuItem) => (
         <motion.div key={menuItem.id} variants={itemVariants}>
           <MenuItemCard menuItem={menuItem} />
