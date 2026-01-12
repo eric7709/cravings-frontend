@@ -8,7 +8,6 @@ export default function page() {
       <div className="flex-1 bg-blue-500 overflow-y-auto flex  p-4">
         <div className="h-1000 w-64 bg-amber-300 mx-auto font-bold text-3xl flex flex-col justify-between items-center">
           <p>TOP</p>
-          <p>BOTTOM</p>
         </div>
       </div>
       <div onClick={() => alert("Purple")} className="h-20 bg-purple-400"></div>
