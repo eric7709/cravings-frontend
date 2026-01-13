@@ -82,8 +82,8 @@ export default function AdminHeader() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-content-center rounded-full border border-gray-300">
-            <Bell className="w-4 h-4 text-gray-500" />
+          <div className="grid h-10 w-10 place-content-center rounded-full border border-orange-500">
+            <Bell className="w-4 h-4 text-orange-600 " />
           </div>
           <ProfileDropdown>
             <div className="relative bg-orange-600 text-white font-semibold grid place-content-center text-lg h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-gray-200 shadow-md group-hover:border-orange-300 transition-colors">
