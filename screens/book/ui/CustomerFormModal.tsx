@@ -6,10 +6,10 @@ import { useBook } from "../store/useBook";
 import { useCustomerForm } from "../hooks/useCustomerForm";
 
 const TITLE_OPTIONS = [
-  { label: "Mr", value: "MR" },
-  { label: "Mrs", value: "MRS" },
-  { label: "Miss", value: "MISS" },
-  { label: "Chief", value: "CHIEF" },
+  { label: "Mr", value: "mr" },
+  { label: "Mrs", value: "mrs" },
+  { label: "Miss", value: "miss" },
+  { label: "Chief", value: "chief" },
 ];
 
 export default function CustomerFormModal() {
