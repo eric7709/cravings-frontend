@@ -59,7 +59,6 @@ export default function MobileSidebar() {
                   href === "/admin"
                     ? pathname === "/admin"
                     : pathname.startsWith(href);
-
                 return (
                   <Link
                     key={name}
