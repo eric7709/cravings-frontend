@@ -11,6 +11,7 @@ import { getPageTitle } from "@/shared/lib/getPageTitle";
 import MobileSidebar from "./MobileSidenav";
 import { useGetRole } from "@/shared/hooks/useGetRole";
 import Logo from "@/shared/ui/Logo";
+import LogoNoIcon from "@/shared/ui/LogoNoIcon";
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -18,11 +19,10 @@ export default function AdminHeader() {
   const { user } = useUserStore();
   const { toggleSideBar } = useGeneralStore();
   const role = useGetRole();
-
   return (
-    <>
+    <div className="relative z-1000">
       {/* DESKTOP HEADER */}
-      <div className="hidden lg:block z-500 relative">
+      <div className="hidden lg:block z-30 relative">
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           {/* Left */}
           <AnimatePresence mode="wait">
@@ -75,10 +75,10 @@ export default function AdminHeader() {
             onClick={toggleSideBar}
             className="p-1.5 rounded-lg border border-orange-400 bg-white shadow-sm"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-5 h-5" color="oklch(75% 0.183 55.934)" />
           </button>
 
-          <Logo />
+          <LogoNoIcon />
         </div>
 
         <div className="flex items-center gap-3">
@@ -98,6 +98,6 @@ export default function AdminHeader() {
 
       {/* MOBILE SIDEBAR */}
       <MobileSidebar />
-    </>
+    </div>
   );
 }

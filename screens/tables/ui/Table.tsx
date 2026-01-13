@@ -53,7 +53,7 @@ export default function Table() {
   /* -------------------- TABLE -------------------- */
   return (
     <div className="p-4 flex-1 overflow-y-auto w-full mx-auto">
-      <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-md shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
         <div className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
           <table className="w-full min-w-225">
             <thead>

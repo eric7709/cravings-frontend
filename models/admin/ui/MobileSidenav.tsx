@@ -23,7 +23,7 @@ export default function MobileSidebar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={toggleSideBar}
-            className="fixed inset-0 bg-black/40 z-500 lg:hidden"
+            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
           />
 
           {/* SIDEBAR */}
@@ -59,6 +59,7 @@ export default function MobileSidebar() {
                   href === "/admin"
                     ? pathname === "/admin"
                     : pathname.startsWith(href);
+
                 return (
                   <Link
                     key={name}
