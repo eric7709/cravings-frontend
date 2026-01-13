@@ -73,8 +73,8 @@ export default function MenuTable() {
   return (
     <div className="p-4 flex-1 overflow-y-auto w-full mx-auto">
       <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
+          <table className="w-full min-w-225">
             <thead>
               <tr className="border-b border-slate-100 bg-slate-50/50">
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase">
@@ -104,7 +104,7 @@ export default function MenuTable() {
                   {/* Item */}
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                      <div className="h-12 w-12  shrink-0 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
                         {item.id}
                       </div>
                       <div>

@@ -10,7 +10,7 @@ import { useGeneralStore } from "@/shared/store/useGeneralStore";
 import { getPageTitle } from "@/shared/lib/getPageTitle";
 import MobileSidebar from "./MobileSidenav";
 import { useGetRole } from "@/shared/hooks/useGetRole";
-import Image from "next/image";
+import Logo from "@/shared/ui/Logo";
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -78,9 +78,7 @@ export default function AdminHeader() {
             <Menu className="w-5 h-5" />
           </button>
 
-          <p className="text-lg font-black tracking-tight">
-            Bite<span className="text-blue-600">Buzz</span>
-          </p>
+          <Logo />
         </div>
 
         <div className="flex items-center gap-3">
