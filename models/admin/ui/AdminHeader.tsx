@@ -73,7 +73,7 @@ export default function AdminHeader() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggleSideBar}
-            className="p-1.5 rounded-lg border border-orange-400 bg-white shadow-sm"
+            className="p-1.5 rounded-md border border-orange-400 bg-white shadow-sm"
           >
             <Menu className="w-5 h-5" color="oklch(75% 0.183 55.934)" />
           </button>
