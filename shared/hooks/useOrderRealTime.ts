@@ -11,10 +11,11 @@ import { useQueryClient } from "@tanstack/react-query";
 export function useOrderRealtime() {
   const { addOrder, updateOrder } = useOrderStore();
   const queryClient = useQueryClient();
+  const WEBSOCKETURL = process.env.NEXT_PUBLIC_ENVIRONMENT == "PRODUCTION" ? process.env.NEXT_PUBLIC_BACKEND_PRO_URL : process.env.NEXT_PUBLIC_BACKEND_DEV_URL
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS(`${WEBSOCKETURL}/ws`),
       reconnectDelay: 5000,
     });
 
