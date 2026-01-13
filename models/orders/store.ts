@@ -16,15 +16,12 @@ export const useOrderStore = create<OrderStore>((set) => ({
   startDate: getTodayISODate(),
   endDate: getTodayISODate(),
   search: "",
-
   loading: false,
-
   // Pagination
   currentPage: 0,
   contentPerPage: 50,
   totalPages: 0,
   totalOrders: 0,
-
   todayOrderStats: {
     pending: 0,
     preparing: 0,
@@ -33,12 +30,9 @@ export const useOrderStore = create<OrderStore>((set) => ({
     cancelled: 0,
     total: 0,
   },
-
   orders: [],
-
   /* ---------------- Loading ---------------- */
   setLoading: (loading) => set({ loading }),
-
   /* ---------------- Orders ---------------- */
   setOrders: (data, totalElements, totalPages, pageNumber, pageSize) =>
     set({
@@ -50,29 +44,24 @@ export const useOrderStore = create<OrderStore>((set) => ({
       loading: false,
       hasHydrated: true 
     }),
-
   addOrder: (order) =>
     set((state) => {
       if (state.orders.some((o) => o.id === order.id)) return state;
       const updated = [order, ...state.orders];
       return { orders: updated, totalOrders: updated.length };
     }),
-
   updateOrder: (updatedOrder) =>
     set((state) => ({
       orders: state.orders.map((o) =>
         o.id === updatedOrder.id ? updatedOrder : o
       ),
     })),
-
   removeOrder: (id) =>
     set((state) => {
       const updated = state.orders.filter((o) => o.id !== id);
       return { orders: updated, totalOrders: updated.length };
     }),
-
   setTodayOrderStats: (stats) => set({ todayOrderStats: stats }),
-
   /* ---------------- Filters (ALL trigger loading) ---------------- */
   setSearch: (search) => set({ search, loading: true }),
   setSortBy: (sortBy) => set({ sortBy, loading: true }),
@@ -86,7 +75,6 @@ export const useOrderStore = create<OrderStore>((set) => ({
   setMaxTotal: (maxTotal) => set({ maxTotal, loading: true }),
   setStartDate: (startDate) => set({ startDate, loading: true }),
   setEndDate: (endDate) => set({ endDate, loading: true }),
-
   /* ---------------- Pagination ---------------- */
   setCurrentPage: (currentPage) => set({ currentPage, loading: true }),
   setContentPerPage: (contentPerPage) =>

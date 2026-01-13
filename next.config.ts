@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /** ✅ REQUIRED for Railway */
+  output: "standalone",
+
+  /** ✅ Supabase images */
   images: {
     remotePatterns: [
       {
@@ -11,7 +15,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // 👇 IMPORTANT FIX
+  /** ✅ Local dev only (safe to keep in prod) */
   allowedDevOrigins: [
     "http://localhost:3000",
     "http://192.168.0.101:3000",

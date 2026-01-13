@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 import { Client, Message } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
@@ -11,8 +10,7 @@ export function useMenuItemRealtime() {
   const WEBSOCKETURL =
     process.env.NEXT_PUBLIC_ENVIRONMENT == "PRODUCTION"
       ? process.env.NEXT_PUBLIC_BACKEND_PRO_URL
-      : process.env.NEXT_PUBLIC_BACKEND_DEV_URL; 
-      
+      : process.env.NEXT_PUBLIC_BACKEND_DEV_URL;
   useEffect(() => {
     const client = new Client({
       webSocketFactory: () => new SockJS(`${WEBSOCKETURL}/ws`),
