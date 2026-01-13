@@ -24,7 +24,7 @@ export default function Base({ tableId }: Props) {
     useMenuItemRealtime()
     return (
         <TableWrapper tableId={tableId}>
-            <div className='flex flex-col overflow-y-auto h-screen'>
+            <div className='flex flex-col overflow-y-auto h-[100dvh]'>
                 <Header />
                 <MenuItemList />
                 <CartPage />

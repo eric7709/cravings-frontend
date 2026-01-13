@@ -12,7 +12,7 @@ export default function Sidebar() {
   return (
     <aside
       className="
-        h-screen hidden lg:block sticky top-0
+        h-[100dvh] hidden lg:block sticky top-0
         w-72
          border-r border-slate-200/80
         transition-all duration-500 ease-in-out

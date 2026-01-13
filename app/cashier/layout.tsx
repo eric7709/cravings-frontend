@@ -11,7 +11,7 @@ export default function CashierLayout({
     usePendingOrderBeepGlobal()
     return (
         <Blocker>
-            <div className="h-screen flex flex-col">
+            <div className="h-[100dvh] flex flex-col">
                 <CashierHeaderTopBar />
                 <div className="flex-1 flex flex-col overflow-y-auto">{children}</div>
             </div>

@@ -10,9 +10,9 @@ export default function AdminLayout({
 }>) {
     return (
         <Blocker>
-            <div className={`grid h-screen lg:grid-cols-[auto_1fr] duration-500 `}>
+            <div className={`grid h-[100dvh] lg:grid-cols-[auto_1fr] duration-500 `}>
                 <Sidebar />
-                <div className="flex h-screen overflow-y-auto border-l border-white flex-col">
+                <div className="flex h-[100dvh] overflow-y-auto border-l border-white flex-col">
                     <AdminHeader />
                     <div className="flex-1 flex flex-col overflow-y-auto">{children}</div>
                 </div>

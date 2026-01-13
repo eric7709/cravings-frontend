@@ -34,7 +34,7 @@ export default function MobileSidebar() {
             transition={{ type: "spring", stiffness: 260, damping: 30 }}
             className="
               fixed top-0 left-0 z-50
-              h-screen w-72
+              h-[100dvh] w-72
               bg-white
               border-r border-slate-200
               lg:hidden
@@ -68,10 +68,9 @@ export default function MobileSidebar() {
                     className={`
                       flex items-center gap-3 px-3 py-3 rounded-xl
                       transition
-                      ${
-                        isActive
-                          ? "bg-blue-50 text-blue-600"
-                          : "hover:bg-slate-100 text-slate-700"
+                      ${isActive
+                        ? "bg-blue-50 text-blue-600"
+                        : "hover:bg-slate-100 text-slate-700"
                       }
                     `}
                   >
