@@ -13,7 +13,6 @@ import CashierHeaderTopBarMobile from './CashierHeaderTopBarMobile';
 import ProfileDropdown from '@/shared/ui/ProfileDropdown';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { useGetRole } from '@/shared/hooks/useGetRole';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCashierPage } from '../hooks/useCashierPage';

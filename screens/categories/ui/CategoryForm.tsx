@@ -23,7 +23,7 @@ export default function CategoryForm({ errors, register, onSubmit, isPending }: 
   return (
     <Backdrop modalOpened={activeModal === "create" || activeModal === "update"} closeModal={closeModal}>
       <div className="px-4  ">
-        <div className="w-full lg:w-[450px] bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
+        <div className="w-full lg:w-112.5 bg-white rounded-t-3xl rounded-b-2xl border border-gray-100 shadow-md">
           <CategoryFormHeader />
           <CategoryFormInput errors={errors} register={register} />
           <CategoryFormFooter isPending={isPending} onSubmit={onSubmit} />

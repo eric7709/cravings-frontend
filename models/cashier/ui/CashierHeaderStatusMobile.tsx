@@ -9,7 +9,6 @@ import {
   DollarSign,
   XCircle,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useCashierPage } from "../hooks/useCashierPage";
 
 type Props = {
