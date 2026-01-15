@@ -73,7 +73,7 @@ export default function MenuItemCard({ menuItem }: Props) {
                             <p className={`text-[9px] font-black uppercase tracking-[0.15em] mb-1 transition-colors ${isMatch(menuItem.categoryName) ? "text-orange-500" : "text-slate-400"}`}>
                                 {menuItem.categoryName}
                             </p>
-                            <h3 className={`text-base font-black leading-tight truncate transition-colors ${isMatch(menuItem.name) ? "text-orange-600" : "text-slate-900"}`}>
+                            <h3 className={`text-[15px] font-black leading-tight truncate transition-colors ${isMatch(menuItem.name) ? "text-orange-600" : "text-slate-900"}`}>
                                 {menuItem.name}
                             </h3>
                         </div>
@@ -87,7 +87,7 @@ export default function MenuItemCard({ menuItem }: Props) {
                 {/* 3. FOOTER: PRICE & DYNAMIC ACTION */}
                 <div className="mt-4 flex items-center justify-between">
                     <div>
-                        <p className="text-lg font-black text-slate-900 tracking-tighter">
+                        <p className="text-base font-black text-slate-900 tracking-tighter">
                             <span className="text-orange-500 text-sm mr-0.5">₦</span>
                             {formatPrice(menuItem.price, false)}
                         </p>
