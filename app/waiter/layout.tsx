@@ -11,7 +11,7 @@ export default function WaiterLayout({
     usePendingOrderBeepGlobal()
     return (
         <Blocker>
-            <div className="flex flex-col h-[100dvh] ">
+            <div className="flex flex-col h-dvh ">
                 <WaiterHeader />
                 <div className="flex-1 flex flex-col overflow-y-auto">{children}</div>
             </div>

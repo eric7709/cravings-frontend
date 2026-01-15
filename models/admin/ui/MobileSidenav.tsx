@@ -34,7 +34,7 @@ export default function MobileSidebar() {
             transition={{ type: "spring", stiffness: 260, damping: 30 }}
             className="
               fixed top-0 left-0 z-50
-              h-[100dvh] w-72
+              h-dvh w-72
               bg-white
               border-r border-slate-200
               lg:hidden

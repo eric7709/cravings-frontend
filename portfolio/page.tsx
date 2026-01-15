@@ -69,7 +69,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-[100dvh] bg-linear-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-hidden">
+    <div className="min-h-dvh bg-linear-to-br from-slate-950 via-blue-950 to-slate-950 text-white overflow-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
@@ -141,7 +141,7 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-[100dvh] flex items-center justify-center pt-20 px-6">
+      <section id="home" className="relative min-h-dvh flex items-center justify-center pt-20 px-6">
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <div
             className="mb-8"

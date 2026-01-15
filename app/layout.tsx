@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/shared/lib/queryClient";
 import { UserProvider } from "@/shared/provider/UserProvider";
 import CartProvider from "@/shared/provider/CartProvider";
+import RealTimeProvider from "@/shared/provider/RealtimeProvider";
 
 // ✅ Import Poppins
 const font = Poppins({
@@ -27,11 +28,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${font.className} antialiased`}>
         <QueryClientProvider client={queryClient}>
-          <UserProvider>
-            <CartProvider>
+          <RealTimeProvider>
+            <UserProvider>
+              <CartProvider>
                 {children}
-            </CartProvider>
-          </UserProvider>
+              </CartProvider>
+            </UserProvider>
+          </RealTimeProvider>
         </QueryClientProvider>
       </body>
     </html>

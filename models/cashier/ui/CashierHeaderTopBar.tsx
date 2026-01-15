@@ -25,9 +25,7 @@ export default function CashierHeaderTopBar() {
     const { isOrdersPage } = useCashierPage();
     const role = useGetRole();
     const pathname = usePathname();
-
     const isActive = (path: string) => pathname.startsWith(path);
-
     const links = [
         {
             link: "/cashier/orders",
@@ -51,8 +49,8 @@ export default function CashierHeaderTopBar() {
                                 key={link}
                                 href={link}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isActive(link)
-                                        ? 'bg-linear-to-r from-orange-50 to-amber-50 text-orange-600 shadow-sm'
-                                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                                    ? 'bg-linear-to-r from-orange-50 to-amber-50 text-orange-600 shadow-sm'
+                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                                     }`}
                             >
                                 {label}
@@ -77,10 +75,8 @@ export default function CashierHeaderTopBar() {
                 <div className="hidden xl:flex items-center gap-4 shrink-0">
                     {/* Revenue Card */}
                     <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-linear-to-br from-green-50 to-emerald-50 border border-green-100 shadow-sm">
-                        <div className="flex flex-col">
-                            <p className="text-xs font-medium text-gray-600 uppercase tracking-wide">Revenue</p>
-                            <p className="text-lg font-bold text-green-600">{formatPrice(todayOrderStats.total)}</p>
-                        </div>
+                        <p className='text-gray-700 font-medium'>Revenue: </p>
+                        <p className="text-xl font-bold text-green-600">{formatPrice(todayOrderStats.total)}</p>
                     </div>
 
                     {/* Date Picker */}

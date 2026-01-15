@@ -30,13 +30,11 @@ export const useOrderStore = create<OrderStore>((set) => ({
     cancelled: 0,
     total: 0,
   },
-  orders: [],
   /* ---------------- Loading ---------------- */
   setLoading: (loading) => set({ loading }),
   /* ---------------- Orders ---------------- */
-  setOrders: (data, totalElements, totalPages, pageNumber, pageSize) =>
+  setPaginationData: (totalElements, totalPages, pageNumber, pageSize) =>
     set({
-      orders: data,
       totalOrders: totalElements,
       totalPages,
       currentPage: pageNumber,
@@ -44,23 +42,7 @@ export const useOrderStore = create<OrderStore>((set) => ({
       loading: false,
       hasHydrated: true 
     }),
-  addOrder: (order) =>
-    set((state) => {
-      if (state.orders.some((o) => o.id === order.id)) return state;
-      const updated = [order, ...state.orders];
-      return { orders: updated, totalOrders: updated.length };
-    }),
-  updateOrder: (updatedOrder) =>
-    set((state) => ({
-      orders: state.orders.map((o) =>
-        o.id === updatedOrder.id ? updatedOrder : o
-      ),
-    })),
-  removeOrder: (id) =>
-    set((state) => {
-      const updated = state.orders.filter((o) => o.id !== id);
-      return { orders: updated, totalOrders: updated.length };
-    }),
+  
   setTodayOrderStats: (stats) => set({ todayOrderStats: stats }),
   /* ---------------- Filters (ALL trigger loading) ---------------- */
   setSearch: (search) => set({ search, loading: true }),

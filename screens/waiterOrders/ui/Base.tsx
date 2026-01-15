@@ -1,10 +1,6 @@
 "use client"
-import { useOrderRealtime } from '@/shared/hooks/useOrderRealTime'
-import OrderList from './OrderList'
-import { useOrders } from '@/models/orders/hooks'
+import OrderList from '@/shared/ui/OrderList'
 
 export default function Base() {
-    useOrders()
-    useOrderRealtime()
     return <OrderList />
 }

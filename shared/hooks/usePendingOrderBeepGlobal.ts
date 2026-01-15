@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useOrderStore } from "@/models/orders/store";
 import { playBeep, initializeAudio } from "../lib/playBeep";
+import { useOrders } from "@/models/orders/hooks";
 
 export function usePendingOrderBeepGlobal() {
-  const orders = useOrderStore((state) => state.orders);
+  const { data } = useOrders();
+  const orders = data?.orders.content;
   const audioInitializedRef = useRef(false);
   const beepIntervalRef = useRef<NodeJS.Timeout | null>(null);
   // Initialize audio on first user interaction
@@ -18,19 +19,19 @@ export function usePendingOrderBeepGlobal() {
     };
 
     const events = ["click", "keydown", "touchstart", "mousedown"];
-    events.forEach(event => {
+    events.forEach((event) => {
       document.addEventListener(event, handleUserInteraction, { once: true });
     });
 
     return () => {
-      events.forEach(event => {
+      events.forEach((event) => {
         document.removeEventListener(event, handleUserInteraction);
       });
     };
   }, []);
 
   useEffect(() => {
-    const hasPendingOrder = orders.some(
+    const hasPendingOrder = orders?.some(
       (order) => order.orderStatus === "PENDING"
     );
 

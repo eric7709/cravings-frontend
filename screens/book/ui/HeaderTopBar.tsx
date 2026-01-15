@@ -17,7 +17,7 @@ export default function HeaderTopBar() {
                 {customer?.name[0]}
             </div>
             <div className="leading-none">
-                <p className='text-[15px] mb-0.5 font-semibold'>Hello {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>
+                <p className='text-[15px] mb-0.5 font-semibold'>Hey, {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>
                 <p className='text-xs text-gray-700 italic'>{getGreeting()}</p>
             </div>
             <div onClick={openHistoryModal} className={`h-11 w-11 ml-auto rounded-full  bg-gray-100 shadow cursor-pointer border border-gray-200 grid place-content-center`}>

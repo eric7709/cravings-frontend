@@ -31,9 +31,9 @@ export const useOrders = () => {
     endDate,
     currentPage,
     contentPerPage,
-    setOrders,
     setTodayOrderStats,
     setLoading,
+    setPaginationData,
   } = useOrderStore();
 
   const query = useQuery({
@@ -77,18 +77,15 @@ export const useOrders = () => {
     },
     placeholderData: keepPreviousData,
   });
-
   // Only set loading while query has NO data
   useEffect(() => {
     setLoading(!query.data && query.isLoading);
   }, [query.isLoading, query.data]);
-
   // Update store whenever new data arrives
   useEffect(() => {
     if (query.data) {
       const { orders, statusCounts } = query.data;
-      setOrders(
-        orders.content,
+      setPaginationData(
         orders.totalElements,
         orders.totalPages,
         orders.number,
@@ -97,10 +94,8 @@ export const useOrders = () => {
       setTodayOrderStats(statusCounts);
     }
   }, [query.data]);
-
   return query;
 };
-
 
 export const useOrder = (id: number) => {
   return useQuery({

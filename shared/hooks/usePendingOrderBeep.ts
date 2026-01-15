@@ -4,9 +4,11 @@ import { useEffect, useRef } from "react";
 import { useOrderStore } from "@/models/orders/store";
 import { useUserStore } from "@/models/auth/store";
 import { playBeep } from "../lib/playBeep";
+import { useOrders } from "@/models/orders/hooks";
 
 export function usePendingOrderBeep() {
-  const orders = useOrderStore((state) => state.orders);
+  const { data } = useOrders();
+  const orders = data?.orders.content;
   const user = useUserStore((state) => state.user);
 
   const hasBeepedRef = useRef(false);
@@ -18,8 +20,7 @@ export function usePendingOrderBeep() {
       user.role === "ROLE_WAITER" || user.role === "ROLE_CASHIER";
 
     if (!isAllowedRole) return;
-
-    const hasRelevantPendingOrder = orders.some((order) => {
+    const hasRelevantPendingOrder = orders?.some((order) => {
       if (order.orderStatus !== "PENDING") return false;
 
       if (user.role === "ROLE_WAITER") {

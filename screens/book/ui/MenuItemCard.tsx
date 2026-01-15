@@ -1,21 +1,31 @@
+"use client";
+
 import { MenuItem } from '@/models/menuItems/types';
 import { formatPrice } from '@/shared/utils/formatPrice';
 import { useBook } from '../store/useBook';
-import { Ban, Plus, Trash2 } from 'lucide-react';
+import { Ban, Plus, Trash2, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 
 type Props = {
     menuItem: MenuItem;
 };
+
 export default function MenuItemCard({ menuItem }: Props) {
     const { addToCart, items, removeFromCart, search } = useBook();
     const cartItem = items.find((item) => item.menuItemId === menuItem.id);
-    const showAddButton = !cartItem && menuItem.status == "AVAILABLE"
-    const showRemoveButton = cartItem && menuItem.status == "AVAILABLE"
-    const isAvailable = menuItem.status == "UNAVAILABLE"
+    
+    const isAvailable = menuItem.status === "AVAILABLE";
+    const isInCart = !!cartItem;
+    
+    // Search Highlighting Logic
+    const isMatch = (text: string) => 
+        search.trim().length > 1 && text.toLowerCase().includes(search.toLowerCase().trim());
 
-    const handleAddToCart = () => {
-        if (menuItem.status === "AVAILABLE") {
+    const handleAction = () => {
+        if (!isAvailable) return;
+        if (isInCart) {
+            removeFromCart(menuItem.id);
+        } else {
             addToCart({
                 menuItemId: menuItem.id,
                 menuItemName: menuItem.name,
@@ -25,40 +35,99 @@ export default function MenuItemCard({ menuItem }: Props) {
                 price: menuItem.price,
             });
         }
-    }
+    };
 
     return (
-        <div className='text-sm '>
-            <div className="border bg-white border-gray-200 shadow rounded-2xl ">
-                <div className="h-52 relative shrink-0 rounded overflow-hidden border-gray-200 border-b">
-                    {menuItem.imageUrl ? (
-                        <Image fill src={menuItem.imageUrl} alt={menuItem.name} className='object-cover absolute h-full w-full' />
-                    ) : (
-                        <div className="text-[100px] h-full w-full grid place-content-center">🍽️</div>
-                    )}
-                </div>
-                <div className="p-4 flex flex-col">
-                    <p className={`font-semibold duration-500 ${menuItem.name.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-800"} text-[15px] capitalize`}>{menuItem.name}</p>
-                    <p className={`italic duration-500 ${menuItem.categoryName.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() ? "text-orange-600" : "text-gray-500"} text-xs  mt-1 capitalize`}>{menuItem.categoryName}</p>
-                    <p className={`line-clamp-2 mt-2 ${menuItem.description.toLowerCase().includes(search.toLowerCase().trim()) && search.trim() && search.trim().length > 3 ? "text-orange-600" : "text-gray-500"} mb-3 text-gray-700`}>{menuItem.description}</p>
-                    <div className="flex uppercase mt-auto relative justify-between items-center">
-                        <p className='font-bold text-[18px] text-shadow-black'>{formatPrice(menuItem.price)}</p>
-                        <p onClick={handleAddToCart} className={`absolute items-center gap-1 ${showAddButton ? "px-3 h-10 translate-y-0 translate-x-0 opacity-100 visible" : "px-0 h-0 -translate-y-2 opacity-0 invisible translate-x-3"} right-0 border-2 rounded-full flex text-xs border-green-600 cursor-pointer duration-300 active:scale-90 bg-green-500 text-white font-semibold shadow-md`}>
-                            <Plus className='' size={20} />
-                            Add Item
-                        </p>
-                        <p onClick={() => removeFromCart(menuItem.id)}
-                            className={`absolute items-center gap-1.5 right-0 border-2 flex ${showRemoveButton ? "px-3 h-10 translate-y-0 opacity-100 visible translate-x-0" : "px-0 h-0 translate-y-2 opacity-0 invisible"} rounded-full text-xs shadow-md border-red-600 cursor-pointer font-semibold duration-300 active:scale-90 bg-red-500 text-white -translate-x-10`}>
-                            <Trash2 size={18} />
-                            Remove Item
-                        </p>
-                        <p className={`absolute flex items-center gap-1 right-0 border-2  ${isAvailable ? "px-3 h-10 translate-y-0 opacity-100 visible" : "px-0 h-0 translate-y-2 opacity-0 invisible"} rounded-full text-xs border-gray-300  font-semibold  duration-300  bg-gray-200 text-gray-400 `}>
-                            <Ban size={18} />
-                            Unavailable</p>
+        <div className={`
+            group relative flex flex-row items-stretch bg-white rounded-[28px] overflow-hidden 
+            border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300
+            ${!isAvailable ? 'opacity-70' : 'hover:border-orange-100'}
+        `}>
+            
+            {/* 1. SIDE IMAGE SECTION */}
+            <div className="relative w-32 sm:w-44 shrink-0 overflow-hidden bg-slate-50">
+                {menuItem.imageUrl ? (
+                    <Image 
+                        fill 
+                        src={menuItem.imageUrl} 
+                        alt={menuItem.name} 
+                        className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                    />
+                ) : (
+                    <div className="h-full w-full grid place-content-center text-4xl opacity-30">🍽️</div>
+                )}
+                
+                {/* Availability Overlay */}
+                {!isAvailable && (
+                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] grid place-content-center p-2 text-center">
+                        <span className="text-[8px] font-black uppercase tracking-[0.2em] text-white">Unavailable</span>
                     </div>
+                )}
+            </div>
+
+            {/* 2. CONTENT SECTION */}
+            <div className="flex-1 py-2 px-4 sm:p-5 flex flex-col justify-between min-w-0">
+                <div>
+                    <div className="flex justify-between items-start gap-2">
+                        <div className="min-w-0">
+                            <p className={`text-[9px] font-black uppercase tracking-[0.15em] mb-1 transition-colors ${isMatch(menuItem.categoryName) ? "text-orange-500" : "text-slate-400"}`}>
+                                {menuItem.categoryName}
+                            </p>
+                            <h3 className={`text-base font-black leading-tight truncate transition-colors ${isMatch(menuItem.name) ? "text-orange-600" : "text-slate-900"}`}>
+                                {menuItem.name}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <p className={`text-[11px] leading-snug line-clamp-2 mt-2 transition-colors ${isMatch(menuItem.description) ? "text-orange-600/80" : "text-slate-500"}`}>
+                        {menuItem.description}
+                    </p>
+                </div>
+
+                {/* 3. FOOTER: PRICE & DYNAMIC ACTION */}
+                <div className="mt-4 flex items-center justify-between">
+                    <div>
+                        <p className="text-lg font-black text-slate-900 tracking-tighter">
+                            <span className="text-orange-500 text-sm mr-0.5">₦</span>
+                            {formatPrice(menuItem.price, false)}
+                        </p>
+                    </div>
+
+                    <button
+                        disabled={!isAvailable}
+                        onClick={handleAction}
+                        className={`
+                            relative h-10 px-4 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all
+                            ${!isAvailable 
+                                ? "bg-slate-100 text-slate-400" 
+                                : isInCart 
+                                    ? "bg-rose-500 text-white shadow-lg shadow-rose-200 active:scale-95" 
+                                    : "bg-slate-900 text-white shadow-lg shadow-slate-200 hover:bg-orange-600 active:scale-95"}
+                        `}
+                    >
+                        <div className="flex items-center gap-2">
+                            {isInCart ? (
+                                <>
+                                    <Trash2 size={14} />
+                                    <span className="hidden sm:inline">Remove</span>
+                                </>
+                            ) : !isAvailable ? (
+                                <Ban size={14} />
+                            ) : (
+                                <>
+                                    <Plus size={14} />
+                                    <span className="hidden sm:inline">Add</span>
+                                </>
+                            )}
+                        </div>
+                    </button>
                 </div>
             </div>
-        </div>
-    )
-}
 
+            {/* In-Cart Indicator Dot */}
+            {isInCart && isAvailable && (
+                <div className="absolute top-3 right-3 h-2 w-2 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316] animate-pulse" />
+            )}
+        </div>
+    );
+}

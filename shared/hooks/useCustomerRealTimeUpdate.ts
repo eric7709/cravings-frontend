@@ -7,10 +7,14 @@ import SockJS from "sockjs-client";
 export function useCustomerOrderRealtime() {
   const queryClient = useQueryClient();
   const { customer } = useBook();
+  const WEBSOCKETURL =
+    process.env.NEXT_PUBLIC_ENVIRONMENT == "PRODUCTION"
+      ? process.env.NEXT_PUBLIC_BACKEND_PRO_URL
+      : process.env.NEXT_PUBLIC_BACKEND_DEV_URL;
   useEffect(() => {
     if (!customer?.id) return;
     const client = new Client({
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS(`${WEBSOCKETURL}/ws`),
       reconnectDelay: 5000,
     });
     client.onConnect = () => {
@@ -22,7 +26,6 @@ export function useCustomerOrderRealtime() {
     };
     client.activate();
     return () => {
-
       // ✅ MUST be sync
       client.deactivate(); // ignore the Promise
     };

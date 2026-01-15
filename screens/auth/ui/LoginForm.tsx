@@ -13,7 +13,7 @@ export default function LoginForm() {
   if (isRedirecting) return <Loader />;
 
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-linear-to-br from-[#0f172a] via-[#020617] to-black px-7">
+    <div className="relative flex min-h-dvh items-center justify-center bg-linear-to-br from-[#0f172a] via-[#020617] to-black px-7">
 
       {/* Ambient glow */}
       <div className="pointer-events-none absolute -top-40 -left-40 h-100 w-100 rounded-full bg-orange-500/20 blur-3xl" />

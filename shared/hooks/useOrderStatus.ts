@@ -1,17 +1,10 @@
 import { Order, ORDER_STATUS, PAYMENT_STATUS } from "@/models/orders/types";
 import { getButtonText, statusConfig } from "../../screens/book/util/helper";
 import { useUpdateOrder } from "@/models/orders/hooks";
-import { useOrderStore } from "@/models/orders/store";
 
 export function useOrderStatus(order: Order) {
-  const { updateOrder } = useOrderStore();
   const { mutate, isPending } = useUpdateOrder();
   const cancelOrder = () => {
-    updateOrder({
-      ...order,
-      paymentStatus: "CANCELLED",
-      orderStatus: "CANCELLED",
-    });
     mutate(
       {
         id: order.id,
@@ -33,7 +26,6 @@ export function useOrderStatus(order: Order) {
         : orderStatus == "PAID"
         ? "PAID"
         : "UNPAID";
-    updateOrder({ ...order, paymentStatus, orderStatus });
     mutate({
       id: order.id,
       payload: { paymentStatus, orderStatus },

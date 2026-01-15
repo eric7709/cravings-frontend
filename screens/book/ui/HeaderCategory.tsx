@@ -1,36 +1,50 @@
-import { useCategoryStore } from '@/models/categories/store';
-import { useBook } from '../store/useBook';
+import { useCategoryStore } from "@/models/categories/store";
+import { useBook } from "../store/useBook";
 
 export default function HeaderCategory() {
-    const { category, setCategory } = useBook()
-    const { categories: data } = useCategoryStore()
-    const categories = data.map(el => {
-        return {
-            name: el.name,
-            id: el.id
-        }
-    })
-    categories.unshift({ name: "all", id: 0 })
-    return (
-        <div className="overflow-x-auto mx-4 py-3">
-            <div className="grid grid-flow-col auto-cols-[max] gap-3 text-[13px]">
-                {categories.map((cat) => (
-                    <button
-                        key={cat.id}
-                        onClick={() => setCategory(cat.name)}
-                        className={`
-              text-nowrap border-2 capitalize h-fit px-5 active:scale-90 duration-300 py-2 rounded-full font-medium
-              ${category === cat.name
-                                ? 'bg-linear-to-r border-red-300 from-orange-400  to-orange-600 text-white shadow-lg'
-                                : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200'
-                            }
-            `}
-                    >
-                        {cat.name}
-                    </button>
-                ))}
-            </div>
+    const { category, setCategory } = useBook();
+    const { categories: data } = useCategoryStore();
+    
+    // Use useMemo to prevent re-mapping on every render
+    const categories = [
+        { name: "all", id: 0 },
+        ...data.map(el => ({ name: el.name, id: el.id }))
+    ];
 
+    return (
+        <div className="w-full bg-white/80 backdrop-blur-md sticky top-0 z-30">
+            {/* 1. whitespace-nowrap: Prevents children from breaking lines
+               2. scrollbar-hide: Keeps it clean (requires tailwind-scrollbar-hide plugin)
+            */}
+            <div className="flex overflow-x-auto whitespace-nowrap px-4 py-4 gap-3 no-scrollbar scroll-smooth">
+                {categories.map((cat) => {
+                    const isActive = category === cat.name;
+                    
+                    return (
+                        <button
+                            key={cat.id}
+                            onClick={() => setCategory(cat.name)}
+                            className={`
+                                /* Shape & Spacing */
+                                inline-flex items-center justify-center
+                                px-6 py-2.5 rounded-2xl text-[13px] font-bold 
+                                transition-all duration-300 active:scale-95
+                                
+                                /* Text Handling */
+                                capitalize whitespace-nowrap flex-shrink-0
+                                
+                                /* Interactive States */
+                                ${isActive
+                                    ? 'bg-orange-500 text-white shadow-xl shadow-orange-500/20 ring-2 ring-orange-500 ring-offset-2'
+                                    : 'bg-slate-50 text-slate-500 hover:bg-slate-100 border border-slate-100'
+                                }
+                            `}
+                        >
+                            {cat.name}
+                        </button>
+                    );
+                })}
+            </div>
         </div>
-    )
+    );
 }

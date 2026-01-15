@@ -1,6 +1,6 @@
 "use client";
 
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, Utensils } from "lucide-react";
 import { Item } from "../types/types";
 import { useBook } from "../store/useBook";
 import { formatPrice } from "@/shared/utils/formatPrice";
@@ -14,103 +14,102 @@ type Props = {
 };
 
 export default function MiniCartItem({ length, current, item, index }: Props) {
-  const {
-    menuItemId,
-    menuItemName,
-    price,
-    quantity,
-    takeOut,
-    categoryName,
-  } = item;
-
-  const {
-    toggleTakeOut,
-    increaseQty,
-    decreaseQty,
-    removeFromCart,
-    unavailables,
-  } = useBook();
+  const { menuItemId, menuItemName, price, quantity, takeOut, categoryName } = item;
+  const { toggleTakeOut, increaseQty, decreaseQty, removeFromCart, unavailables } = useBook();
 
   const isUnavailable = unavailables.includes(menuItemId);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 15, scale: 0.98 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2, delay: index * 0.05 }}
       className={`
-        relative flex flex-col rounded-2xl border p-4
-        ${isUnavailable ? "border-rose-300 bg-rose-50" : "border-gray-200 bg-white"}
-        ${current !== length - 1 ? "mb-3" : ""}
-        shadow-sm hover:shadow-md transition
+        relative flex items-center gap-4 p-3 rounded-[24px] transition-all
+        ${isUnavailable ? "bg-slate-50 opacity-60 pointer-events-none" : "bg-white border border-slate-100 shadow-sm"}
+        ${current !== length - 1 ? "mb-4" : ""}
       `}
     >
-      {/* Status Badge */}
-      {isUnavailable && (
-        <div className="absolute top-2 right-2 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white shadow">
-          UNAVAILABLE
-        </div>
-      )}
-
-      {/* Header */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="truncate text-sm font-bold text-gray-900">{menuItemName}</p>
-          <p className="text-xs text-gray-500">{categoryName}</p>
-        </div>
-        <button
-          onClick={() => removeFromCart(menuItemId)}
-          className="rounded-full p-2 text-red-500 transition active:scale-90"
-        >
-          <Trash2 size={18} />
-        </button>
+      {/* 1. Leading Icon/Status */}
+      <div className={`
+        relative h-16 w-16 shrink-0 rounded-2xl flex items-center justify-center
+        ${isUnavailable ? "bg-slate-200" : "bg-orange-50"}
+      `}>
+        {takeOut ? (
+          <ShoppingBag size={24} className="text-orange-500" />
+        ) : (
+          <Utensils size={24} className="text-orange-500" />
+        )}
+        
+        {isUnavailable && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/5 rounded-2xl">
+                <div className="bg-white/90 px-1 py-0.5 rounded text-[8px] font-black text-rose-600 border border-rose-200 uppercase">Void</div>
+            </div>
+        )}
       </div>
 
-      {/* Price & Takeout */}
-      <div className="mt-3 flex items-center justify-between">
-        <p className="text-lg font-extrabold text-gray-900">
-          <span className="mr-1 text-green-600">₦</span>
-          {formatPrice(price * quantity, true)}
-        </p>
-
-        <button
-          onClick={() => toggleTakeOut(menuItemId)}
-          className={`px-3 py-2 text-xs font-semibold uppercase tracking-wide rounded-full shadow-sm transition active:scale-95 ${
-            takeOut
-              ? "bg-emerald-500 text-white hover:bg-emerald-600"
-              : "bg-orange-500 text-white hover:bg-orange-600"
-          }`}
-        >
-          {takeOut ? "Take-out" : "Dine-in"}
-        </button>
-      </div>
-
-      {/* Quantity Controls */}
-      <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 p-1 shadow-inner">
+      {/* 2. Info & Content */}
+      <div className="flex-1 min-w-0">
+        <div className="flex justify-between items-start">
+          <div className="min-w-0">
+            <h4 className="truncate text-sm font-black text-slate-800 uppercase tracking-tight leading-none">
+              {menuItemName}
+            </h4>
+            <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">
+              {categoryName}
+            </p>
+          </div>
           <button
-            onClick={() => quantity > 1 && decreaseQty(menuItemId)}
-            className="h-8 w-8 grid place-content-center rounded-full text-red-500 hover:bg-white active:scale-90 transition"
+            onClick={() => removeFromCart(menuItemId)}
+            className="p-1.5 text-slate-300 hover:text-rose-500 transition-colors"
           >
-            <Minus size={14} />
-          </button>
-
-          <span className="w-10 text-center text-sm font-bold text-gray-900">
-            {quantity}
-          </span>
-
-          <button
-            onClick={() => increaseQty(menuItemId)}
-            className="h-8 w-8 grid place-content-center rounded-full text-green-500 hover:bg-white active:scale-90 transition"
-          >
-            <Plus size={14} />
+            <Trash2 size={16} />
           </button>
         </div>
 
-        <p className="text-xs text-gray-500">
-          {quantity} × ₦{formatPrice(price, true)}
-        </p>
+        <div className="mt-3 flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-[9px] font-bold text-slate-400 uppercase leading-none mb-0.5">Total</span>
+            <p className="text-base font-black text-slate-900 tracking-tighter">
+                <span className="text-orange-500 mr-0.5">₦</span>
+                {formatPrice(price * quantity, true)}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+             {/* Takeout Toggle - Small version */}
+             <button
+              onClick={() => toggleTakeOut(menuItemId)}
+              className={`text-[9px] font-black px-2 py-1.5 rounded-lg border transition-all ${
+                takeOut 
+                ? "bg-slate-900 border-slate-900 text-white" 
+                : "bg-white border-slate-200 text-slate-500"
+              }`}
+            >
+              {takeOut ? "PACK" : "STAY"}
+            </button>
+
+            {/* Modern Stepper */}
+            <div className="flex items-center bg-slate-100 rounded-xl p-0.5 border border-slate-200/50">
+              <button
+                onClick={() => quantity > 1 && decreaseQty(menuItemId)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg bg-white shadow-sm text-slate-400 hover:text-rose-500 transition-all active:scale-90"
+              >
+                <Minus size={12} strokeWidth={3} />
+              </button>
+              <span className="w-7 text-center text-[11px] font-black text-slate-800">
+                {quantity}
+              </span>
+              <button
+                onClick={() => increaseQty(menuItemId)}
+                className="w-7 h-7 flex items-center justify-center rounded-lg bg-orange-500 shadow-md shadow-orange-200 text-white transition-all active:scale-90"
+              >
+                <Plus size={12} strokeWidth={3} />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </motion.div>
   );

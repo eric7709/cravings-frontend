@@ -7,7 +7,7 @@ export default function Page() {
   const { user } = useUserStore();
 
   return (
-    <div className="min-h-[100dvh] bg-black flex items-center justify-center px-4">
+    <div className="min-h-dvh bg-black flex items-center justify-center px-4">
       <div className="text-center">
         {/* Lock Icon */}
         <div className="mb-8 flex justify-center">

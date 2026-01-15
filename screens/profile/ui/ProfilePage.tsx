@@ -15,7 +15,7 @@ export default function ProfilePage() {
 
   return (
     <motion.div
-      className="min-h-[100dvh] bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50"
+      className="min-h-dvh bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}

@@ -149,13 +149,8 @@ export type OrderStore = {
   totalOrders: number;
 
   todayOrderStats: TodayOrderStats;
-  orders: Order[];
-
-  setOrders: (data: Order[], totalElements: number, totalPages: number, pageNumber: number, pageSize: number) => void;
-  addOrder: (order: Order) => void;
-  updateOrder: (order: Order) => void;
+  setPaginationData: (totalElements: number, totalPages: number, pageNumber: number, pageSize: number) => void;
   setLoading: (loading: boolean) => void;
-  removeOrder: (id: string | number) => void;
   setTodayOrderStats: (stats: TodayOrderStats) => void;
 
   setSearch: (value: string) => void;

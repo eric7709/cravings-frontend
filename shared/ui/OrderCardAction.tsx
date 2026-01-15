@@ -34,7 +34,6 @@ export default function OrderCardAction({ showDeleteBtn, getButtonText, cancelOr
             </div>
             <div className={`px-4 grid duration-300 ${showUpdateStatusButton ? "mb-3 grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                 <div className=" overflow-hidden">
-
                     <button onClick={changeStatus} className={`${statusConfig.button} text-sm bg-linear-to-r w-full shadow-md rounded-full mt-auto cursor-pointer  text-white font-semibold py-4`}>
                         {getButtonText}
                     </button>
