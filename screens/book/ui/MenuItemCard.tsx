@@ -87,7 +87,6 @@ export default function MenuItemCard({ menuItem }: Props) {
                 <div className="mt-4 flex items-center justify-between">
                     <div>
                         <p className="text-base font-black text-slate-900 tracking-tighter">
-                            <span className="text-orange-500 text-sm mr-0.5">₦</span>
                             {formatPrice(menuItem.price, false)}
                         </p>
                     </div>
