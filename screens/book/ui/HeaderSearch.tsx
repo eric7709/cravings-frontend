@@ -47,7 +47,7 @@ export default function HeaderSearch() {
             {/* 4. RESULTS HINT - Optional subtle feedback */}
             {search.length > 0 && (
                 <div className="mt-2 ml-2">
-                    <p className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-400 italic">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 italic">
                         Filtering by: <span className="text-orange-500">{search}</span>
                     </p>
                 </div>

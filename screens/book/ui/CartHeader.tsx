@@ -11,7 +11,7 @@ export default function CartHeader() {
         <div className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-5 py-4 flex justify-between items-center">
             {/* 1. Clear Cart Action */}
             <button 
-                onClick={openOrderClearModal}
+                onClick={resetItems}
                 className={`flex items-center gap-2 transition-all duration-300 ${hasItems ? "opacity-100 visible" : "opacity-0 invisible"}`}
             >
                 <div className="h-8 w-8 rounded-lg bg-rose-50 flex items-center justify-center text-rose-500 hover:bg-rose-100 transition-colors">

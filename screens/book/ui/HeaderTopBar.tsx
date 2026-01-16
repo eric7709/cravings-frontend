@@ -13,12 +13,12 @@ export default function HeaderTopBar() {
     const cartEmpty = items.length == 0
     return (
         <div className="flex px-3 py-3 items-center gap-3 ">
-            <div className="h-11 text-white  border-orange-600 relative grid place-content-center text-2xl font-bold bg-orange-500 tx overflow-hidden shadow w-11 border-2  rounded-full">
+            <div className="h-11 text-white  border-orange-600 relative grid place-content-center text-2xl font-bold bg-orange-500 tx overflow-hidden shadow w-11 border-2  rounded-2xl">
                 {customer?.name[0]}
             </div>
             <div className="leading-none">
+                <p className='text-xs text-gray-500 italic'>{getGreeting()}</p>
                 <p className='text-[15px] mb-0.5 font-semibold'>Hey, {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>
-                <p className='text-xs text-gray-700 italic'>{getGreeting()}</p>
             </div>
             <div onClick={openHistoryModal} className={`h-11 w-11 ml-auto rounded-full  bg-gray-100 shadow cursor-pointer border border-gray-200 grid place-content-center`}>
                 <div className='relative'>

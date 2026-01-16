@@ -26,9 +26,9 @@ export default function MiniCartItem({ length, current, item, index }: Props) {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.2, delay: index * 0.05 }}
       className={`
-        relative flex items-center gap-4 p-3 rounded-[24px] transition-all
+        relative flex items-center gap-4 p-3 rounded-2xl transition-all
         ${isUnavailable ? "bg-slate-50 opacity-60 pointer-events-none" : "bg-white border border-slate-100 shadow-sm"}
-        ${current !== length - 1 ? "mb-4" : ""}
+        ${current !== length - 1 ? "" : ""}
       `}
     >
       {/* 1. Leading Icon/Status */}

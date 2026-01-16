@@ -78,7 +78,6 @@ export default function MenuItemCard({ menuItem }: Props) {
                             </h3>
                         </div>
                     </div>
-
                     <p className={`text-[11px] leading-snug line-clamp-2 mt-2 transition-colors ${isMatch(menuItem.description) ? "text-orange-600/80" : "text-slate-500"}`}>
                         {menuItem.description}
                     </p>
@@ -97,7 +96,7 @@ export default function MenuItemCard({ menuItem }: Props) {
                         disabled={!isAvailable}
                         onClick={handleAction}
                         className={`
-                            relative h-10 px-4 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all
+                            relative h-10 px-4 duration-300 active:scale-90 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all
                             ${!isAvailable 
                                 ? "bg-slate-100 text-slate-400" 
                                 : isInCart 

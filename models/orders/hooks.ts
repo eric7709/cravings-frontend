@@ -56,6 +56,7 @@ export const useOrders = () => {
       },
     ],
     queryFn: async (): Promise<OrdersResponse> => {
+      console.log("🔄 Fetching orders...");
       const { data } = await api.get<OrdersResponse>("/orders", {
         params: {
           cashierId,
@@ -73,15 +74,18 @@ export const useOrders = () => {
           size: contentPerPage,
         },
       });
+      console.log("✅ Orders fetched:", data);
       return data;
     },
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: true, // Add this
+    staleTime: 0, // Make queries immediately stale so they refetch
   });
-  // Only set loading while query has NO data
+
   useEffect(() => {
     setLoading(!query.data && query.isLoading);
-  }, [query.isLoading, query.data]);
-  // Update store whenever new data arrives
+  }, [query.isLoading, query.data, setLoading]);
+
   useEffect(() => {
     if (query.data) {
       const { orders, statusCounts } = query.data;
@@ -93,7 +97,8 @@ export const useOrders = () => {
       );
       setTodayOrderStats(statusCounts);
     }
-  }, [query.data]);
+  }, [query.data, setPaginationData, setTodayOrderStats]);
+
   return query;
 };
 

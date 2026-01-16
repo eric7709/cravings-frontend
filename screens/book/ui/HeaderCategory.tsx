@@ -31,7 +31,7 @@ export default function HeaderCategory() {
                                 transition-all duration-300 active:scale-95
                                 
                                 /* Text Handling */
-                                capitalize whitespace-nowrap flex-shrink-0
+                                capitalize whitespace-nowrap shrink-0
                                 
                                 /* Interactive States */
                                 ${isActive
