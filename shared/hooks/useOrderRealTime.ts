@@ -23,10 +23,10 @@ export function useOrderRealtime() {
       return;
     }
 
-    console.log("Connecting to WebSocket:", `${WEBSOCKETURL}/ws`);
+    console.log("Connecting to WebSocket:", `${WEBSOCKETURL}/cravings/ws`);
 
     const client = new Client({
-      webSocketFactory: () => new SockJS(`${WEBSOCKETURL}/ws`),
+      webSocketFactory: () => new SockJS(`${WEBSOCKETURL}/cravings/ws`),
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
