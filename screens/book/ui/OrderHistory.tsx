@@ -1,3 +1,5 @@
+"use client";
+
 import { useCustomerOrdersToday } from "@/models/orders/hooks";
 import { useBook } from "../store/useBook";
 import { X, Package } from "lucide-react";
@@ -9,79 +11,97 @@ export default function OrderHistory() {
   const { data, isError } = useCustomerOrdersToday();
   const { activeModal, closeModal } = useBook();
 
-  if (isError) return <p className="p-3 text-sm text-red-600">Failed to load</p>;
+  if (isError) return (
+    <div className="p-10 text-center text-[9px] font-black uppercase text-rose-500 tracking-[0.2em]">
+      System Error
+    </div>
+  );
 
   return (
     <div
-      className={`fixed inset-0 z-500 bg-gray-50 overflow-y-auto transition-all duration-300 ${activeModal === "history" ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+      className={`fixed inset-0 z-100 bg-white transition-all duration-500 ease-in-out ${
+        activeModal === "history" ? "translate-x-0" : "translate-x-full"
+      }`}
     >
-      {/* Header */}
-      <div className="sticky top-0 bg-white shadow-sm">
-        <div className="flex items-center justify-between px-4 py-3">
-          <h2 className="text-lg font-bold">Order History</h2>
-          <button
-            onClick={closeModal}
-            className="p-1.5 rounded-full hover:bg-gray-100"
-          >
-            <X size={20} />
-          </button>
+      {/* 1. HEADER */}
+      <div className="flex items-center  justify-between px-6 py-5 border-b border-slate-200">
+        <div>
+          <h2 className="text-[15px] font-black text-slate-900 uppercase tracking-tight">Activity</h2>
+          <p className="text-[9px] font-black text-emerald-600 uppercase tracking-[0.3em]">Today</p>
         </div>
+        <button onClick={closeModal} className="text-slate-900 active:scale-90 transition-all">
+          <X size={20} strokeWidth={2.5} />
+        </button>
       </div>
 
-      {/* Orders */}
-      <div className="px-3 pt-3 space-y-3 pb-8">
+      {/* 2. THE FEED */}
+      <div className="overflow-y-auto h-[calc(100vh-80px)] no-scrollbar pt-4 px-4 pb-10">
         {data?.length === 0 ? (
-          <p className="text-center text-gray-500 py-12 text-sm">No orders today</p>
+          <div className="py-20 text-center opacity-20 text-[10px] font-black uppercase tracking-widest">No Activity</div>
         ) : (
-          data?.map((order) => {
-            const config = statusConfig(order.orderStatus as ORDER_STATUS);
-            return (
-              <div
-                key={order.invoiceNumber}
-                className="bg-white rounded-xl shadow-md overflow-hidden"
-              >
-                {/* Header */}
-                <div className={`bg-linear-to-r ${config.bg} px-4 py-2`}>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2.5 h-2.5 rounded-full ${config.dot}`} />
-                      <p className="font-bold text-sm">#{order.invoiceNumber}</p>
-                    </div>
-                    <p className="font-bold text-base">
-                      ₦{order.total.toLocaleString()}
-                    </p>
-                  </div>
-                  <p className="text-xs font-medium mt-1 ml-5">{config.text}</p>
-                </div>
-                {/* Items */}
-                <div className="p-3 space-y-2">
-                  {order.items.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex justify-between items-center bg-gray-50 rounded-lg px-3 py-2.5"
-                    >
-                      <div className="flex-1 flex">
-                        <div className="flex items-center gap-2 mt-1 text-xs text-gray-900">
-                          <span>x{item.quantity}</span>
-                          {item.takeOut && (
-                            <span className="flex items-center gap-1 bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
-                              <Package size={12} />
-                              Takeout
-                            </span>
-                          )}
-                          <p className="font-medium text-sm">{item.menuItemName}</p>
-                        </div>
+          <div className="flex flex-col gap-3">
+            {data?.map((order) => {
+              const config = statusConfig(order.orderStatus as ORDER_STATUS);
+
+              return (
+                <div key={order.invoiceNumber} className="flex flex-col p-5 rounded-xl border-2 border-slate-100 bg-white">
+                  
+                  {/* TOP ROW: Metadata */}
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none">
+                        REF #{order.invoiceNumber}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <div className={`h-2.5 w-2.5 rounded-full ${config.dot} animate-pulse shadow-sm shadow-current/40`} />
+                        <span className={`text-[11px] font-black uppercase tracking-widest ${config.text}`}>
+                          {config.text}
+                        </span>
                       </div>
-                      <p className="font-semibold text-xs">
-                        {formatPrice(item.price)}
+                    </div>
+
+                    <div className="text-right">
+                      <p className="text-lg font-black text-slate-900 tracking-tighter leading-none">
+                        <span className="text-emerald-600 text-[13px] mr-0.5 font-black">₦</span>
+                        {formatPrice(order.total, true)}
                       </p>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* ITEM LIST: Tight and Aligned */}
+                  <div className="space-y-3 pt-3 border-t border-slate-50">
+                    {order.items.map((item) => (
+                      <div key={item.id} className="flex justify-between items-center group">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[11px] font-black text-orange-500 tabular-nums">
+                             {item.quantity}×
+                          </span>
+                          
+                          <div className="flex items-center gap-2">
+                            <span className="text-[13px] font-bold text-slate-800 uppercase tracking-tight leading-none">
+                              {item.menuItemName}
+                            </span>
+                            
+                            {/* INLINE TAKEOUT TAG */}
+                            {item.takeOut && (
+                              <div className="flex items-center gap-1 bg-slate-50 border border-slate-100 px-1.5 py-0.5 rounded text-slate-400">
+                                <Package size={10} />
+                                <span className="text-[7px] font-black uppercase tracking-widest">Pack</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        <p className="text-[11px] font-bold text-slate-400 tabular-nums">
+                           {formatPrice(item.price * item.quantity, true)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })
+              );
+            })}
+          </div>
         )}
       </div>
     </div>

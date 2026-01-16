@@ -1,41 +1,65 @@
-import React from 'react'
-import { TbShoppingBag } from 'react-icons/tb'
-import { useBook } from '../store/useBook'
-import { BsClockHistory } from "react-icons/bs";
-import { getGreeting } from '@/shared/utils/getGreeting';
+"use client";
+
+import React from 'react';
+import { useBook } from '../store/useBook';
 import { useCustomerOrdersToday } from '@/models/orders/hooks';
-import Image from 'next/image';
+import { History, ShoppingBag } from 'lucide-react';
 
 export default function HeaderTopBar() {
-    const { items, customer, openHistoryModal, openCartModal, } = useBook()
+    const { items, customer, openHistoryModal, openCartModal } = useBook();
     const { data } = useCustomerOrdersToday();
-    const pendingOrders = data?.filter(el => el.orderStatus == "PENDING").length ?? 0
-    const cartEmpty = items.length == 0
+    
+    const pendingOrders = data?.filter(el => el.orderStatus === "PENDING").length ?? 0;
+    const cartEmpty = items.length === 0;
+
     return (
-        <div className="flex px-3 py-3 items-center gap-3 ">
-            <div className="h-11 text-white  border-orange-600 relative grid place-content-center text-2xl font-bold bg-orange-500 tx overflow-hidden shadow w-11 border-2  rounded-2xl">
-                {customer?.name[0]}
+        <div className="flex px-4 py-4 items-center gap-3 bg-white">
+            
+            {/* 1. COMPACT AVATAR */}
+            <div className="h-10 w-10 shrink-0 rounded-xl bg-orange-500 text-white flex items-center justify-center text-lg font-black shadow-sm overflow-hidden">
+                {customer?.name[0] || "C"}
             </div>
-            <div className="leading-none">
-                <p className='text-xs text-gray-500 italic'>{getGreeting()}</p>
-                <p className='text-[15px] mb-0.5 font-semibold'>Hey, {customer?.name.split(" ")[0] ?? "and Welcome"} 👋</p>
+
+            {/* 2. TYPOGRAPHY */}
+            <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-400 leading-none mb-1">
+                    Welcome
+                </p>
+                <h2 className="text-sm font-black text-slate-900 leading-none truncate">
+                    Hey, {customer?.name.split(" ")[0] ?? "Friend"} 👋
+                </h2>
             </div>
-            <div onClick={openHistoryModal} className={`h-11 w-11 ml-auto rounded-full  bg-gray-100 shadow cursor-pointer border border-gray-200 grid place-content-center`}>
-                <div className='relative'>
-                    <BsClockHistory />
-                    <div className={`duration-700 rounded-full  ${pendingOrders == 0 ? "h-0 w-0 opacity-0 invisible" : "opacity-100 visible w-4 h-4"} absolute -top-2 -right-2  text-xs text-white font-semibold bg-red-600 grid place-content-center`}>
-                        <p>{pendingOrders}</p>
+
+            {/* 3. MINIMALIST ACTION ICONS */}
+            <div className="flex items-center gap-4 pr-1">
+                {/* History Icon */}
+                <button 
+                    onClick={openHistoryModal} 
+                    className="relative flex items-center justify-center text-slate-900 hover:text-orange-500 transition-colors"
+                >
+                    <History size={22} strokeWidth={2.2} />
+                    <div className={`
+                        duration-700 rounded-full bg-rose-500 absolute -top-1.5 -right-1.5 text-[9px] text-white font-black flex items-center justify-center border-2 border-white
+                        ${pendingOrders === 0 ? "h-0 w-0 opacity-0 invisible" : "opacity-100 visible w-4.5 h-4.5"}
+                    `}>
+                        {pendingOrders}
                     </div>
-                </div>
-            </div>
-            <div onClick={openCartModal} className="h-11 w-11  rounded-full  bg-gray-100 shadow cursor-pointer border border-gray-200 grid place-content-center">
-                <div className='relative'>
-                    <TbShoppingBag className='text-xl' />
-                    <div className={`duration-700 rounded-full  ${cartEmpty ? "h-0 w-0 opacity-0 invisible" : "opacity-100 visible w-4 h-4"} absolute -top-1 -right-1  text-xs text-white font-semibold bg-red-600 grid place-content-center`}>
-                        <p>{items.length}</p>
+                </button>
+
+                {/* Cart Icon - No background, just the icon */}
+                <button 
+                    onClick={openCartModal} 
+                    className="relative flex items-center justify-center text-slate-900 hover:text-orange-500 transition-colors"
+                >
+                    <ShoppingBag size={22} strokeWidth={2.2} />
+                    <div className={`
+                        duration-700 rounded-full bg-orange-500 absolute -top-1.5 -right-1.5 text-[9px] text-white font-black flex items-center justify-center border-2 border-white
+                        ${cartEmpty ? "h-0 w-0 opacity-0 invisible" : "opacity-100 visible w-4.5 h-4.5"}
+                    `}>
+                        {items.length}
                     </div>
-                </div>
+                </button>
             </div>
         </div>
-    )
+    );
 }

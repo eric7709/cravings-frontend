@@ -9,10 +9,10 @@ export default function HeaderSearch() {
     return (
         <div className="px-4 py-2">
             <div className={`
-                relative flex items-center h-12 w-full transition-all duration-300 rounded-2xl border
+                relative flex items-center h-12 w-full transition-all duration-300 rounded-xl border-2 border-orange-500
                 ${search 
                     ? "border-orange-400 bg-white shadow-lg shadow-orange-500/10" 
-                    : "border-slate-100 bg-slate-50 shadow-sm"
+                    : "border-slate-200 bg-slate-50 shadow-sm"
                 }
             `}>
                 {/* 1. SEARCH ICON - Animates color based on focus */}
@@ -37,7 +37,7 @@ export default function HeaderSearch() {
                 {search && (
                     <button
                         onClick={() => setSearch("")}
-                        className="p-2 mr-2 rounded-xl bg-slate-100 text-slate-500 hover:bg-orange-50 hover:text-orange-500 transition-all active:scale-90"
+                        className=" absolute right-2.5 rounded-xl  text-slate-500  transition-all active:scale-90"
                     >
                         <LuX size={16} strokeWidth={3} />
                     </button>

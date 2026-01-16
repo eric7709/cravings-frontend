@@ -26,14 +26,14 @@ export default function MiniCartItem({ length, current, item, index }: Props) {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.2, delay: index * 0.05 }}
       className={`
-        relative flex items-center gap-4 p-3 rounded-2xl transition-all
-        ${isUnavailable ? "bg-slate-50 opacity-60 pointer-events-none" : "bg-white border border-slate-100 shadow-sm"}
+        relative flex items-center gap-4 p-3 rounded-2xl border-2  transition-all
+        ${isUnavailable ? "bg-slate-50 opacity-60 pointer-events-none" : "bg-white border-orange-100  shadow-sm"}
         ${current !== length - 1 ? "" : ""}
       `}
     >
       {/* 1. Leading Icon/Status */}
       <div className={`
-        relative h-16 w-16 shrink-0 rounded-2xl flex items-center justify-center
+        relative h-16 w-16 shrink-0 rounded-xl flex items-center justify-center
         ${isUnavailable ? "bg-slate-200" : "bg-orange-50"}
       `}>
         {takeOut ? (

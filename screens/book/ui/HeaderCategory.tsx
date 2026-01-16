@@ -27,7 +27,7 @@ export default function HeaderCategory() {
                             className={`
                                 /* Shape & Spacing */
                                 inline-flex items-center justify-center
-                                px-6 py-2.5 rounded-2xl text-[13px] font-bold 
+                                px-6 py-2.5 rounded-full text-[13px] font-bold 
                                 transition-all duration-300 active:scale-95
                                 
                                 /* Text Handling */
