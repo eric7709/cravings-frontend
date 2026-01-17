@@ -106,14 +106,12 @@ export default function MenuItemCard({ menuItem }: Props) {
                             {isInCart ? (
                                 <>
                                     <Trash2 size={16} />
-                                    <span className="hidden sm:inline">Remove</span>
                                 </>
                             ) : !isAvailable ? (
                                 <Ban size={16} />
                             ) : (
                                 <>
                                     <Plus size={16} />
-                                    <span className="hidden sm:inline">Add</span>
                                 </>
                             )}
                         </div>
