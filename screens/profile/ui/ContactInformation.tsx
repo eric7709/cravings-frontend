@@ -65,8 +65,8 @@ export function ContactInformation({ user }: Props) {
                 </div>
 
                 <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-orange-50 to-orange-100 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-orange-600" />
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-green-50 to-green-100 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-5 h-5 text-green-600" />
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">

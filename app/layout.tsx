@@ -31,7 +31,7 @@ export default function RootLayout({
           <RealTimeProvider>
             <UserProvider>
               <CartProvider>
-                {children}
+                  {children}
               </CartProvider>
             </UserProvider>
           </RealTimeProvider>

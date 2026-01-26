@@ -23,7 +23,7 @@ export default function Header() {
         sticky top-0 z-40
         transition-all duration-300
         border-gray-200
-        ${scrolled ? "border-b bg-white/30 backdrop-blur-xl" : "bg-transparent"}
+        border-b bg-white/30 backdrop-blur-xl
       `}
     >
       <HeaderTopBar />

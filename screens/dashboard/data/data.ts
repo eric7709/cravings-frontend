@@ -4,10 +4,9 @@ export const COLORS = [
   "#0A3D62", // dark blue
   "#B8860B", // dark yellow (golden)
   "#5E2B97", // dark purple
-  "#C24G00", // dark orange
+  "#C24G00", // dark green
   "#1B4F72", // deep navy blue
 ];
-
 
 // Single shuffle, then scatter into 3 visually balanced groups
 const shuffled = [...COLORS].sort(() => Math.random() - 0.5);

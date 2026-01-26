@@ -13,7 +13,6 @@ import { useEffect } from "react";
 
 export const useMenuItems = () => {
   const { setMenuItems, setLoading } = useMenuItemStore();
-
   const query = useQuery({
     queryKey: ["menuItems"],
     queryFn: async (): Promise<MenuItem[]> => {
@@ -24,21 +23,16 @@ export const useMenuItems = () => {
     },
     placeholderData: keepPreviousData,
     refetchOnWindowFocus: true,
-    staleTime: 0, // Make queries immediately stale so they refetch
+    staleTime: 0, 
   });
-
-  // Only set loading while query has NO data
   useEffect(() => {
     setLoading(!query.data && query.isLoading);
   }, [query.isLoading, query.data, setLoading]);
-
-  // Update store whenever new data arrives
   useEffect(() => {
     if (query.data) {
       setMenuItems(query.data);
     }
   }, [query.data, setMenuItems]);
-
   return query;
 };
 

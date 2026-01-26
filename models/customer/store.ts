@@ -59,7 +59,6 @@ export const useCustomerStore = create<CustomerStore>((set) => ({
       );
       return { customers: updated };
     }),
-
   // --------------------
   // FILTERING
   // --------------------

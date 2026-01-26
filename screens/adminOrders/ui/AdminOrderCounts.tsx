@@ -6,7 +6,7 @@ import { formatPrice } from '@/shared/utils/formatPrice';
 
 type Props = { todayOrderStats: TodayOrderStats };
 
-export default function AdminHeaderCounts({ todayOrderStats }: Props) {
+export default function AdminOrderCounts({ todayOrderStats }: Props) {
   const totalOrders =
     todayOrderStats.pending +
     todayOrderStats.preparing +

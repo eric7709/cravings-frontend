@@ -9,7 +9,6 @@ export default function CartHeader() {
 
     return (
         <div className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-xl border-b border-slate-50 px-6 py-5 flex justify-between items-center">
-            
             {/* 1. CLEAR ACTION - Minimalist & Raw */}
             <div className="w-10"> {/* Fixed width container to keep title centered */}
                 <button 

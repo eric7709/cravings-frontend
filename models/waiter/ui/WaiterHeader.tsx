@@ -24,11 +24,10 @@ export default function WaiterHeader() {
                 <Link
                   key={href}
                   href={href}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
-                    isActive(href)
-                      ? 'bg-orange-50 text-orange-700'
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${isActive(href)
+                      ? 'bg-green-50 text-green-700'
                       : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   {label}
                 </Link>
@@ -43,11 +42,11 @@ export default function WaiterHeader() {
             </button>
             <div ref={ref}>
               <div
-                
+
                 onClick={() => setOpened(!opened)}
                 className="flex items-center relative gap-3 cursor-pointer"
               >
-                <div className="h-11 w-11 rounded-full bg-orange-600 text-white grid place-content-center font-semibold shadow">
+                <div className="h-11 w-11 rounded-full bg-green-600 text-white grid place-content-center font-semibold shadow">
                   {user?.firstName?.[0]}
                   {user?.lastName?.[0]}
                 </div>
@@ -74,12 +73,11 @@ export default function WaiterHeader() {
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 xl:hidden ${
-          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 xl:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
         onClick={() => setMobileMenuOpen(false)}
       />
-      <WaiterMobileDrawer mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} user={user} navLinks={navLinks} isActive={isActive} navDropDownLinks={navDropDownLinks} role={role}/>
+      <WaiterMobileDrawer mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} user={user} navLinks={navLinks} isActive={isActive} navDropDownLinks={navDropDownLinks} role={role} />
     </>
   );
 }

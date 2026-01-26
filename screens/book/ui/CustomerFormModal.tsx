@@ -23,11 +23,11 @@ export default function CustomerFormModal() {
         className="w-87.5 rounded-3xl flex flex-col shadow-lg overflow-hidden"
       >
         {/* Header */}
-        <div className="text-center p-4 bg-orange-500">
+        <div className="text-center p-4 bg-green-500">
           <h2 className="text-xl font-bold text-white">
             Customer Information
           </h2>
-          <p className="text-orange-100 text-sm mt-1">
+          <p className="text-green-100 text-sm mt-1">
             Please provide your details to complete the order.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function CustomerFormModal() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full bg-orange-500 text-white py-3.5 rounded-xl font-semibold hover:bg-orange-600 transition shadow-md"
+            className="w-full bg-green-500 text-white py-3.5 rounded-xl font-semibold hover:bg-green-600 transition shadow-md"
           >
             {isPending ? "Submitting..." : "Confirm Details"}
           </button>

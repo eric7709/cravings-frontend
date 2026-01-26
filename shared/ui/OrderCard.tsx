@@ -56,7 +56,7 @@ export default function OrderCard({ order }: Props) {
     <motion.div
       variants={cardVariants}
       onDoubleClick={() => setShowDeleteBtn((prev) => !prev)}
-      className={`select-none ${showDeleteBtn ? "overflow-hidden" : "overflow-y-auto"} shrink-0 flex flex-col gap-3 rounded-3xl border-2 shadow-md text-sm bg-white/20 ${statusConfig.border}`}
+      className={` ${showDeleteBtn ? "overflow-hidden" : "overflow-y-auto"} shrink-0 flex flex-col gap-3 rounded-3xl border-2 shadow-md text-sm bg-white/20 border-gray-200`}
       whileHover={{ scale: 1.015 }}
     >
       <OrderCardHeader order={order} statusConfig={statusConfig} />

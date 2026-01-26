@@ -43,9 +43,9 @@ export default function WaiterMobileDrawer({ isActive, mobileMenuOpen, navDropDo
           </button>
         </div>
         {/* User Profile Section */}
-        <div className="px-6 py-4 border-b border-gray-200 bg-linear-to-br from-orange-50 to-emerald-50">
+        <div className="px-6 py-4 border-b border-gray-200 bg-linear-to-br from-green-50 to-emerald-50">
           <div className="flex items-center gap-4">
-            <div className="h-14 w-14 rounded-full bg-orange-600 text-white grid place-content-center font-semibold text-xl shadow-lg">
+            <div className="h-14 w-14 rounded-full bg-green-600 text-white grid place-content-center font-semibold text-xl shadow-lg">
               {user?.firstName?.[0]}
               {user?.lastName?.[0]}
             </div>
@@ -70,7 +70,7 @@ export default function WaiterMobileDrawer({ isActive, mobileMenuOpen, navDropDo
                 href={href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive(href)
-                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
+                  ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
                   : 'text-gray-700 hover:bg-gray-100'
                   }`}
               >

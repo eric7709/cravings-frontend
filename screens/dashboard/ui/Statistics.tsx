@@ -1,7 +1,6 @@
 "use client";
 
 import { useDashboardStore } from "@/models/dashboard/store";
-import { getComparisonText } from "@/shared/utils/getComparisonText";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -75,7 +74,7 @@ export default function Statistics() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`p-6 rounded-3xl group shadow border hover:text-white hover:scale-105 duration-300 relative overflow-hidden border-gray-200 `}
+            className={`p-6 rounded-3xl group  ${bgClass} shadow border hover:text-white hover:scale-105 duration-300 relative overflow-hidden border-gray-200 `}
 
           >
             <div className={`h-full w-full ${bgClass} absolute top-0 left-0 -z-2`} />

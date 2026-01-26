@@ -4,7 +4,7 @@ import { useClickOutside } from "@/shared/hooks/useClickOutside";
 import { useRef, useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti"
 
-export default function AdminHeaderSort() {
+export default function AdminOrderSort() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   useClickOutside(dropdownRef as any, () => setOpen(false), open);
@@ -18,10 +18,10 @@ export default function AdminHeaderSort() {
       </div>
       <div className={`absolute top-[110%] left-0  xl:left-auto xl:right-0 duration-300 bg-white  w-full xl:w-64 rounded-xl shadow-md border-2 border-gray-200 ${open ? "opacity-100 visible translate-y-0" : "invisible translate-y-3 opacity-0"}`}>
         <div className="grid gap-3 text-[13px] grid-cols-2 p-3">
-          <p onClick={() => setDirection("asc")} className={`flex duration-300 cursor-pointer justify-center border-2 rounded-full py-2 font-medium ${direction == "asc" ? "bg-blue-500 text-white border-blue-700" : "border-gray-200"}`}>ASC</p>
-          <p onClick={() => setDirection("desc")} className={`flex duration-300 cursor-pointer justify-center border-2 rounded-full py-2 font-medium ${direction == "desc" ? "bg-blue-500 text-white border-blue-700" : "border-gray-200"}`}>DESC</p>
+          <p onClick={() => setDirection("asc")} className={`flex duration-300 cursor-pointer justify-center border-2 rounded-xl py-2 font-medium ${direction == "asc" ? "bg-blue-500 text-white border-blue-700" : "border-gray-200"}`}>ASC</p>
+          <p onClick={() => setDirection("desc")} className={`flex duration-300 cursor-pointer justify-center border-2 rounded-xl py-2 font-medium ${direction == "desc" ? "bg-blue-500 text-white border-blue-700" : "border-gray-200"}`}>DESC</p>
         </div>
-        <div className=" overflow-y-auto">
+        <div className="h-60 overflow-y-auto">
           {data.map((el) => (
             <div key={el.value} className=" cursor-pointer  duration-300 border-gray-200 text-[13px] font-medium">
               <p onClick={() => setSortBy(el.value)} className={`py-2 px-4 duration-300 ${sortBy == el.value ? "bg-blue-600 font-medium text-white" : "text-gray-900 hover:bg-blue-100 hover:text-black"}`}>{el.label}</p>

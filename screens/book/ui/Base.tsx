@@ -10,6 +10,7 @@ import { useMenuItems } from '@/models/menuItems/hook'
 import { ConfirmOrderModal } from './ConfirmOrderModal'
 import { useCategories } from '@/models/categories/hook'
 import { useTables } from '@/models/table/hooks'
+import { UnavailableErrorModal } from './UnavailableErrorModal'
 
 type Props = {
     tableId: string
@@ -27,6 +28,7 @@ export default function Base({ tableId }: Props) {
                 <OrderHistory />
                 <OrderSuccessModal />
                 <ConfirmOrderModal />
+                <UnavailableErrorModal />
                 <CustomerFormModal />
             </div>
         </TableWrapper>

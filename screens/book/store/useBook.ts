@@ -1,11 +1,9 @@
 import { create } from "zustand";
 import { storeCustomer } from "@/shared/utils/encryption";
-import { Book } from "../types/types";
+import { Book} from "../types/types";
 
 export const useBook = create<Book>((set, get) => ({
   items: [],
-  unavailables: [],
-  unavailableError: false,
   category: "all",
   search: "",
   customer: null,
@@ -13,33 +11,24 @@ export const useBook = create<Book>((set, get) => ({
   table: null,
   activeModal: null,
   tableId: null,
+
+  // ---- Logic: Synchronize Availability ----
+  
+
   // ---- Setters ----
   setCategory: (category) => set({ category }),
   setCustomerOrders: (customerOrders) => set({ customerOrders }),
   setSearch: (search) => set({ search }),
   setCustomer: (customer) => {
-    storeCustomer(customer); // persist in localStorage
-    set({ customer }); // reactive
+    storeCustomer(customer);
+    set({ customer });
   },
-  setTable: (table) => {
-    set({ table }); // reactive
-  },
-  setUnavailables: (unavailables) => {
-    set({ unavailables }); // reactive
-  },
-  unavailableErrorTrue: () => {
-    set({ unavailableError: true }); // reactive
-  },
-  unavailableErrorFalse: () => {
-    set({ unavailableError: false }); // reactive
-  },
-  setTableId: (tableId) => {
-    set({ tableId }); // reactive
-  },
-  resetItems: () => {
-    set({ items: [] });
-  },
+  setTable: (table) => set({ table }),
+  setTableId: (tableId) => set({ tableId }),
+
+  // ---- Modal Controls ----
   openCreateCustomerModal: () => set({ activeModal: "customer" }),
+  openUnavailableErrorModal: () => set({ activeModal: "error" }),
   openOrderConfirmationModal: () => set({ activeModal: "confirm" }),
   openCartModal: () => set({ activeModal: "cart" }),
   openHistoryModal: () => set({ activeModal: "history" }),
@@ -56,7 +45,6 @@ export const useBook = create<Book>((set, get) => ({
     } else {
       items.push({ ...cartItem, quantity: cartItem.quantity || 1 });
     }
-
     set({ items });
   },
 
@@ -76,8 +64,14 @@ export const useBook = create<Book>((set, get) => ({
         .filter((el) => el.quantity > 0),
     }),
 
-  removeFromCart: (id) =>
-    set({ items: get().items.filter((el) => el.menuItemId !== id) }),
+  removeFromCart: (id) => {
+    const currentItems = get().items.filter((el) => el.menuItemId !== id);
+    set({
+      items: currentItems,
+    });
+  },
+
+  resetItems: () => set({ items: []}),
 
   toggleTakeOut: (id) =>
     set({
@@ -87,8 +81,6 @@ export const useBook = create<Book>((set, get) => ({
     }),
 
   // ---- Computed ----
-  getTotal: () =>
-    get().items.reduce((total, el) => total + el.quantity * el.price, 0),
-
+  getTotal: () => get().items.reduce((total, el) => total + el.quantity * el.price, 0),
   getTotalQty: () => get().items.reduce((total, el) => total + el.quantity, 0),
 }));

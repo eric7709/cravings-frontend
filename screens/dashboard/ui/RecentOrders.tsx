@@ -12,10 +12,10 @@ const idColors = [
   "from-violet-500 to-purple-600",
   "from-blue-500 to-cyan-600",
   "from-emerald-500 to-teal-600",
-  "from-orange-500 to-red-600",
+  "from-green-500 to-red-600",
   "from-pink-500 to-rose-600",
   "from-indigo-500 to-blue-600",
-  "from-amber-500 to-orange-600",
+  "from-amber-500 to-green-600",
   "from-fuchsia-500 to-pink-600",
 ];
 
@@ -26,7 +26,7 @@ export default function RecentOrders() {
   useEffect(() => {
     if (data)
       setOrders(data)
-      console.log(data, "RECENT")
+    console.log(data, "RECENT")
   }, [isLoading, orders])
 
   if (isLoading) return <Loader2 />

@@ -11,7 +11,7 @@ export function ProfileBanner({ role }: Props) {
             ROLE_ADMIN: "from-purple-600 via-purple-500 to-pink-500",
             ROLE_CASHIER: "from-blue-600 via-blue-500 to-cyan-500",
             ROLE_WAITER: "from-green-600 via-green-500 to-teal-500",
-            ROLE_MANAGER: "from-orange-600 via-orange-500 to-red-500"
+            ROLE_MANAGER: "from-green-600 via-green-500 to-red-500"
         };
         return bannerColorMap[role] || "from-gray-600 via-gray-500 to-gray-400";
     };

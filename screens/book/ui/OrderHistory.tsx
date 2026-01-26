@@ -19,9 +19,8 @@ export default function OrderHistory() {
 
   return (
     <div
-      className={`fixed inset-0 z-100 bg-white transition-all duration-500 ease-in-out ${
-        activeModal === "history" ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed inset-0 z-100 bg-white transition-all duration-500 ease-in-out ${activeModal === "history" ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       {/* 1. HEADER */}
       <div className="flex items-center  justify-between px-6 py-5 border-b border-slate-200">
@@ -45,7 +44,7 @@ export default function OrderHistory() {
 
               return (
                 <div key={order.invoiceNumber} className="flex flex-col p-5 rounded-xl border-2 border-slate-100 bg-white">
-                  
+
                   {/* TOP ROW: Metadata */}
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex flex-col gap-1.5">
@@ -73,15 +72,15 @@ export default function OrderHistory() {
                     {order.items.map((item) => (
                       <div key={item.id} className="flex justify-between items-center group">
                         <div className="flex items-center gap-3">
-                          <span className="text-[11px] font-black text-orange-500 tabular-nums">
-                             {item.quantity}×
+                          <span className="text-[11px] font-black text-green-500 tabular-nums">
+                            {item.quantity}×
                           </span>
-                          
+
                           <div className="flex items-center gap-2">
                             <span className="text-[13px] font-bold text-slate-800 uppercase tracking-tight leading-none">
                               {item.menuItemName}
                             </span>
-                            
+
                             {/* INLINE TAKEOUT TAG */}
                             {item.takeOut && (
                               <div className="flex items-center gap-1 bg-slate-50 border border-slate-100 px-1.5 py-0.5 rounded text-slate-400">
@@ -93,7 +92,7 @@ export default function OrderHistory() {
                         </div>
 
                         <p className="text-[11px] font-bold text-slate-400 tabular-nums">
-                           {formatPrice(item.price * item.quantity, true)}
+                          {formatPrice(item.price * item.quantity, true)}
                         </p>
                       </div>
                     ))}

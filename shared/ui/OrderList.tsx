@@ -8,12 +8,13 @@ import { useOrderStore } from "@/models/orders/store";
 import { useGetRole } from "../hooks/useGetRole";
 
 export default function OrderList() {
-  const { data, } = useOrders();
+  const { data } = useOrders();
   const { loading, hasHydrated } = useOrderStore()
   const role = useGetRole()
   const rawOrders = data?.orders.content;
 
   const grid = role=="admin" ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4": "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+
 
   const orders =
     role === "waiter"

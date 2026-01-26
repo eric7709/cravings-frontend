@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useOrderStore } from '@/models/orders/store';
 
-export default function AdminHeaderPagination() {
+export default function AdminOrderPagination() {
   const {
     currentPage,
     setCurrentPage,

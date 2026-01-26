@@ -13,7 +13,7 @@ type Props = {
 export default function MenuItemCard({ menuItem }: Props) {
     const { addToCart, items, removeFromCart } = useBook();
     const cartItem = items.find((item) => item.menuItemId === menuItem.id);
-    
+
     const isAvailable = menuItem.status === "AVAILABLE";
     const isInCart = !!cartItem;
 
@@ -39,20 +39,20 @@ export default function MenuItemCard({ menuItem }: Props) {
             border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300
             ${!isAvailable ? 'opacity-70' : ''}
         `}>
-            
+
             {/* 1. SIDE IMAGE SECTION */}
             <div className="relative w-32 sm:w-44 shrink-0 overflow-hidden bg-slate-50">
                 {menuItem.imageUrl ? (
-                    <Image 
-                        fill 
-                        src={menuItem.imageUrl} 
-                        alt={menuItem.name} 
-                        className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                    <Image
+                        fill
+                        src={menuItem.imageUrl}
+                        alt={menuItem.name}
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
                     <div className="h-full w-full grid place-content-center text-4xl opacity-30">🍽️</div>
                 )}
-                
+
                 {!isAvailable && (
                     <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] grid place-content-center p-2 text-center">
                         <span className="text-[8px] font-black uppercase tracking-[0.2em] text-white">Unavailable</span>
@@ -95,10 +95,10 @@ export default function MenuItemCard({ menuItem }: Props) {
                         onClick={handleAction}
                         className={`
                             relative h-9 w-9 grid place-content-center rounded-full font-black text-[10px] uppercase tracking-widest transition-all
-                            ${!isAvailable 
-                                ? "bg-slate-100 text-slate-400" 
-                                : isInCart 
-                                    ? "bg-rose-500 text-white shadow-lg shadow-rose-100 active:scale-95" 
+                            ${!isAvailable
+                                ? "bg-slate-100 text-slate-400"
+                                : isInCart
+                                    ? "bg-rose-500 text-white shadow-lg shadow-rose-100 active:scale-95"
                                     : "bg-slate-900 text-white shadow-lg shadow-slate-100 active:scale-95 hover:bg-black"}
                         `}
                     >
@@ -121,7 +121,7 @@ export default function MenuItemCard({ menuItem }: Props) {
 
             {/* In-Cart Indicator Dot */}
             {isInCart && isAvailable && (
-                <div className="absolute top-3 right-3 h-2 w-2 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]" />
+                <div className="absolute top-3 right-3 h-2 w-2 bg-green-500 rounded-full shadow-[0_0_8px_#f97316]" />
             )}
         </div>
     );

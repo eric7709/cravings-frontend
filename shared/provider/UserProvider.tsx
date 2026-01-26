@@ -10,14 +10,10 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-  const { setCashierId, setWaiterId } = useOrderStore();
+  const { setCashierId, setWaiterId,  } = useOrderStore();
   const { setUser, setLoading } = useUserStore();
   const { data, isLoading, isError } = useMe();
-
   useEffect(() => {
-    // ---------------------------
-    // Load user data
-    // ---------------------------
     setLoading(isLoading);
     if (data) {
       setUser(data);

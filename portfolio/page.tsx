@@ -55,8 +55,8 @@ const Portfolio = () => {
     { name: 'Zoom', category: 'Video Conferencing', icon: '🎥', color: 'from-blue-400 to-blue-600' },
     { name: 'Calendly', category: 'Scheduling', icon: '📅', color: 'from-teal-500 to-blue-600' },
     { name: 'Notion', category: 'Documentation', icon: '📝', color: 'from-gray-600 to-gray-800' },
-    { name: 'Monday.com', category: 'Workflow', icon: '⚡', color: 'from-orange-500 to-red-600' },
-    { name: 'HubSpot', category: 'CRM', icon: '🎯', color: 'from-orange-400 to-orange-600' },
+    { name: 'Monday.com', category: 'Workflow', icon: '⚡', color: 'from-green-500 to-red-600' },
+    { name: 'HubSpot', category: 'CRM', icon: '🎯', color: 'from-green-400 to-green-600' },
     { name: 'Canva', category: 'Design', icon: '🎨', color: 'from-blue-400 to-pink-500' },
     { name: 'Dropbox', category: 'File Storage', icon: '📦', color: 'from-blue-500 to-indigo-600' },
     { name: 'QuickBooks', category: 'Accounting', icon: '💰', color: 'from-blue-500 to-emerald-600' },
@@ -190,7 +190,7 @@ const Portfolio = () => {
               { label: 'Years Experience', value: '5+', icon: '🎯', color: 'from-blue-500 to-blue-500' },
               { label: 'Happy Clients', value: '100+', icon: '😊', color: 'from-blue-500 to-pink-500' },
               { label: 'Projects Completed', value: '500+', icon: '✅', color: 'from-blue-500 to-emerald-500' },
-              { label: 'Response Time', value: '<2hrs', icon: '⚡', color: 'from-yellow-500 to-orange-500' },
+              { label: 'Response Time', value: '<2hrs', icon: '⚡', color: 'from-yellow-500 to-green-500' },
             ].map((stat, i) => (
               <div
                 key={i}

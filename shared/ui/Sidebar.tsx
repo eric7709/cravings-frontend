@@ -12,13 +12,13 @@ export default function Sidebar() {
   return (
     <aside
       className="
-        h-dvh hidden lg:block sticky top-0
+        h-dvh hidden overflow-y-auto lg:block sticky top-0
         w-72
-         border-r border-slate-200/80
+         border-r bg-white border-slate-200/80
         transition-all duration-500 ease-in-out
       "
     >
-      <div className="px-4 py-6">
+      <div className="px-4 h-22.5 border-b border-gray-300 flex items-center">
         <Logo />
       </div>
       <nav className="px-3 mt-3 space-y-1.5">
@@ -47,7 +47,7 @@ export default function Sidebar() {
                     className={`
                       h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-300
                       ${isActive
-                        ? "bg-linear-to-br from-orange-400 via-red-500 to-pink-500 shadow-md shadow-blue-500/30"
+                        ? "bg-linear-to-br from-green-400 via-emerald-500 to-green-500 shadow-md shadow-blue-500/30"
                         : "bg-slate-100 group-hover:bg-slate-200"
                       }
                     `}
@@ -81,7 +81,7 @@ export default function Sidebar() {
                         layoutId="activeDot"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-2 h-2 rounded-full bg-linear-to-br from-orange-400 via-red-500 to-pink-500"
+                        className="w-2 h-2 rounded-full bg-linear-to-br from-green-400 via-emerald-500 to-green-500"
                       />
                     )}
                   </motion.div>

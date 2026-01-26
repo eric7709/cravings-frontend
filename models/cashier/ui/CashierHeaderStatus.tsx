@@ -50,9 +50,14 @@ export default function CashierHeaderStatus() {
 
   if (!todayOrderStats) return null;
 
+
+  // if (!statsHydrated) return <Loader />
+
+
+
   return (
-    <div className="z-40 relative border-b bg-white/10 backdrop-blur shadow border-gray-300">
-      <div className="hidden xl:grid grid-cols-5 relative p-4 pb-3 gap-3">
+    <div className="z-40 hidden lg:block relative border-b bg-white/10 backdrop-blur shadow border-gray-300">
+      <div className="grid grid-cols-5 relative p-4 pb-3 gap-3">
         {data.map((el) => {
           const Icon = el.icon;
           return (
@@ -64,8 +69,8 @@ export default function CashierHeaderStatus() {
             >
               <div
                 className={`duration-300 z-[-1] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${orderStatus === el.status
-                    ? `h-[120%] w-[120%] ${el.bg}`
-                    : "h-0 w-0 rounded-full"
+                  ? `h-[120%] w-[120%] ${el.bg}`
+                  : "h-0 w-0 rounded-full"
                   }`}
               />
               <p className="font-medium">{el.title}</p>

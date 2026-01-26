@@ -38,7 +38,7 @@ const statusConfig: Record<TABLE_STATUS, {
     borderColor: 'border-amber-200',
     icon: Clock,
     label: 'Reserved',
-    gradient: 'from-amber-500 to-orange-500'
+    gradient: 'from-amber-500 to-green-500'
   },
   UNAVAILABLE: {
     color: 'text-slate-600',

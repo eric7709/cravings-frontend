@@ -21,7 +21,6 @@ export default function TableWrapper({ tableId, children }: Props) {
       setTable(table)
       setTableId(tableId)
     }
-
   }, [table])
 
   if (!hasHydrated) return <Loader />;

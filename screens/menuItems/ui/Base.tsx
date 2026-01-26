@@ -1,22 +1,22 @@
 "use client";
-import Header from './Header';
 import Table from './Table';
-import Pagination from './Pagination';
 import MenuItemForm from './MenuItemForm';
 import DeleteMenuItem from './DeleteMenuItem';
 import { useMenuItems } from '@/models/menuItems/hook';
 import { useCategories } from '@/models/categories/hook';
+import MenuItemSummary from './MenuItemsSummary';
+import MenuItemFilter from './MenuItemFilter';
 
 export default function Base() {
   useCategories()
   useMenuItems()
   return (
-    <div className='flex-1 overflow-y-auto flex-col flex'>
-      <Header />
+    <div className='flex-col flex-1 flex'>
+      <MenuItemSummary />
+      <MenuItemFilter />
       <Table />
       <MenuItemForm />
       <DeleteMenuItem />
-      <Pagination />
     </div>
   );
 }

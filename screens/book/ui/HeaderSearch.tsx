@@ -9,17 +9,17 @@ export default function HeaderSearch() {
     return (
         <div className="px-4 py-2">
             <div className={`
-                relative flex items-center h-12 w-full transition-all duration-300 rounded-xl border-2 border-orange-500
-                ${search 
-                    ? "border-orange-400 bg-white shadow-lg shadow-orange-500/10" 
+                relative flex items-center h-12 w-full transition-all duration-300 rounded-xl border-2 border-green-500
+                ${search
+                    ? "border-green-400 bg-white shadow-lg shadow-green-500/10"
                     : "border-slate-200 bg-slate-50 shadow-sm"
                 }
             `}>
                 {/* 1. SEARCH ICON - Animates color based on focus */}
                 <div className="pl-4 pr-2">
-                    <LuSearch 
-                        size={18} 
-                        className={`transition-colors duration-300 ${search ? "text-orange-500" : "text-slate-400"}`} 
+                    <LuSearch
+                        size={18}
+                        className={`transition-colors duration-300 ${search ? "text-green-500" : "text-slate-400"}`}
                     />
                 </div>
 
@@ -43,12 +43,12 @@ export default function HeaderSearch() {
                     </button>
                 )}
             </div>
-            
+
             {/* 4. RESULTS HINT - Optional subtle feedback */}
             {search.length > 0 && (
                 <div className="mt-2 ml-2">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 italic">
-                        Filtering by: <span className="text-orange-500">{search}</span>
+                        Filtering by: <span className="text-green-500">{search}</span>
                     </p>
                 </div>
             )}

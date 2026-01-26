@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useOrderStore } from "@/models/orders/store";
 import {
   Clock,
@@ -10,16 +10,18 @@ import {
   XCircle,
 } from "lucide-react";
 import { useCashierPage } from "../hooks/useCashierPage";
+import { TiArrowSortedDown } from "react-icons/ti";
+import DatePillPicker from "./DatePillPicker";
+import { getTodayISODate } from "@/shared/utils/getTodayISODate";
+import { toLocalDateString } from "@/shared/utils/toLocalDateString";
 
-type Props = {
-  close: () => void
-}
 
-export default function CashierHeaderStatusMobile({ close }: Props) {
-  const { todayOrderStats, orderStatus, setOrderStatus } = useOrderStore();
-  const {isOrdersPage} = useCashierPage()
+export default function CashierHeaderStatusMobile() {
+  const { todayOrderStats, orderStatus, setOrderStatus, setStartDate, startDate, setEndDate } = useOrderStore();
+  const { isOrdersPage } = useCashierPage()
 
-  
+  const [opened, setOpen] = useState(false)
+
   const data = useMemo(() => {
     if (!todayOrderStats) return [];
     return [
@@ -63,55 +65,67 @@ export default function CashierHeaderStatusMobile({ close }: Props) {
 
   if (!todayOrderStats) return null;
 
-  if(!isOrdersPage) return
+  if (!isOrdersPage) return
 
   return (
-    <div className="xl:hidden border-b px-4 border-gray-200 bg-white">
-      <div className="flex md:grid md:grid-cols-5 gap-3 py-3 overflow-x-auto scrollbar-hide">
-        {data.map((el) => {
-          const Icon = el.icon;
-          const active = orderStatus === el.status;
+    <div className="xl:hidden">
+      <div onClick={() => setOpen(!opened)} className="flex bg-blue-600 mx-4 mt-4 rounded-lg justify-center items-center text-white font-semibold gap-1 shadow-md py-3 ">
+        <p>Filter</p>
+        <TiArrowSortedDown />
+      </div>
+      <div className={` border-b px-4 border-gray-200 bg-white ${opened ? "h-fit" : "h-0"} overflow-hidden`}>
+        <div className=" gap-3 py-3 flex flex-col overflow-x-auto scrollbar-hide">
+          {data.map((el) => {
+            const Icon = el.icon;
+            const active = orderStatus === el.status;
+            return (
+              <button
+                key={el.status}
+                onClick={() => {
 
-          return (
-            <button
-              key={el.status}
-              onClick={() => {
-
-                setOrderStatus(active ? null : el.status)
-                close()
-              }
-              }
-              className={`shrink-0 min-w-22.7 px-4 py-3 rounded-2xl border
-                flex items-center justify-between gap-3 transition-all
+                  setOrderStatus(active ? null : el.status)
+                  close()
+                }
+                }
+                className={`shrink-0 w-full px-4 py-3 rounded-2xl border
+                flex  justify-between items-center gap-3 transition-all
                 ${active
-                  ? `${el.bg} text-white border-transparent`
-                  : "bg-white border-gray-300 text-gray-700"
-                }`}
-            >
-              <div>
-                <p className="text-xs font-medium opacity-80">
-                  {el.title}
-                </p>
-                <p className="text-xl font-bold leading-none">
-                  {el.count}
-                </p>
-              </div>
-
-              <div
-                className={`h-9 w-9 rounded-full grid place-content-center
-                  ${active
-                    ? "bg-white/20"
-                    : `${el.bg}`
+                    ? `${el.bg} text-white border-transparent`
+                    : "bg-white border-gray-300 text-gray-700"
                   }`}
               >
-                <Icon
-                  className={`h-5 w-5 ${active ? "text-white" : "text-white"
+                <div className="flex items-center gap-3">
+                  <p className="text-xl font-bold leading-none">
+                    {el.count}
+                  </p>
+                  <p className="text-xs font-medium opacity-80">
+                    {el.title}
+                  </p>
+                </div>
+
+                <div
+                  className={`h-9 w-9 rounded-full grid place-content-center
+                  ${active
+                      ? "bg-white/20"
+                      : `${el.bg}`
                     }`}
-                />
-              </div>
-            </button>
-          );
-        })}
+                >
+                  <Icon
+                    className={`h-5 w-5 ${active ? "text-white" : "text-white"
+                      }`}
+                  />
+                </div>
+              </button>
+            );
+          })}
+          <DatePillPicker
+            value={startDate ?? getTodayISODate()}
+            onChange={(el) => {
+              setStartDate(toLocalDateString(el));
+              setEndDate(toLocalDateString(el));
+            }}
+          />
+        </div>
       </div>
     </div>
   );

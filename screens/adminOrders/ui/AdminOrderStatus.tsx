@@ -5,7 +5,7 @@ import { TiArrowSortedDown } from 'react-icons/ti';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 
 
-export default function AdminHeaderStatus() {
+export default function AdminOrderStatus() {
   const { orderStatus, setOrderStatus, todayOrderStats } = useOrderStore();
   const totalCount = todayOrderStats.cancelled + todayOrderStats.completed + todayOrderStats.paid + todayOrderStats.pending + todayOrderStats.preparing
   const OPTIONS = [

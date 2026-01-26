@@ -15,6 +15,7 @@ import {
 import { useOrderStore } from "./store";
 import { useBook } from "@/screens/book/store/useBook";
 import { useEffect } from "react";
+import { useUserStore } from "../auth/store";
 
 export const useOrders = () => {
   const {
@@ -35,7 +36,10 @@ export const useOrders = () => {
     setLoading,
     setPaginationData,
   } = useOrderStore();
+  
+  const { hasHydrated, loading: userLoading } = useUserStore();
 
+  // 1. Hook must always be called, even if data isn't ready
   const query = useQuery({
     queryKey: [
       "orders",
@@ -74,18 +78,22 @@ export const useOrders = () => {
           size: contentPerPage,
         },
       });
-      console.log("✅ Orders fetched:", data);
       return data;
     },
+    // 2. CRITICAL FIX: Only run this query when user details are loaded/hydrated
+    enabled: hasHydrated && !userLoading, 
     placeholderData: keepPreviousData,
-    refetchOnWindowFocus: true, // Add this
-    staleTime: 0, // Make queries immediately stale so they refetch
+    refetchOnWindowFocus: true,
+    staleTime: 0,
   });
 
+  // Sync Global Loading State
   useEffect(() => {
-    setLoading(!query.data && query.isLoading);
-  }, [query.isLoading, query.data, setLoading]);
+    // We are loading if the user is loading OR the query is fetching
+    setLoading(userLoading || query.isLoading);
+  }, [query.isLoading, userLoading, setLoading]);
 
+  // Sync Pagination and Stats
   useEffect(() => {
     if (query.data) {
       const { orders, statusCounts } = query.data;
@@ -93,7 +101,7 @@ export const useOrders = () => {
         orders.totalElements,
         orders.totalPages,
         orders.number,
-        orders.size
+        orders.size,
       );
       setTodayOrderStats(statusCounts);
     }
@@ -101,7 +109,6 @@ export const useOrders = () => {
 
   return query;
 };
-
 export const useOrder = (id: number) => {
   return useQuery({
     queryKey: ["orders", id],
@@ -162,7 +169,7 @@ export const useCustomerOrdersToday = () => {
     queryKey: ["customer-orders-today", customer?.id],
     queryFn: async () => {
       const { data } = await api.get<CustomerOrderDTO[]>(
-        `/orders/customer/${customer?.id}`
+        `/orders/customer/${customer?.id}`,
       );
       return data;
     },

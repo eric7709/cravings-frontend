@@ -9,7 +9,6 @@ import { useState } from 'react';
 import DatePillPicker from './DatePillPicker';
 import { toLocalDateString } from '@/shared/utils/toLocalDateString';
 import { getTodayISODate } from '@/shared/utils/getTodayISODate';
-import CashierHeaderTopBarMobile from './CashierHeaderTopBarMobile';
 import ProfileDropdown from '@/shared/ui/ProfileDropdown';
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { useGetRole } from '@/shared/hooks/useGetRole';
@@ -38,7 +37,7 @@ export default function CashierHeaderTopBar() {
     ];
 
     return (
-        <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
+        <div className="hidden lg:block sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
             <div className="flex justify-between items-center px-4 h-20 gap-4">
                 {/* Logo & Navigation */}
                 <div className="flex items-center gap-3 shrink-0">
@@ -49,7 +48,7 @@ export default function CashierHeaderTopBar() {
                                 key={link}
                                 href={link}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isActive(link)
-                                    ? 'bg-linear-to-r from-orange-50 to-amber-50 text-orange-600 shadow-sm'
+                                    ? 'bg-linear-to-r from-green-50 to-amber-50 text-green-600 shadow-sm'
                                     : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                                     }`}
                             >
@@ -91,13 +90,13 @@ export default function CashierHeaderTopBar() {
                     {/* Notification Button */}
                     <button className="h-11 w-11 grid place-content-center rounded-full border border-gray-300 hover:bg-gray-100 transition-all duration-200 relative group">
                         <Bell className="h-5 w-5 text-gray-600 group-hover:text-gray-900 transition-colors" />
-                        <span className="absolute top-2 right-2 h-2 w-2 bg-orange-500 rounded-full ring-2 ring-white"></span>
+                        <span className="absolute top-2 right-2 h-2 w-2 bg-green-500 rounded-full ring-2 ring-white"></span>
                     </button>
 
                     {/* Profile Dropdown */}
                     <ProfileDropdown>
                         <div className="flex cursor-pointer items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
-                            <div className="relative bg-orange-600 text-white font-semibold grid place-content-center text-lg h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-gray-200 shadow-md group-hover:border-orange-300 transition-colors">
+                            <div className="relative bg-green-600 text-white font-semibold grid place-content-center text-lg h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-gray-200 shadow-md group-hover:border-green-300 transition-colors">
                                 <p className='font-semibold'>
                                     {user?.firstName[0]}
                                     {user?.lastName[0]}
@@ -113,7 +112,6 @@ export default function CashierHeaderTopBar() {
                         </div>
                     </ProfileDropdown>
                 </div>
-
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setOpened(!opened)}
@@ -126,9 +124,6 @@ export default function CashierHeaderTopBar() {
                     )}
                 </button>
             </div>
-
-            {/* Mobile Drawer */}
-            <CashierHeaderTopBarMobile setOpened={setOpened} opened={opened} />
         </div>
     );
 }

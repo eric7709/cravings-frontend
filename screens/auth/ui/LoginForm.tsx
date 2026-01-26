@@ -13,11 +13,7 @@ export default function LoginForm() {
   if (isRedirecting) return <Loader />;
 
   return (
-    <div className="relative flex min-h-dvh items-center justify-center bg-linear-to-br from-[#0f172a] via-[#020617] to-black px-7">
-
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-100 w-100 rounded-full bg-orange-500/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-75 w-75 rounded-full bg-red-500/20 blur-3xl" />
+    <div className="relative flex min-h-dvh items-center justify-center bg-gray-100 px-7">
 
       {/* Card */}
       <div className="relative w-full max-w-sm">
@@ -61,7 +57,7 @@ export default function LoginForm() {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="text-sm font-medium text-orange-600 transition hover:text-orange-700 cursor-pointer"
+                className="text-sm font-medium text-green-600 transition hover:text-green-700 cursor-pointer"
               >
                 Forgot password?
               </button>
@@ -71,7 +67,7 @@ export default function LoginForm() {
             <button
               type="submit"
               disabled={isPending}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-orange-500 to-red-500 py-3 font-semibold text-white shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-green-500 to-emerald-500 py-3 font-semibold text-white shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
             >
               {isPending ? (
                 <>

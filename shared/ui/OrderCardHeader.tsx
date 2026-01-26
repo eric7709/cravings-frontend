@@ -26,15 +26,16 @@ export default function OrderCardHeader({ order, statusConfig }: Props) {
                     {order.orderStatus}
                 </p>
             </div>
+            {user?.role == "ROLE_ADMIN" && <p className='px-4 pt-3'>Cashier: <b>{order.cashierName}</b></p>}
             <div className={`grid mt-2 sm:mt-3 px-3 sm:px-4 ${isWaiter ? "grid-cols-1" : "grid-cols-2"} relative gap-2 text-xs sm:text-xs`}>
                 <div
-                    className={`flex text-base gap-1 sm:gap-2 py-2 sm:py-3 justify-center items-center bg-gray-100 border-2 ${statusConfig.border} rounded-xl shadow`}
+                    className={`flex text-base gap-1 sm:gap-2 py-2 sm:py-3 justify-center items-center bg-gray-100 border-2 border-gray-200 rounded-xl shadow`}
                 >
                     <MdTableBar className='md:block hidden' />
                     <p className="font-semibold text-[13px]">Table {order.tableNumber ?? "N/A"}</p>
                 </div>
                 {!isWaiter && <div
-                    className={`flex gap-1 sm:gap-2 py-2 sm:py-3 justify-center items-center bg-gray-100 border-2 ${statusConfig.border} rounded-xl shadow`}
+                    className={`flex gap-1 sm:gap-2 py-2 sm:py-3 justify-center items-center bg-gray-100 border-2 border-gray-200 rounded-xl shadow`}
                 >
                     <User size={16} className='md:block hidden' />
                     <p className="font-semibold text-[13px]">{order.waiterName ?? "Unknown"}</p>

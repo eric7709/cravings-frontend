@@ -5,10 +5,10 @@ export const statusConfig = (status: ORDER_STATUS): Record<string, any> => {
     case "PENDING":
       return {
         dot: "bg-amber-500",
-        bg: "from-amber-50 to-orange-50",
+        bg: "from-amber-50 to-green-50",
         border: "border-amber-200",
         button:
-          "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
+          "from-amber-500 to-green-500 hover:from-amber-600 hover:to-green-600",
         text: "New Order",
       };
     case "PREPARING":

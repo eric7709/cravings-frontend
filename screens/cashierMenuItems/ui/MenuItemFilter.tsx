@@ -9,8 +9,8 @@ export default function MenuItemFilter() {
   const { statusData, setStatus, status } = useFilterMenuItems();
   return (
     <div className="z-30 border-b border-gray-200 bg-white/95 backdrop-blur-md shadow-sm">
-      <div className="px-4 flex  flex-col md:flex-row pt-4 pb-2">
-        <div className="flex items-center gap-2">
+      <div className="px-4 flex  flex-col md:flex-row pt-4 pb-">
+        <div className="flex items-center mb-2 gap-2">
           <Sparkles className="w-4 h-4 xl:w-5 xl:h-5 text-indigo-600" />
           <h3 className="text-lg xl:text-xl font-semibold xl:font-bold text-gray-800 uppercase tracking-wider">Quick Filters</h3>
         </div>

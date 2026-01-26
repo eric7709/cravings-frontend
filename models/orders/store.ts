@@ -30,7 +30,9 @@ export const useOrderStore = create<OrderStore>((set) => ({
     cancelled: 0,
     total: 0,
   },
+
   /* ---------------- Loading ---------------- */
+
   setLoading: (loading) => set({ loading }),
   /* ---------------- Orders ---------------- */
   setPaginationData: (totalElements, totalPages, pageNumber, pageSize) =>
@@ -40,11 +42,40 @@ export const useOrderStore = create<OrderStore>((set) => ({
       currentPage: pageNumber,
       contentPerPage: pageSize,
       loading: false,
-      hasHydrated: true 
+      hasHydrated: true,
     }),
-  
+
   setTodayOrderStats: (stats) => set({ todayOrderStats: stats }),
   /* ---------------- Filters (ALL trigger loading) ---------------- */
+  reset: () =>
+    set({
+      sortBy: "createdAt",
+      direction: "desc",
+      orderStatus: null,
+      paymentStatus: null,
+      waiterId: null,
+      cashierId: null,
+      tableId: null,
+      minTotal: null,
+      maxTotal: null,
+      hasHydrated: false,
+      startDate: getTodayISODate(),
+      endDate: getTodayISODate(),
+      search: "",
+      loading: false,
+      currentPage: 0,
+      contentPerPage: 50,
+      totalPages: 0,
+      totalOrders: 0,
+      todayOrderStats: {
+        pending: 0,
+        preparing: 0,
+        completed: 0,
+        paid: 0,
+        cancelled: 0,
+        total: 0,
+      },
+    }),
   setSearch: (search) => set({ search, loading: true }),
   setSortBy: (sortBy) => set({ sortBy, loading: true }),
   setDirection: (direction) => set({ direction, loading: true }),

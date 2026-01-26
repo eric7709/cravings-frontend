@@ -25,7 +25,7 @@ export function ProfileSidebar() {
             ROLE_ADMIN: "from-purple-500 to-purple-600",
             ROLE_CASHIER: "from-blue-500 to-blue-600",
             ROLE_WAITER: "from-green-500 to-green-600",
-            ROLE_MANAGER: "from-orange-500 to-orange-600"
+            ROLE_MANAGER: "from-green-500 to-green-600"
         };
         return colorMap[role] || "from-gray-500 to-gray-600";
     };

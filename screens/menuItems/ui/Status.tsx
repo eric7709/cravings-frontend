@@ -11,7 +11,7 @@ const OPTIONS = [
   { label: 'Unavailable', value: 'UNAVAILABLE', color: 'text-blue-500' },
 ];
 
-export default function MenuItemStatus() {
+export default function Status() {
   const { setStatus } = useMenuItemStore();
   const [activeStatus, setActiveStatus] = useState<MENUITEM_STATUS>(null)
   const ref = useRef<HTMLDivElement | null>(null);

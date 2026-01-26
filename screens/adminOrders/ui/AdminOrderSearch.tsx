@@ -1,7 +1,7 @@
 import { useOrderStore } from "@/models/orders/store";
 import { SearchIcon } from "lucide-react";
 
-export default function AdminHeaderSearch() {
+export default function AdminOrderSearch() {
   const { search, setSearch } = useOrderStore();
   return (
     <div className="h-11 xl:w-64 rounded-xl shadow border-2 border-gray-200 relative">

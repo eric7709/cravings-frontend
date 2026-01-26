@@ -154,6 +154,7 @@ export type OrderStore = {
   setTodayOrderStats: (stats: TodayOrderStats) => void;
 
   setSearch: (value: string) => void;
+  reset: () => void;
 
   setSortBy: (sortBy: string) => void;
   setDirection: (direction: "asc" | "desc") => void;
