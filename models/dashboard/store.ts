@@ -3,8 +3,9 @@ import { DashboardStore } from "./types";
 
 
 const today = new Date();
-const startDate = today.toISOString().split("T")[0];
 const endDate = today.toISOString().split("T")[0];
+const startDate = endDate.slice(0, 7) + "-01";
+// Take the YYYY-MM from today's string and just append "-01"
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
   startDate: startDate,
