@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/shared/lib/queryClient";
-import { UserProvider } from "@/shared/provider/UserProvider";
 import CartProvider from "@/shared/provider/CartProvider";
-import RealTimeProvider from "@/shared/provider/RealtimeProvider";
 
 // ✅ Import Poppins
 const font = Poppins({
@@ -26,15 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} antialiased`}>
+      <body className={`${font.className} max-w-500 mx-auto antialiased`}>
         <QueryClientProvider client={queryClient}>
-          <RealTimeProvider>
-            <UserProvider>
-              <CartProvider>
-                  {children}
-              </CartProvider>
-            </UserProvider>
-          </RealTimeProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
         </QueryClientProvider>
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "@/shared/lib/axios";
+import Cookies from "js-cookie";
 import {
   AuthResponse,
   ChangePasswordPayload,
@@ -14,12 +15,17 @@ export const useLogin = () => {
     mutationFn: (data: LoginValues) =>
       api.post<AuthResponse>("/auth/login", data),
     onSuccess: (response) => {
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      const { accessToken, refreshToken, user } = response.data;
+      // 1. Keep localStorage for your current logic
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      // 2. Set Cookies for the Middleware (Server-side)
+      // 'expires: 7' means 7 days. Adjust based on your JWT expiry.
+      Cookies.set("accessToken", accessToken, { expires: 7, path: '/' });
+      Cookies.set("userRole", user.role as string, { expires: 7, path: '/' });
     },
   });
 };
-
 
 
 export const useMe = () => {

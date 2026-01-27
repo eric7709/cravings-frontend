@@ -11,12 +11,14 @@ import { ConfirmOrderModal } from './ConfirmOrderModal'
 import { useCategories } from '@/models/categories/hook'
 import { useTables } from '@/models/table/hooks'
 import { UnavailableErrorModal } from './UnavailableErrorModal'
+import { useCustomerOrderRealtime } from '@/shared/hooks/useCustomerRealTimeUpdate'
 
 type Props = {
     tableId: string
 }
 export default function Base({ tableId }: Props) {
     useMenuItems()
+    useCustomerOrderRealtime();
     useCategories()
     useTables()
     return (
