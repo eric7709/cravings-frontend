@@ -6,6 +6,7 @@ import { useDashboardStore } from "@/models/dashboard/store";
 import Loader2 from "@/shared/ui/Loader2";
 import MenuItemForm from "@/screens/menuItems/ui/MenuItemForm";
 import Overview from "./Overview";
+import Header from "./Header";
 
 export default function Base() {
   useDashboardStats()
@@ -16,8 +17,10 @@ export default function Base() {
 
   return (
     <div>
+      <Header />
       <MenuItemForm />
       <Statistics />
+      <MenuItemForm />
       <Overview />
       <RecentOrders />
     </div>
