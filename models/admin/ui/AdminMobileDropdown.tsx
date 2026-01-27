@@ -1,10 +1,12 @@
 import { useUserStore } from "@/models/auth/store";
+import { useLogout } from "@/shared/hooks/useLogout";
 import { useGeneralStore } from "@/shared/store/useGeneralStore";
 import { Bell, LogOut, Settings, User } from "lucide-react";
 
 export default function AdminMobileDropdown() {
-    const { adminPanelOpened } = useGeneralStore()
-    const {user} = useUserStore()
+    const { adminPanelOpened, closeAdminPanel } = useGeneralStore()
+    const { user } = useUserStore()
+    const logout = useLogout()
 
     return (
         <div className={`lg:h-[calc(100dvh-90px)] fixed lg:hidden top-16 w-full duration-300 z-5000  h-[calc(100dvh-64px)]  p-4 pb-1 flex flex-col  bg-white/50 backdrop-blur-xl ${adminPanelOpened ? "left-0" : "left-[120vw]"}`}>
@@ -27,7 +29,10 @@ export default function AdminMobileDropdown() {
                 <Bell className="text-amber-400" />
                 <p>Notifications</p>
             </div>
-            <div className="flex mt-auto py-3 text-red-600 font-medium gap-2">
+            <div onClick={() => {
+                logout()
+                closeAdminPanel()
+            }} className="flex mt-auto py-3 text-red-600 font-medium gap-2">
                 <LogOut />
                 <p>Logout</p>
             </div>

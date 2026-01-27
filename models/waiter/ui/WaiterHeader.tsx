@@ -1,17 +1,15 @@
 'use client';
-import { Bell, Menu, X } from 'lucide-react';
+import { Bell, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import Logo from '@/shared/ui/Logo';
 import { useWaiterHeader } from '../hooks/useWaiterHeader';
 import WaiterDropdown from './WaiterDropdown';
-import { useLogout } from '@/shared/hooks/useLogout';
 import WaiterMobileDrawer from './WaiterMobileDrawer';
 
 export default function WaiterHeader() {
   const { isActive, navLinks, role, user, ref, setOpened, opened, navDropDownLinks } = useWaiterHeader();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logout = useLogout()
 
   return (
     <>
@@ -34,7 +32,6 @@ export default function WaiterHeader() {
               ))}
             </nav>
           </div>
-
           {/* Desktop Menu */}
           <div className="hidden xl:flex items-center gap-4">
             <button className="h-11 w-11 grid place-content-center rounded-full border border-gray-300 hover:bg-gray-100 transition">
@@ -42,7 +39,6 @@ export default function WaiterHeader() {
             </button>
             <div ref={ref}>
               <div
-
                 onClick={() => setOpened(!opened)}
                 className="flex items-center relative gap-3 cursor-pointer"
               >
@@ -60,7 +56,6 @@ export default function WaiterHeader() {
               <WaiterDropdown opened={opened} />
             </div>
           </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -70,7 +65,6 @@ export default function WaiterHeader() {
           </button>
         </div>
       </header>
-
       {/* Mobile Drawer Overlay */}
       <div
         className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 xl:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
