@@ -11,7 +11,7 @@ export default function TableQRCodeModal() {
 
   if (!selectedTable) return null;
 
-  const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl: string = process.env.NEXT_PUBLIC_ENVIRONMENT == "PRODUCTION" ? "https://main-cravings.vercel.app" : "http://localhost:3000";
   const qrValue: string = `${baseUrl}/book/${selectedTable.id}`;
 
   const handlePrint = (): void => {
