@@ -32,7 +32,7 @@ export default function Statistics() {
       label: "Total Order",
       value: data.todaysOrders.value,
       percentage: data.todaysOrders.percentageChange,
-      footer: "Compared to date range span",
+      footer: "Total Orders Count",
     },
     {
       label: "Pending Orders",
@@ -56,7 +56,7 @@ export default function Statistics() {
       label: "Total Revenue",
       value: data.totalRevenue.value,
       percentage: data.totalRevenue.percentageChange,
-      footer: "Today’s earning",
+      footer: "Accumulated earning",
       isMoney: true,
     },
   ];
@@ -83,7 +83,7 @@ export default function Statistics() {
             <div className="flex items-center gap-3">
               <p className="font-semibold">{item.label}</p>
               <div
-                className={`flex rounded-full font-semibold px-2 py-1 text-xs items-center gap-1 ml-2
+                className={`flex rounded-full font-semibold px-2 py-1 text-xs items-center gap-1 ml-auto
                 ${trend === "up"
                     ? "border border-green-500 bg-green-100 text-green-600"
                     : "border border-red-500 bg-red-100 text-red-600"

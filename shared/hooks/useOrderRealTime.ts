@@ -9,7 +9,6 @@ export function useOrderRealtime() {
   const queryClient = useQueryClient();
   const clientRef = useRef<Client | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  
   const WEBSOCKETURL =
     process.env.NEXT_PUBLIC_ENVIRONMENT === "PRODUCTION"
       ? process.env.NEXT_PUBLIC_BACKEND_PRO_URL
@@ -57,7 +56,6 @@ export function useOrderRealtime() {
         try {
           const order = JSON.parse(msg.body);
           console.log("Parsed order:", order);
-          
           // Invalidate queries
           queryClient.invalidateQueries({ queryKey: ["orders"] });
           queryClient.invalidateQueries({ queryKey: ["dashboardStats"] });

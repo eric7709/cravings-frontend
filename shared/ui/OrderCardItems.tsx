@@ -8,7 +8,7 @@ type Props = {
 
 export default function OrderCardItems({ items }: Props) {
   return (
-    <div className="max-h-60 overflow-y-auto space-y-2">
+    <div className="max-h-60 select-none overflow-y-auto space-y-2">
       {items.map((item, idx) => (
         <div
           key={item.id}

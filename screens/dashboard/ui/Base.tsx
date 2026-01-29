@@ -20,7 +20,6 @@ export default function Base() {
       <Header />
       <MenuItemForm />
       <Statistics />
-      <MenuItemForm />
       <Overview />
       <RecentOrders />
     </div>

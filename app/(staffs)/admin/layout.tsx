@@ -4,11 +4,7 @@ import AdminHeaderMobile from '@/models/admin/ui/AdminHeaderMobile';
 import AdminMobileDropdown from '@/models/admin/ui/AdminMobileDropdown';
 import AdminMobileSideBar from '@/models/admin/ui/AdminMobileSideBar';
 import Sidebar from '@/shared/ui/Sidebar';
-
-// AdminLayout.tsx
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-
-
     return (
         <div className="flex h-screen overflow-hidden bg-gray-100">
             <Sidebar />

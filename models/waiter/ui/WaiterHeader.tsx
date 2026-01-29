@@ -6,6 +6,7 @@ import Logo from '@/shared/ui/Logo';
 import { useWaiterHeader } from '../hooks/useWaiterHeader';
 import WaiterDropdown from './WaiterDropdown';
 import WaiterMobileDrawer from './WaiterMobileDrawer';
+import { TiArrowSortedDown } from 'react-icons/ti';
 
 export default function WaiterHeader() {
   const { isActive, navLinks, role, user, ref, setOpened, opened, navDropDownLinks } = useWaiterHeader();
@@ -23,8 +24,8 @@ export default function WaiterHeader() {
                   key={href}
                   href={href}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${isActive(href)
-                      ? 'bg-green-50 text-green-700'
-                      : 'text-gray-600 hover:bg-gray-100'
+                    ? 'bg-green-50 text-green-700'
+                    : 'text-gray-600 hover:bg-gray-100'
                     }`}
                 >
                   {label}
@@ -52,6 +53,7 @@ export default function WaiterHeader() {
                   </p>
                   <p className="text-xs text-gray-500 capitalize">{role}</p>
                 </div>
+                <TiArrowSortedDown className='ml-1'/>
               </div>
               <WaiterDropdown opened={opened} />
             </div>

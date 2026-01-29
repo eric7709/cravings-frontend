@@ -20,7 +20,7 @@ export default function OrderCardAction({ showDeleteBtn, getButtonText, cancelOr
     const { canceButtonVisible, showPrinterIcon, showUpdateStatusButton, canceButtonVisibleForMobile } = useHandleOrder({ showDeleteBtn, status })
 
     return (
-        <div className="mt-auto border-t border-gray-200">
+        <div className="mt-auto select-none border-t border-gray-200">
             <div className="grid grid-cols-3 p-4 px-5 relative border-gray-200  items-center mt-auto">
                 <p className='font-medium text-sm'>Total</p>
                 <div className="flex justify-center">

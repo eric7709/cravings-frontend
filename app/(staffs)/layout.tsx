@@ -1,5 +1,4 @@
 'use client'
-
 import { UserProvider } from "@/shared/provider/UserProvider";
 import RealTimeProvider from "@/shared/provider/RealtimeProvider";
 

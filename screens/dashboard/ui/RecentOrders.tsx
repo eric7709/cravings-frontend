@@ -35,7 +35,7 @@ export default function RecentOrders() {
 
   return (
     <div className="p-4 pt-0">
-      <div className="flex-1 overflow-y-auto p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
+      <div className="flex-1 border border-gray-200 overflow-y-auto p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
         <p className="font-semibold text-2xl xl:text-3xl mb-4">Recent Orders</p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

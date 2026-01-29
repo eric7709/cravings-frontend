@@ -24,7 +24,7 @@ export function CompactDatePicker({ value, onChange, className }: Props) {
     <div
       ref={ref}
       className="relative">
-      <button
+      <div
         onClick={() => setOpen(!open)}
         className="flex h-11 items-center cursor-pointer gap-3 rounded-xl border-2 border-gray-200 bg-white px-3 min-w-32 shadow-sm hover:bg-slate-50"
       >
@@ -36,7 +36,7 @@ export function CompactDatePicker({ value, onChange, className }: Props) {
           </p>
         </div>
         <TiArrowSortedDown className={`h-4 w-4 ml-auto  transition ${open && 'rotate-180'}`} />
-      </button>
+      </div>
       <div className={`absolute ${className} z-50 top-[110%]  duration-300 rounded-2xl border border-slate-200 bg-white shadow-xl ${open ? "opacity-100 visible translate-y-0" : "translate-y-3 invisible opacity-0"}`}>
         <Calendar
           mode="single"

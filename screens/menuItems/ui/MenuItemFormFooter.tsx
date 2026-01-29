@@ -73,7 +73,7 @@ export default function MenuItemFormFooter() {
         loadingText={loadingText}
         isLoading={isPending}
         onClick={onSubmit}
-        className="h-12 w-28 bg-blue-600 border border-blue-600 text-white shadow-md"
+        className="h-12 w-full xl:w-28 bg-blue-600 border border-blue-600 text-white shadow-md"
       />
     </div>
   );

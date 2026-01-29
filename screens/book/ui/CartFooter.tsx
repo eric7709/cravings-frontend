@@ -45,7 +45,7 @@ export default function CartFooter() {
                     <p className='text-lg font-bold'>{formatPrice(getTotal()) ?? "3,400"}</p>
                 </div>
             </div>
-            <button className={`px-6 py-3 font-semibold  text-sm text-white rounded-xl border-2 cursor-pointer duration-300  ${!isValid ? "bg-gray-300" : "shadow-md active:scale-90 bg-green-500 hover:bg-blue-700 shadow-gray-400"}`} onClick={book} disabled={!isValid}>Check out</button>
+            <button className={`px-6 py-3 font-semibold  text-sm text-white rounded-full border-2 cursor-pointer duration-300  ${!isValid ? "bg-gray-300" : "shadow-md active:scale-90 bg-green-500 hover:bg-green-600 shadow-gray-400"}`} onClick={book} disabled={!isValid}>Check out</button>
         </div>
     )
 }

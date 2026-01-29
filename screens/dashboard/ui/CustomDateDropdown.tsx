@@ -35,11 +35,11 @@ export const CustomDateDropdown = () => {
   };
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="relative cursor-pointer inline-block text-left" ref={dropdownRef}>
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex w-full lg:w-fit items-center justify-between px-3 h-12 text-sm font-medium text-gray-700 bg-white border border-blue-300 rounded-xl shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="inline-flex cursor-pointer w-full lg:w-fit items-center justify-between px-3 h-12 text-sm font-medium text-gray-700 bg-white border border-blue-300 rounded-xl shadow-sm hover:bg-gray-50 focus:outline-none "
       >
         <div className="flex items-center gap-2">
           <Calendar className="w-5 h-5 text-blue-400" />
@@ -50,7 +50,7 @@ export const CustomDateDropdown = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute left-0 z-50 mt-2 w-full lg:w-48 origin-top-right bg-white border border-gray-200 rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="absolute left-0 z-50 mt-2 w-full lg:w-48 origin-top-right bg-white  rounded-xl shadow-lg border border-gray-300 ring-opacity-5 ">
           <div className="py-1 p-1">
             {options.map((option) => (
               <button
