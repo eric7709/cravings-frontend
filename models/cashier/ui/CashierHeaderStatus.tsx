@@ -57,14 +57,14 @@ export default function CashierHeaderStatus() {
 
   return (
     <div className="z-40 hidden lg:block relative border-b bg-white/10 backdrop-blur shadow border-gray-300">
-      <div className="grid grid-cols-5 relative p-4 pb-3 gap-3">
+      <div className="grid grid-cols-5 relative p-2 gap-2">
         {data.map((el) => {
           const Icon = el.icon;
           return (
             <div
               key={el.title}
               onClick={() => setOrderStatus(el.status === orderStatus ? null : el.status)}
-              className={`p-5 cursor-pointer rounded-2xl border overflow-hidden border-gray-300 relative shadow-md transition-colors ${orderStatus === el.status ? "text-white" : ""
+              className={`p-4 cursor-pointer rounded-2xl border overflow-hidden border-gray-300 relative shadow-md transition-colors ${orderStatus === el.status ? "text-white" : ""
                 }`}
             >
               <div
@@ -73,11 +73,11 @@ export default function CashierHeaderStatus() {
                   : "h-0 w-0 rounded-full"
                   }`}
               />
-              <p className="font-medium">{el.title}</p>
-              <div className="flex mt-5 justify-between items-center">
-                <p className="text-3xl font-bold">{el.count}</p>
-                <div className={`h-10 w-10 ${el.bg} rounded-full grid place-content-center`}>
-                  <Icon className={`w-5 h-5 duration-300 delay-100 text-white ${el.status == orderStatus ? "scale-150" : "scale-100"}`} />
+              <p className="font-medium text-[11px]">{el.title}</p>
+              <div className="flex mt-4 justify-between items-center">
+                <p className="text-xl font-bold">{el.count}</p>
+                <div className={`h-8 w-8 ${el.bg} rounded-full grid place-content-center`}>
+                  <Icon className={`w-4 h-4 duration-300 delay-100 text-white ${el.status == orderStatus ? "scale-150" : "scale-100"}`} />
                 </div>
               </div>
             </div>

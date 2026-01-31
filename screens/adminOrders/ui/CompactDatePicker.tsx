@@ -1,15 +1,15 @@
 'use client';
 
 import { Calendar } from '@/components/ui/calendar';
-import {  useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { getFullDateParts } from '@/shared/utils/getFullDateParts';
-import { TiArrowSortedDown } from 'react-icons/ti';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
+import { ChevronDown } from 'lucide-react';
 
 type Props = {
   value: string;
   onChange: (date: Date | undefined) => void;
-  className?: string
+  className?: string;
 };
 
 export function CompactDatePicker({ value, onChange, className }: Props) {
@@ -17,34 +17,51 @@ export function CompactDatePicker({ value, onChange, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const date = new Date(value);
   const { date: d, month, year } = getFullDateParts(value);
-  useClickOutside(ref as any, () => setOpen(false), open)
+  
+  const shortYear = year.toString().slice(-2);
 
+  useClickOutside(ref as any, () => setOpen(false), open);
 
   return (
-    <div
-      ref={ref}
-      className="relative">
+    <div ref={ref} className="relative h-8">
+      {/* Reduced padding and removed the calendar icon to save width */}
       <div
         onClick={() => setOpen(!open)}
-        className="flex h-11 items-center cursor-pointer gap-3 rounded-xl border-2 border-gray-200 bg-white px-3 min-w-32 shadow-sm hover:bg-slate-50"
+        className="flex h-full items-center gap-1.5 cursor-pointer rounded-full border border-slate-200 bg-white px-2.5 shadow-sm hover:border-slate-300 transition-all"
       >
-        <div className="flex gap-2">
-          <p className="text-3xl font-semibold text-slate-900">{d}</p>
-          <p className="text-[11px] flex flex-col items-start text-gray-600">
-            <span>{month}</span>
-            <span>{year}</span>
-          </p>
+        <div className="flex items-center gap-1 leading-none">
+          <span className="text-[13px] font-black text-slate-900 tracking-tighter">
+            {d}
+          </span>
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tight">
+            {month.substring(0, 3)}
+          </span>
+          <span className="text-[10px] font-black text-slate-300 mx-0.5">/</span>
+          <span className="text-[10px] font-bold text-slate-500">
+            {shortYear}
+          </span>
         </div>
-        <TiArrowSortedDown className={`h-4 w-4 ml-auto  transition ${open && 'rotate-180'}`} />
+
+        <ChevronDown 
+          size={12} 
+          className={`text-slate-400 transition-transform duration-300 ${open ? "rotate-180" : ""}`} 
+        />
       </div>
-      <div className={`absolute ${className} z-50 top-[110%]  duration-300 rounded-2xl border border-slate-200 bg-white shadow-xl ${open ? "opacity-100 visible translate-y-0" : "translate-y-3 invisible opacity-0"}`}>
+
+      {/* Popover remains standard for usability */}
+      <div className={`
+        absolute z-50 top-[110%] right-0 duration-200 rounded-xl border border-slate-200 bg-white shadow-xl p-1
+        ${className} 
+        ${open ? "opacity-100 visible translate-y-0" : "translate-y-1 invisible opacity-0"}
+      `}>
         <Calendar
           mode="single"
           selected={date}
-          onSelect={(d) => {
-            onChange(d);
+          onSelect={(selectedDate) => {
+            onChange(selectedDate);
             setOpen(false);
           }}
+          className="p-0"
         />
       </div>
     </div>

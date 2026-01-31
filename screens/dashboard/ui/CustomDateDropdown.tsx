@@ -3,6 +3,7 @@ import { ChevronDown, Calendar } from "lucide-react"; // Optional icons
 import { useDashboardStore } from "@/models/dashboard/store";
 import { getRangeDates } from "@/shared/utils/getRangeDates";
 import { TiArrowSortedDown } from "react-icons/ti";
+import { BsCalendar3 } from "react-icons/bs";
 
 const options = [
   "Today", "Yesterday", "This Week", "Last Week", 
@@ -39,13 +40,13 @@ export const CustomDateDropdown = () => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex cursor-pointer w-full lg:w-fit items-center justify-between px-3 h-12 text-sm font-medium text-gray-700 bg-white border border-blue-300 rounded-xl shadow-sm hover:bg-gray-50 focus:outline-none "
+        className="inline-flex cursor-pointer w-full lg:w-fit items-center justify-between px-2 h-9 text-xs font-medium text-gray-700 bg-white border-[1.5px] border-blue-400 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none "
       >
         <div className="flex items-center gap-2">
-          <Calendar className="w-5 h-5 text-blue-400" />
+          <BsCalendar3 className="w-3 h-3 text-blue-400" />
           {selected}
         </div>
-        <TiArrowSortedDown className={`w-4 h-4 ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <TiArrowSortedDown className={`w-3 h-3 ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
       {/* Dropdown Menu */}
@@ -57,7 +58,7 @@ export const CustomDateDropdown = () => {
                 key={option}
                 onClick={() => handleSelect(option)}
                 className={`
-                  flex items-center w-full px-3 py-2 text-[15px] rounded-md transition-colors
+                  flex items-center w-full px-3 py-2 text-xs rounded-md transition-colors
                   ${selected === option 
                     ? "bg-indigo-50 text-indigo-700 font-semibold" 
                     : "text-gray-700 hover:bg-gray-100"}

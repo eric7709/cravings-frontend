@@ -8,7 +8,6 @@ export const useCustomerForm = () => {
   const {
     register,
     handleSubmit,
-
     reset,
     formState: { errors, isSubmitting },
   } = useForm<CustomerValues>({
@@ -18,7 +17,7 @@ export const useCustomerForm = () => {
       phoneNumber: "",
     },
   });
-  const { closeModal, setCustomer, openCartModal, openOrderConfirmationModal } = useBook();
+  const { setCustomer, openOrderConfirmationModal } = useBook();
   const { mutate, isPending } = useCreateCustomer();
 
   const onSubmit = handleSubmit((data) => {

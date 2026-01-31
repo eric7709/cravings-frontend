@@ -1,19 +1,23 @@
-'use client'
-import Search from '@/shared/ui/Search'
-import { useEmployeeStore } from '@/models/employee/store';
-import { TiArrowSortedDown } from 'react-icons/ti';
-import { useState } from 'react';
+"use client";
+
+import Search from "@/shared/ui/Search";
+import { useState } from "react";
+import { TiArrowSortedDown } from "react-icons/ti";
+import { useEmployeeStore } from "@/models/employee/store";
 
 export default function EmployeeFilter() {
   const { setSearch, search, openCreateModal } = useEmployeeStore();
   const [opened, setOpen] = useState(false)
   const toggleOpened = () => setOpen(!opened)
   return (
-    <div className=" sticky top-16 lg:top-22.5 z-50 backdrop-blur-xl ">
-      <div className={`hidden lg:block p-4 py-3 duration-300`}>
-        <div className="p-4 bg-white flex justify-between rounded-2xl shadow shadow-gray-300">
-          <Search value={search} onChange={(e) => setSearch(e.target.value)} className="w-56" placeholder="Search Employees..." />
-          <button onClick={openCreateModal} className='border-2 bg-linear-to-br from-green-400 via-emerald-500 to-green-500 duration-300 cursor-pointer  text-white  font-semibold shadow-md px-4 py-3 rounded-2xl active:scale-90'>Add Employee</button>
+    <div className=" sticky top-16 z-50 backdrop-blur-xl ">
+      <div className={`px-4 py-2 hidden lg:block  duration-300 backdrop-blur-xl `}>
+        <div className="p-3 flex  justify-between bg-white rounded-xl shadow shadow-gray-300">
+          <div className="">
+            <input type="text" className="w-56 border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Employee" />
+          </div>
+          <button onClick={openCreateModal} className="border-2 rounded-xl border-white bg-green-500 text-white font-semibold shadow-md text-xs cursor-pointer duration-300 active:scale-90 hover:bg-green-600 px-3.5 py-2.5">Add Employee</button>
+
         </div>
       </div>
       <div className=" border-y border-gray-300 lg:hidden  p-4">
@@ -22,10 +26,9 @@ export default function EmployeeFilter() {
           <TiArrowSortedDown className={`duration-300 ${opened && "rotate-180"}`} />
         </button>
         <div className={`space-y-4 ${opened ? "block mt-4" : "hidden"}`}>
-          <Search value={search} onChange={(e) => setSearch(e.target.value)} className="w-full" placeholder="Search Employees..." />
-          <button onClick={openCreateModal} className='border-2 bg-blue-600 hover:bg-blue-600 duration-300 cursor-pointer  text-white  font-semibold shadow-md px-4 py-3 rounded-2xl active:scale-90'>Add Employee</button>
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} className="w-full" placeholder="Search Customers..." />
         </div>
       </div>
     </div>
-  )
+  );
 }

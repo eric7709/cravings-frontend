@@ -58,48 +58,41 @@ export default function EmployeeSummary() {
     ];
 
     return (
-        <div className="p-4 pb-1 mb-3 lg:mb-0">
-
-            <div className="grid p-5 bg-white rounded-3xl shadow shadow-gray-300 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-3 pb-1">
+            <div className="grid p-3 bg-white rounded-2xl shadow shadow-gray-300 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {stats.map((stat, index) => (
                     <div
                         key={index}
-                        className={`group relative rounded-3xl p-2 pr-5 border transition-all duration-300 hover:shadow-xl hover:translate-y-px flex items-center gap-4 overflow-hidden ${stat.cardBg}`}
+                        className={`group relative rounded-2xl p-2 pr-5 border transition-all duration-300 hover:shadow hover:translate-y-px flex items-center gap-4 overflow-hidden ${stat.cardBg}`}
                     >
                         {/* Identity Styled Sidebar */}
-                        <div className={`h-24 w-20 rounded-3xl flex flex-col items-center justify-center gap-2 transition-all group-hover:rotate-2 ${stat.sidebarBg}`}>
-                            <stat.icon size={26} strokeWidth={2.2} className={stat.textMain} />
-                            <div className="flex gap-1 items-center justify-center">
-                                <div className={`h-1 w-3 rounded-full ${stat.accent}`} />
-                                <div className={`h-1 w-1 rounded-full ${stat.accent} opacity-40`} />
+                        <div className={`h-18 w-15 rounded-3xl flex flex-col items-center justify-center gap-2 transition-all `}>
+                            <stat.icon size={25} strokeWidth={2.2} className={stat.textMain} />
+                            <div className="flex -space-x-1.5">
+                                <div className={`h-1.5 w-1.5 rounded-full border border-white ${stat.accent}`} />
+                                <div className={`h-1.5 w-1.5 rounded-full border border-white ${stat.accent} opacity-60`} />
                             </div>
                         </div>
 
                         {/* Employee Info Area */}
                         <div className="flex-1 py-1 min-w-0">
                             <div className="flex items-center justify-between">
-                                <p className={`text-[10px] font-bold uppercase tracking-widest ${stat.textLabel}`}>
+                                <p className={`text-[8px] font-bold uppercase tracking-widest ${stat.textLabel}`}>
                                     {stat.label}
                                 </p>
-                                <ChevronRight size={12} className={`${stat.textLabel} opacity-0 group-hover:opacity-100 transition-all`} />
                             </div>
 
                             <div className="mt-0.5">
-                                <p className={`text-3xl font-black tracking-tighter ${stat.textMain}`}>
+                                <p className={`text-xl font-black tracking-tighter ${stat.textMain}`}>
                                     {stat.value}
                                 </p>
                             </div>
 
-                            {/* Flex Between Context Footer */}
+                            {/* Flex Between Footer */}
                             <div className="mt-4 flex items-center justify-between gap-1">
-                                <span className={`text-[9px] font-bold uppercase ${stat.textLabel}`}>
+                                <span className={`text-[7px] font-bold uppercase ${stat.textLabel}`}>
                                     {stat.subText}
                                 </span>
-
-                                <div className={`flex items-center gap-1 px-2 py-0.5 rounded-lg text-[9px] font-black ${stat.textMain} bg-white/60 border border-white/40 shadow-sm`}>
-                                    {stat.isPositive && <ArrowUpRight size={10} />}
-                                    {stat.metric}
-                                </div>
                             </div>
                         </div>
                     </div>

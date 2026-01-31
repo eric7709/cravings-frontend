@@ -12,9 +12,9 @@ export default function AdminOrderFilter() {
     const [opened, setOpen] = useState(false)
     const toggleOpened = () => setOpen(!opened)
     return (
-        <div className=" sticky top-16 lg:top-22.5 z-50">
-            <div className={`hidden lg:block p-4 py-3 duration-300 backdrop-blur-xl `}>
-                <div className="p-4 gap-5 bg-white flex justify-between rounded-2xl shadow shadow-gray-300">
+        <div className=" sticky top-16 z-50">
+            <div className={`hidden lg:block px-4 mt-2 duration-300 backdrop-blur-xl `}>
+                <div className="p-3 gap-2 bg-white items-center flex justify-between rounded-xl shadow shadow-gray-300">
                     <AdminHeaderSearch />
                     <AdminHeaderStatus />
                     <AdminHeaderDateRange />

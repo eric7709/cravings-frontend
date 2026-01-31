@@ -62,7 +62,7 @@ export default function Statistics() {
   ];
 
   return (
-    <div className="grid mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 [@media(min-width:1600px)]:grid-cols-5 gap-4 px-4">
+    <div className="grid mt-3 grid-cols-5 gap-2 px-4">
       {dashboardStats.map((item, idx) => {
         const trend = item.percentage >= 0 ? "up" : "down";
         const bgClass = CARD_BGS[idx]; // cycle backgrounds
@@ -74,16 +74,16 @@ export default function Statistics() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`p-6 rounded-3xl group  ${bgClass} shadow border hover:text-white hover:scale-105 duration-300 relative overflow-hidden border-gray-200 `}
+            className={`p-3 rounded-2xl group  ${bgClass} shadow border hover:text-white hover:scale-105 duration-300 relative overflow-hidden border-gray-200 `}
 
           >
             <div className={`h-full w-full ${bgClass} absolute top-0 left-0 -z-2`} />
             <div className={`h-0 w-0 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full group-hover:rounded-none group-hover:w-[120%] group-hover:h-[120%] ${bgClass2} duration-300 bg-red-500 absolute top-0 left-0 -z-1`} />
             {/* Header */}
             <div className="flex items-center gap-3">
-              <p className="font-semibold">{item.label}</p>
+              <p className="font-semibold text-[10.5px]">{item.label}</p>
               <div
-                className={`flex rounded-full font-semibold px-2 py-1 text-xs items-center gap-1 ml-auto
+                className={`flex rounded-full font-semibold px-1.5 py-1 text-[8px] items-center gap-1 ml-auto
                 ${trend === "up"
                     ? "border border-green-500 bg-green-100 text-green-600"
                     : "border border-red-500 bg-red-100 text-red-600"
@@ -98,7 +98,7 @@ export default function Statistics() {
             <AnimatePresence mode="popLayout">
               <motion.p
                 key={item.value}
-                className="text-3xl font-bold mt-3 mb-4"
+                className="text-xl font-bold mt-3 mb-4"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -110,7 +110,7 @@ export default function Statistics() {
               </motion.p>
             </AnimatePresence>
 
-            <p className="text-sm text-gray-600 group-hover:text-white duration-300 group-hover:font-medium">{item.footer}</p>
+            <p className="text-[10px] text-gray-600 group-hover:text-white duration-300 group-hover:font-medium">{item.footer}</p>
           </motion.div>
         );
       })}

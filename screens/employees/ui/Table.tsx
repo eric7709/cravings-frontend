@@ -70,22 +70,22 @@ export default function EmployeeTable() {
           <table className="w-full min-w-225">
             <thead>
               <tr className="border-b border-slate-100 bg-slate-50/50">
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-slate-600 uppercase">
                   Name
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase hidden sm:table-cell">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-slate-600 uppercase hidden sm:table-cell">
                   Phone
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase hidden sm:table-cell">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-slate-600 uppercase hidden sm:table-cell">
                   Email
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-slate-600 uppercase">
                   Role
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase hidden lg:table-cell">
+                <th className="px-4 py-3 text-left text-[10px] font-semibold text-slate-600 uppercase hidden lg:table-cell">
                   Gender
                 </th>
-                <th className="px-6 py-4 text-right text-xs font-semibold text-slate-600 uppercase">
+                <th className="px-4 py-3 text-right text-[10px] font-semibold text-slate-600 uppercase">
                   Actions
                 </th>
               </tr>
@@ -101,19 +101,19 @@ export default function EmployeeTable() {
                     className="group hover:bg-slate-50/50 transition-colors"
                   >
                     {/* Name */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3">
                       <div className="flex items-center gap-4">
-                        <div className="h-12 w-12 shrink-0 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg">
+                        <div className="h-8 w-8 shrink-0 rounded-full bg-green-700 flex items-center justify-center text-sm text-white font-semibold shadow-md">
                           {firstLetter}
                         </div>
-                        <div className="font-semibold text-slate-900 text-sm">
+                        <div className="font-semibold text-slate-900 text-[11px]">
                           {emp.firstName} {emp.lastName}
                         </div>
                       </div>
                     </td>
 
                     {/* Phone */}
-                    <td className="px-6 py-4 hidden sm:table-cell text-sm">
+                    <td className="px-4 py-3 hidden sm:table-cell text-[11px]">
                       {emp.phoneNumber || (
                         <span className="text-slate-400 italic">
                           Not provided
@@ -122,7 +122,7 @@ export default function EmployeeTable() {
                     </td>
 
                     {/* Email */}
-                    <td className="px-6 py-4 hidden sm:table-cell text-sm">
+                    <td className="px-4 py-3 hidden sm:table-cell text-[11px]">
                       {emp.email || (
                         <span className="text-slate-400 italic">
                           Not provided
@@ -131,9 +131,9 @@ export default function EmployeeTable() {
                     </td>
 
                     {/* Role */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3">
                       <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${roleColors[emp.role as any] ??
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium ${roleColors[emp.role as any] ??
                           "bg-slate-100 text-slate-700 ring-1 ring-slate-600/20"
                           }`}
                       >
@@ -142,12 +142,12 @@ export default function EmployeeTable() {
                     </td>
 
                     {/* Gender */}
-                    <td className="px-6 py-4 hidden lg:table-cell text-sm">
+                    <td className="px-4 py-3 hidden lg:table-cell text-[11px]">
                       {emp.gender === "MALE" ? "Male" : "Female"}
                     </td>
 
                     {/* Actions */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3">
                       <div className="flex justify-end gap-2">
                         <button
                           onClick={() => {
@@ -156,7 +156,7 @@ export default function EmployeeTable() {
                           }}
                           className="p-2 cursor-pointer rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100"
                         >
-                          <Pencil size={18} />
+                          <Pencil size={12} />
                         </button>
 
                         <button
@@ -166,7 +166,7 @@ export default function EmployeeTable() {
                           }}
                           className="p-2 cursor-pointer rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"
                         >
-                          <Trash2 size={18} />
+                          <Trash2 size={12} />
                         </button>
                       </div>
                     </td>

@@ -16,13 +16,13 @@ export default function LoginForm() {
     <div className="relative flex min-h-dvh items-center justify-center bg-gray-100 px-7">
 
       {/* Card */}
-      <div className="relative w-full max-w-sm">
-        <div className="space-y-6 rounded-3xl bg-white/95 p-6 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+      <div className="relative w-full max-w-75">
+        <div className="space-y-6 rounded-3xl bg-white p-4 shadow border shadow-green-600 border-green-300 backdrop-blur-xl">
 
           {/* Brand */}
           <div className="flex flex-col items-center gap-3">
             <Logo />
-            <p className="text-sm mt-1 text-gray-500">
+            <p className="text-xs mt-1 text-gray-500">
               Staff Management Portal
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function LoginForm() {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="text-sm font-medium text-green-600 transition hover:text-green-700 cursor-pointer"
+                className="text-xs font-medium text-green-600 transition hover:text-green-700 cursor-pointer"
               >
                 Forgot password?
               </button>
@@ -67,7 +67,7 @@ export default function LoginForm() {
             <button
               type="submit"
               disabled={isPending}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-green-500 to-emerald-500 py-3 font-semibold text-white shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+              className="flex w-full text-xs items-center justify-center gap-2 rounded-xl bg-linear-to-r from-green-500 to-emerald-500 py-2.5 font-semibold text-white shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
             >
               {isPending ? (
                 <>

@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} max-w-500 mx-auto antialiased`}>
+      <body className={`${font.className}  max-w-500 mx-auto antialiased`}>
         <QueryClientProvider client={queryClient}>
           <CartProvider>
             {children}

@@ -61,12 +61,12 @@ export default function MenuItemImage() {
   const hasImage = Boolean(preview);
 
   return (
-    <div className="p-4">
-      <label className="block mb-2 text-[15px] lg:text-base font-semibold">Menu Item Image</label>
+    <div className="">
+      <label className="block mb-2 text-xs  font-medium">Menu Item Image</label>
 
       <div
         onClick={!hasImage ? handleSelectImage : undefined}
-        className="relative h-52 lg:h-60 w-full cursor-pointer overflow-hidden rounded-2xl border border-gray-300 bg-gray-50 flex items-center justify-center"
+        className="relative h-52  w-full cursor-pointer overflow-hidden rounded-2xl border border-gray-300 bg-gray-50 flex items-center justify-center"
       >
         {hasImage ? (
           <>
@@ -90,7 +90,7 @@ export default function MenuItemImage() {
             </button>
           </>
         ) : (
-          <span className="text-gray-400">Click to select image</span>
+          <span className="text-gray-400 text-xs font-medium">Click to Select image</span>
         )}
       </div>
 

@@ -73,7 +73,6 @@ export default function OrderCard({ order }: Props) {
         showDeleteBtn={showDeleteBtn}
         total={order.total}
       />
-      {/* Hidden Invoice */}
       <div style={{ display: "none" }}>
         <Invoice
           ref={invoiceRef}

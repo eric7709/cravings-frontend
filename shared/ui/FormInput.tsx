@@ -39,21 +39,21 @@ export default function FormInput({
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <label style={{color: labelColor}} className="text-gray-800 text-sm font-medium capitalize lg:text-base mb-1">{label}</label>
+      <label style={{color: labelColor}} className="text-gray-800 text-xs font-medium capitalize mb-1">{label}</label>
 
       {isSelect ? (
         <select
           {...commonProps}
           className={`
-            h-10 lg:h-12 w-full text-sm lg:text-base ${capitalize ? "capitalize" : ""} rounded-xl border border-gray-300 px-2
-            focus:outline-none focus:ring-2 focus:ring-blue-500
+            h-9 w-full text-xs  ${capitalize ? "capitalize" : ""} rounded-xl border-[1.5px] border-gray-300 px-2
+            focus:border-green-500
             ${error ? "border-red-500" : ""}
             transition
           `}
         >
-          <option value="">{rest.placeholder || "Select an option"}</option>
+          <option value="" className="text-xs">{rest.placeholder || "Select an option"}</option>
           {options!.map((opt) => (
-            <option className="capitalize" key={opt.value} value={opt.value}>
+            <option className="capitalize text-xs" key={opt.value} value={opt.value}>
               {opt.label}
             </option>
           ))}
@@ -62,8 +62,8 @@ export default function FormInput({
         <textarea
           {...commonProps}
           className={`
-            min-h-[80px] text-sm lg:text-base lg:min-h-[100px] w-full ${capitalize ? "capitalize" : ""} rounded-xl border border-gray-300 p-2
-            focus:outline-none focus:ring-2 focus:ring-blue-500
+            min-h-20 text-xs  lg:min-h-25 w-full ${capitalize ? "capitalize" : ""} rounded-xl border-[1.5px] border-gray-300 p-2
+            focus:border-green-500
             ${error ? "border-red-500" : ""}
             transition
           `}
@@ -72,8 +72,8 @@ export default function FormInput({
         <input
           {...commonProps}
           className={`
-            h-10 lg:h-12 w-full text-sm lg:text-base ${capitalize ? "capitalize" : ""} rounded-xl border border-gray-300 px-2
-            focus:outline-none focus:ring-2 focus:ring-blue-500
+            h-9 w-full text-xs  ${capitalize ? "capitalize" : ""} rounded-xl border-[1.5px] border-gray-300 px-2
+            outline-none focus:border-green-500
             ${error ? "border-red-500" : ""}
             transition
           `}

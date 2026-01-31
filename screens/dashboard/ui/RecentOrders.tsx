@@ -26,7 +26,7 @@ export default function RecentOrders() {
   useEffect(() => {
     if (data)
       setOrders(data)
-    console.log(data, "RECENT")
+      console.log(data, "RECENT")
   }, [isLoading, orders])
 
   if (isLoading) return <Loader2 />

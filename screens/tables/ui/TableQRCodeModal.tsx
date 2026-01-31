@@ -88,24 +88,24 @@ export default function TableQRCodeModal() {
 
   return (
     <Backdrop modalOpened={activeModal === "qrcode"} closeModal={closeModal}>
-      <div className="flex flex-col items-center justify-center px-4 sm:px-10 py-4 sm:py-6 bg-linear-to-b from-gray-50 to-white rounded-3xl shadow-2xl space-y-4 min-w-70 max-w-90">
+      <div className="flex flex-col items-center justify-center px-4 sm:px-10 py-4 sm:py-6 bg-linear-to-b from-gray-50 to-white rounded-3xl shadow-2xl space-y-2 min-w-70 ">
         {/* Header */}
-        <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">Table QR Code</h2>
+        <h2 className="text-lg font-extrabold text-gray-800">Table QR Code</h2>
 
         {/* Table Info */}
         <div className="text-center">
-          <p className="text-md sm:text-lg font-semibold text-gray-700">Table #{selectedTable.tableNumber}</p>
-          <p className="text-sm sm:text-base text-gray-500">{selectedTable.tableName}</p>
+          <p className="text-sm  font-semibold text-gray-700">Table #{selectedTable.tableNumber}</p>
+          <p className="text-xs  text-gray-500">{selectedTable.tableName}</p>
         </div>
 
         {/* QR Code */}
         <div className="flex flex-col items-center bg-white p-3 sm:p-4 rounded-2xl border-gray-200">
-          <QRCode ref={qrRef as any} value={qrValue} size={300} />
+          <QRCode ref={qrRef as any} value={qrValue} size={100} />
           <a
             href={qrValue}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 text-xs sm:text-sm text-blue-600 hover:underline"
+            className="mt-3 text-xs text-blue-600 hover:underline"
           >
             Open Menu
           </a>
@@ -114,9 +114,9 @@ export default function TableQRCodeModal() {
         {/* Print Button */}
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-green-500 to-green-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-green-700 transition font-bold text-sm sm:text-base"
+          className="flex items-center gap-2 sm:gap-3 px-4 py-2 font-semibold bg-linear-to-r from-green-500 to-green-600 text-white rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition  text-sm"
         >
-          <Printer size={16} />
+          <Printer size={15} />
           Print QR
         </button>
       </div>

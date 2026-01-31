@@ -2,10 +2,10 @@
 import Table from './Table'
 import DeleteEmployee from './DeleteEmployee'
 import { useEmployeeForm } from '../hooks/useEmployeeForm'
-import EmployeeForm from './EmployeeForm'
 import { useEmployees } from '@/models/employee/hooks'
 import EmployeeSummary from './EmployeeSummary'
 import EmployeeFilter from './EmployeeFilter'
+import EmployeeForm from './EmployeeForm'
 
 export default function Base() {
   const { errors, register, onSubmit, isPending } = useEmployeeForm()
@@ -14,8 +14,8 @@ export default function Base() {
     <div className='flex flex-col flex-1 '>
       <EmployeeSummary />
       <EmployeeFilter />
-      <Table />
       <EmployeeForm register={register} errors={errors} onSubmit={onSubmit} isPending={isPending} />
+      <Table />
       <DeleteEmployee />
     </div>
   )

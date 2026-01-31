@@ -10,15 +10,12 @@ export default function CustomerFilter() {
     const [opened, setOpen] = useState(false)
     const toggleOpened = () => setOpen(!opened)
     return (
-        <div className=" sticky top-16 lg:top-22.5 z-50 backdrop-blur-xl ">
-            <div className={`p-4 py-3 hidden lg:block  duration-300 backdrop-blur-xl `}>
-                <div className="p-4 bg-white rounded-2xl shadow shadow-gray-300">
-                    <Search
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Search Customers..."
-                        className="w-56"
-                    />
+        <div className=" sticky top-16 z-50 backdrop-blur-xl ">
+            <div className={`px-4 py-2 hidden lg:block  duration-300 backdrop-blur-xl `}>
+                <div className="p-3 bg-white rounded-xl shadow shadow-gray-300">
+                    <div className="">
+                    <input type="text" className="w-full border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Customers"/>
+                    </div>
                 </div>
             </div>
             <div className=" border-y border-gray-300 lg:hidden  p-4">

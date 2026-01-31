@@ -25,51 +25,57 @@ export default function DeleteTable() {
 
   return (
     <Backdrop modalOpened={activeModal === "delete"} closeModal={closeModal}>
-      <div className="px-2 sm:px-4">
-        <div className="w-full sm:w-[380px] bg-white rounded-3xl shadow-xl overflow-hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-2 sm:py-3 bg-red-50 border-b border-red-200">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-red-600 text-white grid place-content-center shadow-md">
-                <FaTrashAlt className="text-lg sm:text-xl" />
+      <div className="px-4">
+        {/* Reduced max-width from w-80 to w-72 for a tighter feel */}
+        <div className="w-full sm:w-72 bg-white rounded-2xl shadow-xl overflow-hidden">
+          
+          {/* Header - Reduced padding and font sizes */}
+          <div className="flex items-center justify-between px-4 py-2 bg-red-50 border-b border-red-100">
+            <div className="flex items-center gap-2">
+              <div className="h-7 w-7 rounded-full bg-red-600 text-white grid place-content-center shadow-sm">
+                <FaTrashAlt className="text-xs" />
               </div>
-              <p className="text-md sm:text-lg font-semibold text-red-700">Delete Table</p>
+              <p className="text-sm font-bold text-red-700">Delete Table</p>
             </div>
             <LiaTimesSolid
               onClick={closeModal}
-              className="text-lg sm:text-xl stroke-1 cursor-pointer text-red-600 hover:scale-110 duration-200"
+              className="text-lg cursor-pointer text-red-400 hover:text-red-600 transition-colors"
             />
           </div>
 
-          {/* Body */}
-          <div className="px-4 sm:px-6 py-6 sm:py-8 text-center flex flex-col items-center gap-3 sm:gap-4">
-            <p className="text-gray-700 text-sm sm:text-base font-medium">
-              You are about to <span className="font-semibold text-red-600">delete</span> this table:
+          {/* Body - Tightened spacing */}
+          <div className="px-5 py-5 text-center flex flex-col items-center gap-3">
+            <p className="text-gray-600 text-xs font-medium">
+              Are you sure you want to <span className="text-red-600">delete</span>:
             </p>
 
-            <div className="flex items-center gap-2 sm:gap-4">
-              <div className="h-11 w-11 border-2 border-red-500 grid place-content-center text-xl font-bold text-red-600 rounded-full">
-                <p> {selectedTable?.tableNumber}</p>
+            <div className="flex items-center gap-3 py-1">
+              <div className="h-9 w-9 border-2 border-red-500 grid place-content-center text-base font-bold text-red-600 rounded-full">
+                {selectedTable?.tableNumber}
               </div>
-              <p className="text-lg sm:text-xl uppercase font-bold text-gray-800">{selectedTable?.tableName}</p>
+              <p className="text-lg uppercase font-bold text-gray-800 tracking-tight">
+                {selectedTable?.tableName}
+              </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              This action cannot be undone.
+            <p className="text-[11px] text-gray-400">
+              This action is permanent.
             </p>
           </div>
 
-          {/* Footer */}
-          <div className="flex justify-end text-xs sm:text-sm gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200">
-            <CancelButton onClick={closeModal} />
-            <LoadingButton
-              isDelete
-              text="Delete"
-              loadingText="Deleting..."
-              isLoading={isPending}
-              onClick={handleDelete}
-              className="px-4 sm:px-5 py-1.5 sm:py-2 rounded-xl bg-red-600 text-white shadow-md hover:bg-red-700 font-semibold text-xs sm:text-sm"
-            />
+          {/* Footer - Reduced height and button scaling */}
+          <div className="flex justify-end gap-2 px-4 py-3 bg-gray-50/50 border-t border-gray-100">
+            <div className="scale-90 origin-right flex gap-2">
+                <CancelButton onClick={closeModal} />
+                <LoadingButton
+                  isDelete
+                  text="Delete"
+                  loadingText="..."
+                  isLoading={isPending}
+                  onClick={handleDelete}
+                  className="px-4 py-1.5 rounded-lg bg-red-600 text-white font-semibold text-xs shadow-sm hover:bg-red-700"
+                />
+            </div>
           </div>
         </div>
       </div>

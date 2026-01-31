@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { useOrderStore } from '@/models/orders/store';
 import { getTodayISODate } from '@/shared/utils/getTodayISODate';
@@ -12,47 +12,22 @@ export default function AdminHeaderDateRange() {
   const handleStartChange = (d?: Date) => {
     if (!d) return;
     const newStart = toLocalDateString(d);
-
-    // Convert endDate to Date for correct comparison
-    const currentEnd = endDate ? new Date(endDate) : null;
-
-    if (currentEnd && d > currentEnd) {
-      // If start > end → sync both to newStart
-      setStartDate(newStart);
-      setEndDate(newStart);
-    } else {
-      setStartDate(newStart);
-    }
+    if (endDate && d > new Date(endDate)) setEndDate(newStart);
+    setStartDate(newStart);
   };
 
   const handleEndChange = (d?: Date) => {
     if (!d) return;
     const newEnd = toLocalDateString(d);
-
-    const currentStart = startDate ? new Date(startDate) : null;
-
-    if (currentStart && d < currentStart) {
-      // If end < start → sync both to newEnd
-      setStartDate(newEnd);
-      setEndDate(newEnd);
-    } else {
-      setEndDate(newEnd);
-    }
+    if (startDate && d < new Date(startDate)) setStartDate(newEnd);
+    setEndDate(newEnd);
   };
 
   return (
-    <div className="ml-auto justify-between xl:justify-start flex items-center gap-3">
-      <CompactDatePicker
-        value={startDate ?? getTodayISODate()}
-        onChange={handleStartChange}
-        className='left-0'
-      />
-      <BsArrowRight className="text-lg  text-gray-600" />
-      <CompactDatePicker
-        value={endDate ?? getTodayISODate()}
-        className='right-0'
-        onChange={handleEndChange}
-      />
+    <div className="flex items-center gap-2 ml-auto xl:ml-0">
+      <CompactDatePicker value={startDate ?? getTodayISODate()} onChange={handleStartChange} className="left-0" />
+      <BsArrowRight className="text-gray-600 text-base" />
+      <CompactDatePicker value={endDate ?? getTodayISODate()} onChange={handleEndChange} className="right-0" />
     </div>
   );
 }

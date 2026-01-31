@@ -3,19 +3,19 @@
 import { VscLoading } from "react-icons/vsc";
 
 type LoadingButtonProps = {
-  text: string;               // normal text
-  loadingText?: string;       // optional text while loading
-  isLoading?: boolean;        // loading state
-  onClick?: () => void;       // click handler
+  text: string;
+  loadingText?: string;
+  isLoading?: boolean;
+  onClick?: () => void;
   className?: string;    
-  isDelete?: boolean     // optional Tailwind classes
+  isDelete?: boolean;
 };
 
 export function LoadingButton({
   text,
   loadingText,
   isLoading = false,
-  isDelete ,
+  isDelete,
   onClick,
   className = "",
 }: LoadingButtonProps) {
@@ -24,13 +24,17 @@ export function LoadingButton({
       onClick={onClick}
       disabled={isLoading}
       className={`
-        flex items-center py-2.5 ${isLoading ? "px-4": "px-5"} justify-center gap-2 duration-300 text-white
-        rounded-full border-2 ${isDelete ? "bg-red-500  border-red-600" : "bg-blue-500 border-blue-700 hover:bg-blue-600"} shadow-md disabled:shadow-none cursor-pointer font-semibold
-        disabled:opacity-80 text-sm lg:text-base disabled:cursor-not-allowed
+        flex items-center justify-center gap-1.5 duration-200 text-white
+        py-1.5 px-4 rounded-xl border-b-2 font-bold text-xs tracking-tight
+        ${isDelete 
+          ? "bg-red-600 border-red-800 hover:bg-red-700 active:border-b-0 active:translate-y-[1px]" 
+          : "bg-blue-600 border-blue-800 hover:bg-blue-700"
+        } 
+        shadow-sm disabled:opacity-70 disabled:cursor-not-allowed ${className}
       `}
     >
-      {isLoading && <VscLoading className="animate-spin text-white stroke-1 text-xl" />}
-      <span>{isLoading ? loadingText ?? text : text}</span>
+      {isLoading && <VscLoading className="animate-spin text-white text-xs" />}
+      <span>{isLoading ? (loadingText ?? text) : text}</span>
     </button>
   );
 }
