@@ -7,7 +7,7 @@ import { ChevronDown } from 'lucide-react';
 
 export default function AdminOrderStatus() {
   const { orderStatus, setOrderStatus, todayOrderStats } = useOrderStore();
-  const totalCount = Object.values(todayOrderStats).reduce((a, b) => a + b, 0);
+  const totalCount = todayOrderStats.cancelled + todayOrderStats.paid + todayOrderStats.completed + todayOrderStats.pending + todayOrderStats.preparing
 
   const OPTIONS = [
     { label: 'All', value: null, color: 'bg-slate-400', count: totalCount },
@@ -17,6 +17,7 @@ export default function AdminOrderStatus() {
     { label: 'Paid', value: 'PAID', color: 'bg-emerald-500', count: todayOrderStats.paid },
     { label: 'Cancelled', value: 'CANCELLED', color: 'bg-red-500', count: todayOrderStats.cancelled },
   ];
+
 
   const selectedStatus = OPTIONS.find(el => el.value === orderStatus);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -32,12 +33,12 @@ export default function AdminOrderStatus() {
       >
         <div className="flex items-center gap-1.5 min-w-0">
           <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${selectedStatus?.color || 'bg-slate-400'}`} />
-          <span className="text-[11px] font-bold text-slate-700 whitespace-nowrap truncate max-w-[70px]">
+          <span className="text-[11px] font-bold text-slate-700 whitespace-nowrap truncate max-w-17.5">
             {selectedStatus?.label ?? "All"}
           </span>
         </div>
 
-        <div className="bg-slate-100 px-1 py-0.5 rounded text-[9px] font-black text-slate-500 min-w-[18px] text-center">
+        <div className="bg-slate-100 px-1 py-0.5 rounded text-[9px] font-black text-slate-500 min-w-4.5 text-center">
           {selectedStatus?.count ?? 0}
         </div>
 

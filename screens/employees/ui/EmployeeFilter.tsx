@@ -14,7 +14,7 @@ export default function EmployeeFilter() {
       <div className={`px-4 py-2 hidden lg:block  duration-300 backdrop-blur-xl `}>
         <div className="p-3 flex  justify-between bg-white rounded-xl shadow shadow-gray-300">
           <div className="">
-            <input type="text" className="w-56 border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Employee" />
+            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} className="w-56 border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Employee" />
           </div>
           <button onClick={openCreateModal} className="border-2 rounded-xl border-white bg-green-500 text-white font-semibold shadow-md text-xs cursor-pointer duration-300 active:scale-90 hover:bg-green-600 px-3.5 py-2.5">Add Employee</button>
 

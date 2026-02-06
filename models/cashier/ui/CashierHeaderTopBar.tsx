@@ -30,11 +30,11 @@ export default function CashierHeaderTopBar() {
                         </div>
                     )}
                 </div>
+                <div className="hidden xl:flex items-center shrink-0 gap-4">
                 <div className="flex items-center  gap-2  font-semibold">
                     <p className='text-xs text-gray-600 mb-0.5'>Revenue:</p>
                     <p className='text-green-600 text-[17px] font-bold'>{formatPrice(todayOrderStats.total)}</p>
                 </div>
-                <div className="hidden xl:flex items-center shrink-0 gap-4">
                     <DatePillPicker
                         value={startDate ?? getTodayISODate()}
                         onChange={(el) => {
@@ -42,20 +42,20 @@ export default function CashierHeaderTopBar() {
                             setEndDate(toLocalDateString(el));
                         }}
                     />
-                    <button className="h-9 w-9 grid place-content-center rounded-full border border-gray-200 hover:bg-gray-100 transition-all duration-200 shadow relative group">
-                        <Bell className="h-4 w-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                    <button className="h-8 w-8 grid place-content-center rounded-full border border-gray-200 hover:bg-gray-100 transition-all duration-200 shadow relative group">
+                        <Bell className="h-3.5 w-3.5 text-gray-600 group-hover:text-gray-900 transition-colors" />
                         <span className="absolute top-2.5 right-2.5 h-1.5 w-1.5 bg-green-500 rounded-full "></span>
                     </button>
                     <ProfileDropdown>
                         <div className="flex cursor-pointer  items-center gap-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-200 group">
-                            <div className="relative bg-green-600 text-white font-semibold grid place-content-center text-base h-9 w-9 shrink-0 overflow-hidden rounded-full  border border-green-200 shadow group-hover:border-green-300 transition-colors">
+                            <div className="relative bg-green-600 text-white font-semibold grid place-content-center text-sm h-8 w-8 shrink-0 overflow-hidden rounded-full  border border-green-200 shadow group-hover:border-green-300 transition-colors">
                                 <p className='font-semibold'>
                                     {user?.firstName[0]}
                                     {user?.lastName[0]}
                                 </p>
                             </div>
                             <div className="leading-tight">
-                                <p className="text-[13px] font-semibold text-gray-800 group-hover:text-gray-900">
+                                <p className="text-xs font-semibold text-gray-800 group-hover:text-gray-900">
                                     {user?.firstName} {user?.lastName}
                                 </p>
                                 <p className="text-[11px] text-gray-500 text-start capitalize">{role}</p>

@@ -9,9 +9,9 @@ export default function AdjustSearch({ title, subTitle = "Try adjusting filters 
 
     return (
         <div className="p-8 flex-1 flex  flex-col justify-center items-center text-center text-gray-500">
-            <PackageSearch className="w-14 lg:w-16 h-14 lg:h-16 mb-4 text-gray-400" />
-            <p className="text-xl lg:text-2xl font-semibold">No {title} found</p>
-            <p className="text-base mt-2">
+            <PackageSearch className="w-13 h-13 mb-2 text-gray-400" />
+            <p className="text-[15px] font-semibold">No {title} found</p>
+            <p className="text-[13px] mt-2">
                 {subTitle}
             </p>
         </div>

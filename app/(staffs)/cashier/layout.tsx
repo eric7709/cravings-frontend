@@ -3,14 +3,14 @@ import CashierHeaderTopBar from "@/models/cashier/ui/CashierHeaderTopBar";
 import CashierMobileDropdown from "@/models/cashier/ui/CashierMobileDropdown";
 import CashierMobileHeader from "@/models/cashier/ui/CashierMobileHeader";
 import CashierMobileSideBar from "@/models/cashier/ui/CashierMobileSideBar";
-import { usePendingOrderBeepGlobal } from "@/shared/hooks/usePendingOrderBeepGlobal";
+import { usePendingOrderBeep } from "@/shared/hooks/usePendingOrderBeep";
 
 export default function CashierLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    usePendingOrderBeepGlobal()
+    usePendingOrderBeep();
     return (
         <div className="h-dvh flex flex-col">
             <CashierHeaderTopBar />

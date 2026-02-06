@@ -11,8 +11,8 @@ export default function MenuItemFilter() {
     <div className="z-30 border-b border-gray-200 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="px-4 flex  flex-col md:flex-row pt-4 pb-">
         <div className="flex items-center mb-2 gap-2">
-          <Sparkles className="w-4 h-4 xl:w-5 xl:h-5 text-indigo-600" />
-          <h3 className="text-lg xl:text-xl font-semibold xl:font-bold text-gray-800 uppercase tracking-wider">Quick Filters</h3>
+          <Sparkles className="w-4 h-4 text-indigo-600" />
+          <h3 className="text-lg font-semibold xl:font-bold text-gray-800 uppercase tracking-wider">Quick Filters</h3>
         </div>
         <div className="md:ml-auto ml-0 flex flex-col md:flex-row items-center gap-4">
           <MenuItemSearch />
@@ -28,8 +28,8 @@ export default function MenuItemFilter() {
               key={el.value}
               onClick={() => setStatus(el.value as MENUITEM_STATUS)}
               className={`
-                group relative cursor-pointer rounded-2xl p-5 flex items-center justify-between
-                border-2 transition-all duration-300 overflow-hidden
+                group relative cursor-pointer rounded-xl p-4 flex items-center justify-between
+                border-[1.5px] transition-all duration-300 overflow-hidden
                 ${isActive
                   ? `${el.bg} ${el.border} shadow-lg`
                   : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-md active:scale-98"
@@ -44,7 +44,7 @@ export default function MenuItemFilter() {
                 {/* Icon Container */}
                 <div
                   className={`
-                    relative h-12 w-12 rounded-xl grid place-content-center border-2
+                    relative h-9 w-9 rounded-xl grid place-content-center border-2
                     transition-all duration-300
                     ${isActive
                       ? "bg-white/80 border-white/60 shadow-lg scale-110"
@@ -52,7 +52,7 @@ export default function MenuItemFilter() {
                     }
                   `}
                 >
-                  <Icon className={`h-6 w-6 transition-colors`} />
+                  <Icon className={`h-4 w-4 transition-colors`} />
 
                   {/* Pulse effect for active icon */}
                   {isActive && (
@@ -62,11 +62,11 @@ export default function MenuItemFilter() {
 
                 {/* Title */}
                 <div className="text-left flex-1">
-                  <p className={`text-sm font-bold uppercase tracking-wider transition-colors ${isActive ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-800'
+                  <p className={`text-xs font-bold uppercase tracking-wider transition-colors ${isActive ? 'text-gray-900' : 'text-gray-600 group-hover:text-gray-800'
                     }`}>
                     {el.title}
                   </p>
-                  <p className="text-xs text-gray-500 mt-0.5">
+                  <p className="text-[11px] text-gray-500 mt-0.5">
                     {isActive ? 'Now viewing' : 'Click to filter'}
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function MenuItemFilter() {
 
               {/* Count */}
               <div className="relative">
-                <p className={`text-3xl font-black transition-all duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-105'
+                <p className={`text-2xl font-black transition-all duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-105'
                   }`}>
                   {el.count}
                 </p>

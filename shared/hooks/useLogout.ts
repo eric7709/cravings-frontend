@@ -19,11 +19,10 @@ export const useLogout = () => {
     Cookies.remove("accessToken", { path: '/' });
     Cookies.remove("refreshToken", { path: '/' });
     Cookies.remove("userRole", { path: '/' });
-
     // 3. Clear LocalStorage (Just to be safe/clean)
     localStorage.clear();
     // 4. Redirect
-    router.replace("/auth/login");
+    router.refresh()
   };
   return logout;
 };

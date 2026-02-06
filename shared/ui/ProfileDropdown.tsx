@@ -4,6 +4,7 @@ import { useLogout } from "@/shared/hooks/useLogout";
 import { useUserStore } from "@/models/auth/store";
 import Link from "next/link";
 import { BiLogOut } from "react-icons/bi";
+import { BsBook } from "react-icons/bs";
 
 
 interface Props {
@@ -11,12 +12,14 @@ interface Props {
 }
 
 export default function ProfileDropdown({ children }: Props) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const logout = useLogout();
-  const { user } = useUserStore();
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const logout = useLogout()
+  const { user } = useUserStore()
 
   const cashierOrWaiter = user?.role == "ROLE_WAITER" || user?.role == "ROLE_CASHIER"
+  const isWaiter = user?.role == "ROLE_WAITER"
+  const isCashier = user?.role == "ROLE_CASHIER"
 
 
   const route =
@@ -49,14 +52,14 @@ export default function ProfileDropdown({ children }: Props) {
         {user && (
           <div className="px-4 py-2 bg-linear-to-br from-gray-50 to-white border-b border-gray-100">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-sm shadow-sm">
+              <div className="w-7 h-7 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-sm shadow-sm">
                 {user.firstName.charAt(0) || "U"}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-gray-900 truncate">
+                <p className="text-[11px] font-semibold text-gray-900 truncate">
                   {user.firstName || "User"}
                 </p>
-                <p className="text-[10px] text-gray-500 truncate">
+                <p className="text-[9px] text-gray-500 truncate">
                   {user.email || "user@example.com"}
                 </p>
               </div>
@@ -73,10 +76,9 @@ export default function ProfileDropdown({ children }: Props) {
             <div className="w-8 h-8 rounded-md bg-blue-50 flex items-center justify-center">
               <User className="w-4 h-4 text-blue-600" />
             </div>
-            <span className="font-semibold text-xs ">Profile</span>
+            <span className="font-medium text-[11.5px] ">Profile</span>
           </Link>
-
-          <Link
+          {/* <Link
             href="/settings"
             onClick={() => setOpen(false)}
             className="flex items-center gap-3 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
@@ -84,9 +86,9 @@ export default function ProfileDropdown({ children }: Props) {
             <div className="w-8 h-8 rounded-md bg-purple-50 flex items-center justify-center">
               <Settings className="w-4 h-4 text-purple-600" />
             </div>
-            <span className="font-semibold text-xs">Settings</span>
-          </Link>
-          {cashierOrWaiter && <Link
+            <span className="font-medium text-[11.5px]">Settings</span>
+          </Link> */}
+          {isWaiter && <Link
             href={user?.role == "ROLE_CASHIER" ? "/cashier/tables" : "/waiter/tables"}
             onClick={() => setOpen(false)}
             className="flex items-center gap-3 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
@@ -94,7 +96,18 @@ export default function ProfileDropdown({ children }: Props) {
             <div className="w-8 h-8 rounded-md bg-purple-50 flex items-center justify-center">
               <Table className="w-4 h-4 text-purple-600" />
             </div>
-            <span className="font-semibold text-xs">Tables</span>
+            <span className="font-medium text-[11.5px]">Tables</span>
+          </Link>
+          }
+          {isCashier && <Link
+            href={"/cashier/menu-items"}
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
+          >
+            <div className="w-8 h-8 rounded-md bg-purple-50 flex items-center justify-center">
+              <BsBook className="w-4 h-4 text-purple-600" />
+            </div>
+            <span className="font-medium text-[11.5px]">Menu-items</span>
           </Link>
           }
 
@@ -103,10 +116,10 @@ export default function ProfileDropdown({ children }: Props) {
             onClick={() => setOpen(false)}
             className="flex items-center gap-3 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
           >
-            <div className="w-8 h-8 rounded-md bg-purple-50 flex items-center justify-center">
-              <Book className="w-4 h-4 text-purple-600" />
+            <div className="w-8 h-8 rounded-md bg-green-50 flex items-center justify-center">
+              <Book className="w-4 h-4 text-green-400" />
             </div>
-            <span className="font-semibold text-xs">Orders</span>
+            <span className="font-medium text-[11.5px]">Orders</span>
           </Link>
           }
         </div>
@@ -123,7 +136,7 @@ export default function ProfileDropdown({ children }: Props) {
             <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
               <BiLogOut />
             </div>
-            <span className="font-medium text-xs">Logout</span>
+            <span className="font-medium text-[11.5px]">Logout</span>
           </button>
         </div>
       </div>

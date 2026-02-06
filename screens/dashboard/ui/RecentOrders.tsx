@@ -36,7 +36,7 @@ export default function RecentOrders() {
   return (
     <div className="p-4 pt-0">
       <div className="flex-1 border border-gray-200 overflow-y-auto p-4 bg-white shadow shadow-gray-200 rounded-2xl overflow-x-auto">
-        <p className="font-semibold text-2xl xl:text-3xl mb-4">Recent Orders</p>
+        <p className="font-bold text-xl mb-4">Recent Orders</p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,23 +45,23 @@ export default function RecentOrders() {
           <table className="w-full min-w-225 border-collapse">
             <thead>
               <tr className="border-b border-gray-200/60 bg-linear-to-r from-gray-50/50 to-gray-100/30">
-                <th className="p-5 text-left text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Customer
                 </th>
 
-                <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Waiter
                 </th>
-                <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Cashier
                 </th>
-                <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Table Number
                 </th>
-                <th className="p-5 text-center text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Amount
                 </th>
-                <th className="p-5 text-left text-xs font-bold uppercase tracking-widest text-gray-500">
+                <th className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-widest text-gray-500">
                   Date
                 </th>
               </tr>
@@ -75,37 +75,37 @@ export default function RecentOrders() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.04, type: "spring", stiffness: 120, damping: 15 }}
-                    className="group border-b border-gray-100/50 hover:bg-linear-to-r hover:from-indigo-50/40 hover:via-purple-50/30 hover:to-pink-50/40"
+                    className="group border-b border-gray-100"
                   >
                     {/* Customer */}
-                    <td className="p-4">
-                      <div className="flex items-center gap-4">
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
                         <div
-                          className={`h-12 w-12 rounded-full bg-linear-to-br ${idColors[idx % idColors.length]
-                            } flex items-center justify-center text-white font-bold text-base group-hover:shadow-md transition-shadow`}
+                          className={`h-8 w-8 rounded-full bg-green-700
+                             flex items-center  justify-center text-white font-bold text-xs group-hover:shadow-md transition-shadow`}
                         >
                           {firstLetter}
                         </div>
-                        <span className="font-bold text-gray-900 text-base tracking-tight">
+                        <span className="font-bold text-xs text-gray-900  tracking-tight">
                           {order.customerName}
                         </span>
                       </div>
                     </td>
 
                     {/* Waiter */}
-                    <td className="p-4 text-center text-gray-700 font-medium">{order.waiterName}</td>
+                    <td className="px-4 py-3 text-center text-xs text-gray-700 font-semibold">{order.waiterName}</td>
 
                     {/* Cashier */}
-                    <td className="p-4 text-center text-gray-700 font-medium">{order.cashierName}</td>
+                    <td className="px-4 py-3 text-center text-xs text-gray-700 font-semibold">{order.cashierName}</td>
 
                     {/* Table */}
-                    <td className="p-4 text-center text-gray-700 font-medium">{order.tableNumber}</td>
+                    <td className="px-4 py-3 text-center text-xs text-gray-700 font-medium">{order.tableNumber}</td>
 
                     {/* Amount */}
-                    <td className="p-4 text-center font-bold text-gray-900">{formatPrice(order.total)}</td>
+                    <td className="px-4 py-3 text-center text-xs font-bold text-gray-900">{formatPrice(order.total)}</td>
                     {/* Date */}
-                    <td className="p-4 ">
-                      <p className="text-sm">{formatHumanTime(order.createdAt)}</p>
+                    <td className="px-4 py-3 ">
+                      <p className="text-[11px]">{formatHumanTime(order.createdAt)}</p>
                     </td>
                   </motion.tr>
                 );

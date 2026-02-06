@@ -5,16 +5,16 @@ export const statusConfig = (status: ORDER_STATUS): Record<string, any> => {
     case "PENDING":
       return {
         dot: "bg-amber-500",
-        bg: "from-amber-50 to-green-50",
+        bg: "bg-amber-500",
         border: "border-amber-200",
         button:
-          "from-amber-500 to-green-500 hover:from-amber-600 hover:to-green-600",
+          "from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700",
         text: "New Order",
       };
     case "PREPARING":
       return {
         dot: "bg-blue-500",
-        bg: "from-blue-50 to-indigo-50",
+        bg: "bg-blue-600",
         border: "border-blue-200",
         button:
           "from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600",
@@ -23,16 +23,16 @@ export const statusConfig = (status: ORDER_STATUS): Record<string, any> => {
     case "COMPLETED":
       return {
         dot: "bg-purple-500",
-        bg: "from-purple-50 to-emerald-50",
+        bg: "bg-purple-600",
         border: "border-purple-200",
         button:
-          "from-purple-500 to-emerald-500 hover:from-purple-600 hover:to-emerald-600",
+          "from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
         text: "Ready",
       };
     case "PAID":
       return {
         dot: "bg-green-500",
-        bg: "from-green-50 to-pink-50",
+        bg: "bg-green-500",
         border: "border-green-200",
         button: "",
         text: "Completed",
@@ -40,7 +40,7 @@ export const statusConfig = (status: ORDER_STATUS): Record<string, any> => {
     case "CANCELLED":
       return {
         dot: "bg-red-500",
-        bg: "from-red-50 to-pink-50",
+        bg: "bg-red-500",
         border: "border-red-200",
         button: "",
         text: "Cancelled",

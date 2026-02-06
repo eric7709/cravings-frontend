@@ -21,9 +21,7 @@ export const useHandleOrder = ({ showDeleteBtn, status }: Props) => {
     user?.role == "ROLE_ADMIN" &&
     showDeleteBtn;
   const canceButtonVisibleForMobile =
-    status != "CANCELLED" &&
-    status != "PAID" &&
-    user?.role == "ROLE_ADMIN" 
+    status != "CANCELLED" && status != "PAID" && user?.role == "ROLE_ADMIN";
 
   return {
     isWaiter,
@@ -32,6 +30,6 @@ export const useHandleOrder = ({ showDeleteBtn, status }: Props) => {
     canceButtonVisible,
     showPrinterIcon,
     showUpdateStatusButton,
-    canceButtonVisibleForMobile
+    canceButtonVisibleForMobile,
   };
 };

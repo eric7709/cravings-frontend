@@ -33,10 +33,10 @@ export default function DatePillPicker({ value, onChange, right }: Props) {
     <div className="relative " ref={ref}>
       <div
         onClick={() => setOpen((p) => !p)}
-        className="h-9 px-4 gap-2 flex items-center min-w-28 rounded-full border shadow border-gray-200 cursor-pointer hover:bg-gray-50"
+        className="h-8 px-3 gap-2 flex items-center min-w-24 rounded-full border shadow border-gray-200 cursor-pointer hover:bg-gray-50"
       >
         <p className="text-2xl font-semibold leading-none">{hookDate}</p>
-        <div className="text-[10px] leading-tight">
+        <div className="text-[9px] leading-tight">
           <p>{month}</p>
           <p>{year}</p>
         </div>

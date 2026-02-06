@@ -11,9 +11,9 @@ export default function Page() {
       <div className="text-center">
         {/* Lock Icon */}
         <div className="mb-8 flex justify-center">
-          <div className="w-24 h-24 rounded-full bg-red-500/10 flex items-center justify-center">
+          <div className="w-18 h-18 rounded-full bg-red-500/10 flex items-center justify-center">
             <svg
-              className="w-12 h-12 text-red-500"
+              className="w-7 h-7 text-red-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -29,15 +29,15 @@ export default function Page() {
         </div>
 
         {/* Error Code */}
-        <h1 className="text-8xl font-bold text-white mb-4">401</h1>
+        <h1 className="text-5xl font-bold text-white mb-4">401</h1>
 
         {/* Title */}
-        <h2 className="text-3xl font-semibold text-white mb-3">
+        <h2 className="text-2xl font-semibold text-white mb-3">
           Unauthorized Access
         </h2>
 
         {/* Description */}
-        <p className="text-gray-400 text-lg mb-8 max-w-md mx-auto">
+        <p className="text-gray-400 text-sm mb-8 max-w-md mx-auto">
           You do not have permission to access this page.
         </p>
 
@@ -47,7 +47,7 @@ export default function Page() {
           {!user && (
             <Link
               href="/auth/login"
-              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 text-sm transition-colors"
             >
               Sign In
             </Link>
@@ -59,7 +59,7 @@ export default function Page() {
               e.preventDefault();
               window.history.back();
             }}
-            className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+            className="px-6 py-3 bg-gray-800 text-sm text-white font-medium rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
           >
             Go Back
           </Link>

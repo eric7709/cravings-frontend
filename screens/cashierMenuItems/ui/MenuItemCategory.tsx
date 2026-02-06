@@ -12,18 +12,18 @@ export default function MenuItemCategory() {
 
     return (
         <div className="z-40 relative w-full xl:w-fit">
-            <div ref={dropdownRef} onClick={() => setOpen(!open)} className="flex cursor-pointer items-center gap-2 border-2 relative rounded-xl border-gray-200 px-4 h-12 w-full xl:w-fit shadow-md">
-                <p className="capitalize font-medium text-[15px]">{selectedCategory?.name} </p>
-                <TiArrowSortedDown className="ml-auto xl:ml-0" />
+            <div ref={dropdownRef} onClick={() => setOpen(!open)} className="flex cursor-pointer items-center gap-2 border-[1.5px] relative rounded-xl border-gray-200 px-3 h-9 w-full xl:w-fit shadow">
+                <p className="capitalize font-medium text-xs">{selectedCategory?.name} </p>
+                <TiArrowSortedDown size={12} className="ml-auto xl:ml-0" />
                 <div className={` overflow-y-auto flex flex-col text-sm w-full xl:w-52 rounded-xl border-gray-200 shadow-md right-0 border-2 origin-center bg-white absolute duration-300 ${open ? "top-[120%] translate-y-0 h-60 opacity-100 visible" : "opacity-0 invisible h-0 top-[120%] translate-y-3"}`}>
                     <div onClick={(e) => e.stopPropagation()} className="px-4 py-3 gap-2 items-center border-b border-gray-200 font-medium flex">
-                        <Filter size={18} />
-                        <p>Filter by Category</p>
+                        <Filter size={12} />
+                        <p className="text-xs">Filter by Category</p>
                     </div>
                     <div className="flex-1 overflow-y-auto ">
                         {categories.map((category) => (
                             <div onClick={() => setSelectedCategory(category)} className={`p-2 duration-300 cursor-pointer hover:bg-blue-100 ${selectedCategory?.id == category.id ? "bg-blue-200" : ""}`} key={category.id}>
-                                <p className="capitalize">{category.name}</p>
+                                <p className="capitalize text-[11px]">{category.name}</p>
                             </div>
                         ))}
                     </div>

@@ -11,10 +11,10 @@ export const MenuItemSearch = () => {
     <motion.div
       initial={{ opacity: 0, y: -6 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative w-full xl:w-64"
+      className="relative w-full xl:w-52"
     >
       {/* Search Icon */}
-      <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 pointer-events-none" />
+      <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
 
       {/* Input */}
       <input
@@ -23,9 +23,9 @@ export const MenuItemSearch = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="
-          w-full h-12 rounded-xl bg-white
-          pl-11 pr-10 text-sm font-medium
-          border-2 border-slate-200 shadow-md
+          w-full h-9 rounded-xl bg-white
+          pl-9 pr-10 text-[13px] font-medium
+          border-[1.5px] border-slate-200 shadow
           placeholder:text-slate-400
           focus:border-indigo-500 
           outline-none transition

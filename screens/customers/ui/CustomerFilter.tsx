@@ -14,7 +14,7 @@ export default function CustomerFilter() {
             <div className={`px-4 py-2 hidden lg:block  duration-300 backdrop-blur-xl `}>
                 <div className="p-3 bg-white rounded-xl shadow shadow-gray-300">
                     <div className="">
-                    <input type="text" className="w-full border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Customers"/>
+                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} className="w-full  border border-gray-300 shadow text-xs pl-4 outline-none rounded-xl h-9" placeholder="Search Customers"/>
                     </div>
                 </div>
             </div>

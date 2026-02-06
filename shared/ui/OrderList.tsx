@@ -5,18 +5,18 @@ import Loader from "@/shared/ui/Loader";
 import { PackageSearch } from "lucide-react";
 import { useOrders } from "@/models/orders/hooks";
 import { useOrderStore } from "@/models/orders/store";
-import { useGetRole } from "../hooks/useGetRole";
+import { useUserStore } from "@/models/auth/store";
 
 export default function OrderList() {
   const { data } = useOrders();
   const { loading, hasHydrated} = useOrderStore()
-  const role = useGetRole()
+  const {user} = useUserStore()
   const rawOrders = data?.orders.content;
 
-  const grid = role=="admin" ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4": "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+  const grid = user?.role=="ROLE_ADMIN" ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4": "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
 
   const orders =
-    role === "waiter"
+    user?.role === "ROLE_WAITER"
       ? rawOrders?.filter((o) => o.orderStatus !== "CANCELLED")
       : rawOrders;
 
@@ -36,7 +36,7 @@ export default function OrderList() {
   if (orders && orders?.length > 0)
     return (
       <div className="flex-1 overflow-y-auto">
-        <div className={`grid p-4 grid-cols-1 ${grid} gap-3`}>
+        <div className={`grid p-4 grid-cols-1 ${grid} gap-1.5`}>
           {orders.map((order) => (
             <OrderCard order={order} key={order.id} />
           ))}

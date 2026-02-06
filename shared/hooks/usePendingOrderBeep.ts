@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useOrderStore } from "@/models/orders/store";
 import { useUserStore } from "@/models/auth/store";
 import { playBeep } from "../lib/playBeep";
 import { useOrders } from "@/models/orders/hooks";
